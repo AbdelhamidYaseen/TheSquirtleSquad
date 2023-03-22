@@ -1,6 +1,9 @@
 /*#region ---ROOT---*/
 :root{
     --bg-color-primary: white;
+    --bg-color-secondary: #DFFAD5;
+    --bg-color-tertiary: #100BF5;
+    --bg-color-quaternary: #F53131;
     --bg-color-button: #666666;
     --bg-color-normal: #AAA67F;
     --bg-color-fighting: #c12239;
@@ -20,6 +23,17 @@
     --bg-color-dragon: #7037FF;
     --bg-color-dark: #75574C;
     --bg-color-fairy: #E69EAC;
+}
+/*#endregion*/
+/*
+#region ----GENERAL---*/
+@font-face {
+    font-family: poppins;
+    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family: poppinsBold;
+    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
 }
 /*#endregion*/
 
