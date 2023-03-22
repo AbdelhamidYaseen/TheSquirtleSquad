@@ -25,3 +25,23 @@
 
 /*#region ---xxx---*/
 /*#endregion*/
+
+/*#region ---PC---*/
+
+.pcheader{
+    margin-left:16%;
+    font-size:5rem;
+}
+
+.pctext{  
+
+}
+.pcbox-images{
+    margin-left:15%;
+    background-repeat: no-repeat;
+    height: 40rem; 
+    background-image: url(../assets/images/pcbox1.png);
+    background-size:contain;
+    
+}
+/*#endregion*/
