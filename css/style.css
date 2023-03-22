@@ -25,3 +25,20 @@
 
 /*#region ---xxx---*/
 /*#endregion*/
+
+/*#region ---Who's that pokémon---*/
+#kleurbalk{
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+    height: 250px;
+}
+#transparantebal{
+    margin: 20px;
+    opacity: 0.3;
+}
+#pokeguesser{
+    display: flex;
+    justify-items: center;
+}
+/*#endregion*/
