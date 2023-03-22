@@ -1,6 +1,9 @@
 /*#region ---ROOT---*/
 :root{
     --bg-color-primary: white;
+    --bg-color-secondary: #DFFAD5;
+    --bg-color-tertiary: #100BF5;
+    --bg-color-quaternary: #F53131;
     --bg-color-button: #666666;
     --bg-color-normal: #AAA67F;
     --bg-color-fighting: #c12239;
@@ -22,6 +25,112 @@
     --bg-color-fairy: #E69EAC;
 }
 /*#endregion*/
+/*
+#region ----GENERAL---*/
+@font-face {
+    font-family: poppins;
+    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family: poppinsBold;
+    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
+}
+/*#endregion*/
 
-/*#region ---xxx---*/
+/*#region ---BODY---*/
+body{
+    display: grid;
+    font-family: poppins;
+
+    grid-template-areas: 
+    "header header header header aside"
+    "main main main main aside"
+    "main main main main aside"
+    "main main main main aside"
+    "footer footer footer footer aside"
+    ;
+}
+    /*#region ---HEADER---*/
+    header{
+        position: sticky;
+        top: 0;
+        width: 85vw;
+        grid-area: header;
+        background-color: transparent;
+    }
+    header img{
+        margin: 1rem;
+    }
+    /*#endregion*/
+    /*#region ---ASIDE---*/
+    aside{
+        width: 15vw;
+        grid-area: aside;
+        background-color: var(--bg-color-secondary);        
+        height: 100vh;
+        border-radius: 4rem 0% 0% 4rem;
+    }
+    /*#endregion*/
+    /*#region ---NAV---*/
+    nav{
+        background-color: transparent;
+        height: 100%;
+    }
+    nav ul{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+    nav ul li{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+    nav ul li a{
+        text-decoration: none;
+        text-transform: capitalize;
+        color: black;
+    }
+    nav ul li a:hover{
+        color: var(--bg-color-primary);
+        transition: 0.4s;
+    }
+    /*#endregion*/
+    /*#region ---MAIN---*/
+    main{
+        width: 85vw;
+        grid-area: main;
+        background-color: var(--bg-color-primary);
+    }
+    /*#endregion*/
+    /*#region ---FOOTER---*/
+    footer{
+        width: 85vw;
+        grid-area: footer;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+    }
+    .group-info{
+
+    }
+    .project-name{
+
+    }
+    .contact-info{
+
+    }
+    /*#endregion*/
+/*#endregion*/
+
+/*#region ---HOMEPAGE---*/
+
+
+
 /*#endregion*/
