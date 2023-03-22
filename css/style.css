@@ -1,0 +1,27 @@
+/*#region ---ROOT---*/
+:root{
+    --bg-color-primary: white;
+    --bg-color-button: #666666;
+    --bg-color-normal: #AAA67F;
+    --bg-color-fighting: #c12239;
+    --bg-color-flying: #A891EC;
+    --bg-color-ground: #DEC16B;
+    --bg-color-poison: #A43E9E;
+    --bg-color-rock: #B69E31;
+    --bg-color-bug: #A7B723;
+    --bg-color-ghost: #70559B;
+    --bg-color-steel: #B7B9D0;
+    --bg-color-fire: #F57D31;
+    --bg-color-water: #6493EB;
+    --bg-color-grass: #74CB48;
+    --bg-color-electric: #F9CF30;
+    --bg-color-psychic: #FB5584;
+    --bg-color-ice: #9AD6DF;
+    --bg-color-dragon: #7037FF;
+    --bg-color-dark: #75574C;
+    --bg-color-fairy: #E69EAC;
+}
+/*#endregion*/
+
+/*#region ---xxx---*/
+/*#endregion*/
