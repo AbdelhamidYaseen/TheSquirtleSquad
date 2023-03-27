@@ -25,8 +25,7 @@
     --bg-color-fairy: #E69EAC;
 }
 /*#endregion*/
-/*
-#region ----GENERAL---*/
+/*#region ----GENERAL---*/
 @font-face {
     font-family: poppins;
     src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
@@ -43,32 +42,43 @@ body{
     font-family: poppins;
 
     grid-template-areas: 
-    "header header header header aside"
-    "main main main main aside"
-    "main main main main aside"
-    "main main main main aside"
-    "footer footer footer footer aside"
+    "header header aside"
+    "main main aside"
+    "main main aside"
+    "main main aside"
+    "footer footer aside"
     ;
 }
     /*#region ---HEADER---*/
     header{
+        border: black 1rem solid;
         position: sticky;
         top: 0;
-        width: 85vw;
+        margin-bottom: 5rem;
         grid-area: header;
         background-color: transparent;
     }
     header img{
         margin: 1rem;
     }
+    #logo{
+        transition: ease-in-out 1s 100ms;
+    }
+    #logo:hover{
+        transform: rotate(360deg)
+        translate(5rem,5rem);
+    }
     /*#endregion*/
     /*#region ---ASIDE---*/
     aside{
-        width: 15vw;
+        width: 100%;
         grid-area: aside;
         background-color: var(--bg-color-secondary);        
         height: 100vh;
         border-radius: 4rem 0% 0% 4rem;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
     }
     /*#endregion*/
     /*#region ---NAV---*/
@@ -90,28 +100,54 @@ body{
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
-
+        transition: 0.4s ease-in-out 100ms;
+        height: 5%;
     }
     nav ul li a{
         text-decoration: none;
         text-transform: capitalize;
         color: black;
+        transition: 0.4s ease-in-out 100ms;
+
     }
-    nav ul li a:hover{
+    nav ul li:hover{
+        background-color:  var(--bg-color-button);
+        border-radius: 2rem 2rem 2rem 2rem;
+        transform: translate(-0.8rem, 0);
+    }
+    nav ul li:hover a{
         color: var(--bg-color-primary);
-        transition: 0.4s;
+
+    }
+    #nav-account{
+        display: flex;
+        flex-direction: row;
+    }
+    #nav-account:hover{
+        background-color: transparent;
+        border-radius: 0 0 0 0;
+        transform: translate(0rem,0rem);
+    }
+    #nav-account a{
+        background-color: black;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+    #nav-level{
+        font-size: smaller;
+        color: var(--bg-color-button);
     }
     /*#endregion*/
     /*#region ---MAIN---*/
     main{
-        width: 85vw;
         grid-area: main;
         background-color: var(--bg-color-primary);
     }
     /*#endregion*/
     /*#region ---FOOTER---*/
     footer{
-        width: 85vw;
+        height: 10vw;
         grid-area: footer;
         background-color: transparent;
         display: flex;
@@ -130,7 +166,141 @@ body{
 /*#endregion*/
 
 /*#region ---HOMEPAGE---*/
-
-
-
+#home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#creators{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 21rem;
+    row-gap: 10rem;
+    background-color: var(--bg-color-secondary);
+    margin: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+    border-radius: 4rem;
+}
+.card{
+   /* margin: 10vw;*/
+    width: 15rem;
+    height: 25rem;
+    border-radius: 2rem;
+    border: 0.2rem solid black;
+  
+}
+.card-holder{
+    border: none;
+    transition: ease-in-out 1ms 100ms;
+}
+#card-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+        position: absolute;
+    z-index: 5;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-1{
+    transform: 
+    rotate(0deg)
+    translate(0rem,-2.8rem)
+    ;
+}
+#card-2{
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    position: absolute;
+    z-index: 8;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-2{
+    transform:
+    rotate(0deg)
+    translate(8rem,7.5rem)
+    ;
+}
+#card-3{
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+        position: absolute;
+    z-index: 7;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-3{
+    transform:
+    rotate(-40deg)
+    translate(-3.8rem,-5rem)
+    ;
+}
+#card-4{
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    position: absolute;
+z-index: 8;
+transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-4{
+    transform:
+    rotate(40deg)
+    translate(3.8rem,-5rem)
+    ;
+}
+#card-5{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(220deg,#100BF5,#F53131);
+    position: absolute;
+    z-index: 9;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-5{
+    transform: 
+    rotate(0deg)
+    translate(0rem,8rem)
+    ;
+}
+#card-6{
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        position: absolute;
+    z-index: 6;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-6{
+    transform:
+    rotate(0deg)
+    translate(-8rem,7.5rem)
+    ;
+}
+.card-name{
+    font-size: 2rem;
+    text-transform: capitalize;
+    margin-bottom: 10%;
+}
+.card-profile{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 5rem;
+    height: 5rem;
+    background-color: black;
+    border-radius: 50%;
+    border:outset 0.2rem red;
+}
+.card-pokemon{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 5rem;
+    height: 5rem;
+    background-color: black;
+    border-radius: 50%;
+    border:outset 0.2rem red;  
+}
+.card-text{
+    margin: 1rem;
+}
 /*#endregion*/
