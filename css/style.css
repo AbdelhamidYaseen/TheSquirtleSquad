@@ -30,7 +30,7 @@
 #region ----GENERAL---*/
 @font-face {
     font-family: poppins;
-    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
+    src: url(../assets/fonts/Poppins/Poppins-Regular.ttf);
 }
 
 @font-face {
@@ -70,6 +70,10 @@ header img {
     margin: 1rem;
 }
 
+header h1 {
+    font-family: poppinsBold;
+}
+
 header section figure {
     display: flex;
 }
@@ -99,7 +103,7 @@ header section#search form input {
     margin-top: -100px;
     width: 100vw;
     height: 320px;
-    background-color: #74CB48;
+    background-color: var(--bg-color-grass);
     justify-content: center;
     align-items: center;
 }
@@ -113,6 +117,8 @@ header section#search form input {
     right: 5rem;
 }
 
+/*#endregion*/
+/*#region --POKEMON DETAILS--*/
 .pokemon-details {
     top: 0;
     display: flex;
@@ -121,6 +127,10 @@ header section#search form input {
     justify-content: space-between;
     align-items: center;
     padding: 0 5rem;
+}
+
+.pokemon-details .card {
+    margin-top: 100px;
 }
 
 .pokemon-details section section.card {
@@ -134,20 +144,187 @@ header section#search form input {
     box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
 }
-.pokemon-details section section.card .types{
+
+.pokemon-details section section.card .title {
+    font-family: poppinsBold;
+}
+
+.pokemon-details section section.card .subtitle {
+    font-family: poppinsBold;
+}
+
+.pokemon-details section section.card .types {
     display: flex;
     gap: 1rem;
 }
 
-.pokemon-details section section.card .about{
+.pokemon-details section section.card .about {
     display: flex;
     flex-direction: row;
-    gap: 3rem;
+    justify-content: space-between;
+
 }
+
+.pokemon-details section section.card .about .item {
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 0 2.3rem;
+    display: flex;
+    min-height: 4.3rem;
+    flex-direction: column;
+}
+
+.pokemon-details section section.card .about .item:last-of-type {
+    border-right: none;
+}
+
+.pokemon-details section section.card .about .item .value {
+    font-weight: 300;
+    text-align: center;
+}
+
+.pokemon-details section section.card .about .item .value-type {
+    margin-top: auto;
+    text-align: center;
+    color: var(--bg-color-button);
+}
+
+.pokemon-details section section.card>p {
+    text-align: center;
+}
+
+.pokemon-details section section.stats {
+    width: 100%;
+}
+
+.pokemon-details section section.stats section.item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon-details section section.stats section.item .details {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.pokemon-details section section.stats table tbody tr.item td {
+    width: 50px;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.divider {
+    border-left: 2px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+    margin: auto;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container {
+    width: 80%;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    width: 100%;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-bar {
+    background-color: #eeeeee;
+    border-radius: 15px;
+    height: .4rem;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-value {
+    background-color: var(--bg-color-grass);
+    border-radius: 15px;
+    height: .4rem;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    background-color: #eee;
+    border-radius: 15px;
+    height: .4rem;
+    margin: 5px 0;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-moz-progress-bar {
+    background-color: var(--bg-color-grass);
+    border-radius: 15px;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    background-color: #eee;
+    border-radius: 15px;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    background-color: #039603;
+}
+
+/*#endregion*/
+/*#region --EVOLUTION LINE--*/
+.evolutionline h2 {
+    font-family: poppinsBold;
+    margin-left: 4rem;
+    font-size: 1.7rem;
+}
+
+.evolutionline .slider {
+    display: flex;
+    margin: 3rem;
+    gap: 2rem;
+    width: 75vw;
+    overflow-x: auto;
+}
+
+.evolutionline .slider::-webkit-scrollbar {
+    height: 10px;
+}
+
+.evolutionline .slider::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+}
+
+.evolutionline .slider::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.evolutionline .slider::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+.evolutionline .slider .card {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: relative;
+}
+
+.evolutionline .slider .card .card-hero img {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.evolutionline .slider .card .card-hero p {
+    float: right;
+    margin: 0.6rem;
+    color: var(--bg-color-button);
+}
+
+.evolutionline .slider .card .card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.3rem;
+    padding: .5rem 0;
+    background-color: #EFEFEF;
+}
+
+
 
 /*#endregion*/
 /*#region ---ASIDE---*/
 aside {
+    top: 0;
+    position: sticky;
     z-index: 1;
     width: 15vw;
     grid-area: aside;
@@ -186,6 +363,7 @@ nav ul li a {
     text-decoration: none;
     text-transform: capitalize;
     color: black;
+    font-family: poppinsBold;
 }
 
 nav ul li a:hover {
@@ -194,7 +372,7 @@ nav ul li a:hover {
 }
 
 /*#region ---TYPES---*/
-.type-grass{
+.type-grass {
     justify-content: center;
     align-items: center;
     padding: 2px 8px;
@@ -204,7 +382,8 @@ nav ul li a:hover {
     background-color: var(--bg-color-grass);
     border-radius: 10px;
 }
-.type-poison{
+
+.type-poison {
     justify-content: center;
     align-items: center;
     padding: 2px 8px;
@@ -214,6 +393,7 @@ nav ul li a:hover {
     background-color: var(--bg-color-poison);
     border-radius: 10px;
 }
+
 /*#endregion*/
 /*#endregion*/
 /*#region ---MAIN---*/
