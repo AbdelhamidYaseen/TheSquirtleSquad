@@ -41,21 +41,58 @@
 
 /*#region ---PC---*/
 
-.pcheader{
+.pc-body{
+    display: grid;
+    grid-template:  "header aside"
+                    "main aside"
+                    "footer aside";
+}
+.pc-header{
+    margin-top: -5rem;
     margin-left:16%;
     font-size:5rem;
+    margin-bottom:1.5%;
+    text-align:center;
+
+}
+.pc-header-text{
+    margin-left:16%;
+    text-align:center;
+    margin-bottom: 1.5%;
 }
 
-.pctext{  
-
+.nested{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
-.pcbox-images{
+ 
+.image-pokémon{
+    height: 5rem;
+} 
+
+
+.text-in-pc{
+    margin-top: 5px;
+    font-size: 1.5rem;
+    border-color: lightgray;
+    border-width: 0.2rem;
+    border-style:inset;
+    background-image: url(../assets/images/pcBoxNameBackground.jpg);
+} 
+.border-around-pc{
+    border-color: lightgray;
+    border-width: 0.5rem;
+    border-style:inset;
     margin-left:15%;
+    text-align: center;
+    padding-top: 1.5%;
+} 
+.pcbox-background{
     background-repeat: no-repeat;
-    height: 40rem; 
+    height: 44.8rem; 
     background-image: url(../assets/images/pcbox1.png);
     background-size:contain;
-    
+    margin-top: 1%;
 }
 /*#endregion*/
 /*#region ---BODY---*/
@@ -65,8 +102,6 @@ body{
 
     grid-template-areas: 
     "header header aside"
-    "main main aside"
-    "main main aside"
     "main main aside"
     "footer footer aside"
     ;
@@ -90,7 +125,7 @@ body{
         translate(5rem,5rem);
     }
     /*#endregion*/
-    /*#region ---ASIDE---*/
+    /*#region ---ASIDE---*/ 
     aside{
         width: 10rem;
         grid-area: aside;
