@@ -1,5 +1,5 @@
 /*#region ---ROOT---*/
-:root{
+:root {
     --bg-color-primary: white;
     --bg-color-secondary: #DFFAD5;
     --bg-color-tertiary: #100BF5;
@@ -24,6 +24,7 @@
     --bg-color-dark: #75574C;
     --bg-color-fairy: #E69EAC;
 }
+
 /*#endregion*/
 /*
 #region ----GENERAL---*/
@@ -31,102 +32,197 @@
     font-family: poppins;
     src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
 }
+
 @font-face {
     font-family: poppinsBold;
     src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
 }
+
 /*#endregion*/
 
 /*#region ---BODY---*/
-body{
+body {
     display: grid;
     font-family: poppins;
 
-    grid-template-areas: 
-    "header header header header aside"
-    "main main main main aside"
-    "main main main main aside"
-    "main main main main aside"
-    "footer footer footer footer aside"
+    grid-template-areas:
+        "header header header header aside"
+        "main main main main aside"
+        "main main main main aside"
+        "main main main main aside"
+        "footer footer footer footer aside"
     ;
 }
-    /*#region ---HEADER---*/
-    header{
-        position: sticky;
-        top: 0;
-        width: 85vw;
-        grid-area: header;
-        background-color: transparent;
-    }
-    header img{
-        margin: 1rem;
-    }
-    /*#endregion*/
-    /*#region ---ASIDE---*/
-    aside{
-        width: 15vw;
-        grid-area: aside;
-        background-color: var(--bg-color-secondary);        
-        height: 100vh;
-        border-radius: 4rem 0% 0% 4rem;
-    }
-    /*#endregion*/
-    /*#region ---NAV---*/
-    nav{
-        background-color: transparent;
-        height: 100%;
-    }
-    nav ul{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
 
-    }
-    nav ul li{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
+/*#region ---HEADER---*/
+header {
+    z-index: 1;
+    display: flex;
+    position: sticky;
+    top: 0;
+    width: 85vw;
+    grid-area: header;
+    background-color: transparent;
+    justify-content: space-between;
+}
 
-    }
-    nav ul li a{
-        text-decoration: none;
-        text-transform: capitalize;
-        color: black;
-    }
-    nav ul li a:hover{
-        color: var(--bg-color-primary);
-        transition: 0.4s;
-    }
-    /*#endregion*/
-    /*#region ---MAIN---*/
-    main{
-        width: 85vw;
-        grid-area: main;
-        background-color: var(--bg-color-primary);
-    }
-    /*#endregion*/
-    /*#region ---FOOTER---*/
-    footer{
-        width: 85vw;
-        grid-area: footer;
-        background-color: transparent;
-        display: flex;
-        flex-direction: row;
-    }
-    .group-info{
+header img {
+    margin: 1rem;
+}
 
-    }
-    .project-name{
+header section figure {
+    display: flex;
+}
 
-    }
-    .contact-info{
+header section figure h1 {
+    margin: 1.7rem;
+}
 
-    }
-    /*#endregion*/
+header section#search {
+    margin: 1.4rem;
+}
+
+header section#search form input {
+    background: #FFFFFF;
+    box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.212);
+    border: 1px solid #fff;
+    border-radius: 16px;
+    padding: .4rem;
+}
+
+/*#endregion*/
+/*#region --BELLOW HEADER--*/
+.bellowheader {
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: -100px;
+    width: 100vw;
+    height: 320px;
+    background-color: #74CB48;
+    justify-content: center;
+    align-items: center;
+}
+
+.bellowheader img {
+    position: relative;
+    height: 270px;
+    width: 270px;
+    margin-top: 50px;
+    opacity: 0.1;
+    right: 5rem;
+}
+
+.pokemon-details {
+    top: 0;
+    display: flex;
+    margin-top: -200px;
+    height: 500px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+.pokemon-details section section.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 16px;
+    width: 30vw;
+    background: #FFFFFF;
+    box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+.pokemon-details section section.card .types{
+    display: flex;
+    gap: 1rem;
+}
+
+.pokemon-details section section.card .about{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+/*#endregion*/
+/*#region ---ASIDE---*/
+aside {
+    z-index: 1;
+    width: 15vw;
+    grid-area: aside;
+    background-color: var(--bg-color-secondary);
+    height: 100vh;
+    border-radius: 4rem 0% 0% 4rem;
+}
+
+
+/*#endregion*/
+/*#region ---NAV---*/
+nav {
+    background-color: transparent;
+    height: 100%;
+}
+
+nav ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+nav ul li {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: black;
+}
+
+nav ul li a:hover {
+    color: var(--bg-color-primary);
+    transition: 0.4s;
+}
+
+/*#region ---TYPES---*/
+.type-grass{
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    color: #FFF;
+    width: 50px;
+    height: 20px;
+    background-color: var(--bg-color-grass);
+    border-radius: 10px;
+}
+.type-poison{
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    color: #FFF;
+    width: 50px;
+    height: 20px;
+    background-color: var(--bg-color-poison);
+    border-radius: 10px;
+}
+/*#endregion*/
+/*#endregion*/
+/*#region ---MAIN---*/
+main {
+    width: 85vw;
+    grid-area: main;
+    background-color: var(--bg-color-primary);
+}
+
 /*#endregion*/
 
 /*#region ---HOMEPAGE---*/

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokePeaker</title>
+    <title>Pokehome</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,11 +14,11 @@
     <header>
         <section>
             <figure>
-                <img src="./assets/images/Pokeball.png" alt="Squirtle squad logo">
+                <img src="./assets/images/logo.png" alt="Squirtle squad logo">
                 <h1>SquirtleSquad</h1>
             </figure>
         </section>
-        <section>
+        <section id="search">
             <form class="search" action="">
                 <input type="text" placeholder="Search..">
             </form>
@@ -27,30 +27,43 @@
     <aside>
         <nav>
             <ul>
-                <li><a href="#">Adventure</a></li>
-                <li><a href="#">Pokedex</a></li>
-                <li><a href="#">Pokebag</a></li>
-                <li><a href="#">Who's that?</a></li>
+                <li><a href="">home</a></li>
+                <li><a href="">adventure</a></li>
+                <li><a href="">pokedex</a></li>
+                <li><a href="">pokebag</a></li>
+                <li><a href="">mystery</a></li>
+                <li><a href="">about</a></li>
+                <li><a href="">contact</a></li>
+                <li><a href="">settings</a></li>
+                <li id="nav-account">
+                    <section>
+                        <p id="nav-name">username</p>
+                        <p id="nav-level">level 30</p>
+                    </section>
+                </li>
             </ul>
         </nav>
     </aside>
     <main>
+        <section class="bellowheader">
+            <img src="./assets/images/Pokeball.png" alt="">
+        </section>
         <section class="pokemon-details">
             <section>
-                <img src="" alt="">
+                <img src="./assets/images/Bulbasaur.png" alt="">
             </section>
             <section>
                 <section class="card">
                     <p>Bulbasaur #001</p>
-                    <section>
-                        <p class="grass-chip">grass</p>
-                        <p class="poison-chip">Poison</p>
+                    <section class="types">
+                        <p class="type-grass">grass</p>
+                        <p class="type-poison">Poison</p>
                     </section>
                     <h3>Over</h3>
                     <section class="about">
                         <section class="weight">
-                            <p>6,9 kg</p>
-                            <p>Gewicht</p>
+                            <p class="value">6,9 kg</p>
+                            <p class="">Gewicht</p>
                         </section>
                         <section class="height">
                             <p>0,7 m</p>
