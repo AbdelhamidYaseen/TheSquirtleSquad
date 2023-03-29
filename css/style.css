@@ -45,24 +45,25 @@
 }
 */
 
-.pc-body{
+#pc-body{
     display: grid;
     grid-template:  "header header  header aside"
                     "main main main  aside"
                     "footer  footer footer aside";
 } 
-.pc-header{
+#pc-header{
+    margin-top: -5rem;
     font-size:5rem;
     margin-bottom:1.5%;
     text-align:center;
 
 }
-.pc-header-text{
+#pc-header-text{
     text-align:center;
     margin-bottom: 1.5%;
 }
 
-.nested{
+#nested{
     display: flex;
     flex-wrap:wrap;
 }
@@ -74,7 +75,7 @@
 } 
 
 
-.text-in-pc{
+#text-in-pc{
     margin-top: 5px;
     font-size: 1.5rem;
     border-color: lightgray;
@@ -82,7 +83,7 @@
     border-style:inset;
     background-image: url(../assets/images/pcBoxNameBackground.jpg);
 } 
-.border-around-pc{
+#border-around-pc{
     border-color: lightgray;
     border-width: 0.5rem;
     border-style:inset;
@@ -97,9 +98,8 @@
     background-image: url(../assets/images/pcbox1.png);
     background-size:contain;
     margin-top: 1%;
-    margin-bottom: -4%;
+    margin-bottom: -1%;
     height:50rem;
-    width:auto;
 }
 /*#endregion*/
 /*#region ---BODY---*/
