@@ -397,7 +397,7 @@ nav ul li a:hover {
 /*#endregion*/
 /*#region ---MAIN---*/
 main {
-    width: 85vw;
+    width: 83vw;
     grid-area: main;
     background-color: var(--bg-color-primary);
 }
