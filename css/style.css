@@ -40,23 +40,24 @@
 /*#endregion*/
 
 /*#region ---PC---*/
+.main-pc{
+    width:88.5vw;
+}
 
 .pc-body{
     display: grid;
-    grid-template:  "header aside"
-                    "main aside"
-                    "footer aside";
+    grid-template:  "header  aside"
+                    "main  aside"
+                    "footer  aside";
 }
 .pc-header{
     margin-top: -5rem;
-    margin-left:16%;
     font-size:5rem;
     margin-bottom:1.5%;
     text-align:center;
 
 }
 .pc-header-text{
-    margin-left:16%;
     text-align:center;
     margin-bottom: 1.5%;
 }
@@ -64,10 +65,13 @@
 .nested{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 100px 100px 100px;
 }
  
 .image-pokémon{
     height: 5rem;
+    margin-left: 10%;
+    margin-top: 5%;
 } 
 
 
@@ -83,16 +87,17 @@
     border-color: lightgray;
     border-width: 0.5rem;
     border-style:inset;
-    margin-left:15%;
+    margin-left:25%;
+    margin-right:25%;
     text-align: center;
     padding-top: 1.5%;
 } 
 .pcbox-background{
     background-repeat: no-repeat;
-    height: 44.8rem; 
     background-image: url(../assets/images/pcbox1.png);
     background-size:contain;
     margin-top: 1%;
+    height:35rem;
 }
 /*#endregion*/
 /*#region ---BODY---*/
