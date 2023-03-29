@@ -440,26 +440,6 @@ transition: ease-in-out 0.8s 100ms;
 }
 /*#endregion*/
 /*#region --BELLOW HEADER--*/
-.bellowheader {
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    margin-top: -100px;
-    width: 100vw;
-    height: 320px;
-    background-color: var(--bg-color-grass);
-    justify-content: center;
-    align-items: center;
-}
-
-.bellowheader img {
-    position: relative;
-    height: 270px;
-    width: 270px;
-    margin-top: 50px;
-    opacity: 0.1;
-    right: 5rem;
-}
     /*#region ---MEDIAQUERIES---*/
     @media screen and (max-width: 1000px) {
         
@@ -508,46 +488,6 @@ transition: ease-in-out 0.8s 100ms;
     opacity: 0.1;
     right: 5rem;
 }
-/*#endregion*/
-/*#region --POKEMON DETAILS--*/
-.pokemon-details {
-    top: 0;
-    display: flex;
-    margin-top: -200px;
-    height: 500px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5rem;
-}
-
-.pokemon-details .card {
-    margin-top: 100px;
-}
-
-.pokemon-details section section.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 16px;
-    width: 30vw;
-    background: #FFFFFF;
-    box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-}
-
-.pokemon-details section section.card .title {
-    font-family: poppinsBold;
-}
-
-.pokemon-details section section.card .subtitle {
-    font-family: poppinsBold;
-}
-
-.pokemon-details section section.card .types {
-    display: flex;
-    gap: 1rem;
-}
 
 /*#endregion*/
 /*#region --POKEMON DETAILS--*/
@@ -589,6 +529,7 @@ transition: ease-in-out 0.8s 100ms;
     display: flex;
     gap: 1rem;
 }
+
 .pokemon-details section section.card .about {
     display: flex;
     flex-direction: row;
