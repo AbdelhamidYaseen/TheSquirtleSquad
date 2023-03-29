@@ -84,6 +84,7 @@ body{
     /*#endregion*/
     /*#region ---ASIDE---*/
     aside{
+        margin-left: auto;
         width: 10rem;
         grid-area: aside;
         background-color: var(--bg-color-secondary);        
@@ -93,6 +94,33 @@ body{
         position: sticky;
         top: 0;
     }
+        /*#region ---MEDIAQUERIES---*/
+        @media screen and (max-width: 1000px) {
+        
+        }
+        @media screen and (max-width: 900px) {
+            
+        }
+        @media screen and (max-width: 800px) {
+            aside{
+                display: none;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            
+        }
+        @media screen and (max-width: 600px) {
+            
+        }
+        @media screen and (max-width: 500px) {
+            
+        }
+        @media screen and (max-width: 400px) {
+            
+        }
+        @media screen and (max-width: 300px) {
+            
+        }    
     /*#endregion*/
     /*#region ---NAV---*/
     nav{
@@ -150,6 +178,9 @@ body{
     #nav-level{
         font-size: smaller;
         color: var(--bg-color-button);
+    }
+    #hamburger-container{
+        display: none;
     }
     /*#endregion*/
     /*#region ---MAIN---*/
@@ -394,4 +425,30 @@ transition: ease-in-out 0.8s 100ms;
     height: 5rem;
     margin-bottom: -5rem;
 }
+    /*#region ---MEDIAQUERIES---*/
+    @media screen and (max-width: 1000px) {
+        
+    }
+    @media screen and (max-width: 900px) {
+        
+    }
+    @media screen and (max-width: 800px) {
+        
+    }
+    @media screen and (max-width: 700px) {
+        
+    }
+    @media screen and (max-width: 600px) {
+        
+    }
+    @media screen and (max-width: 500px) {
+        
+    }
+    @media screen and (max-width: 400px) {
+        
+    }
+    @media screen and (max-width: 300px) {
+        
+    }
+    /*#endregion*/
 /*#endregion*/
