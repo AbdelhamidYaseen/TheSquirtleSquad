@@ -54,7 +54,6 @@ body{
         display: flex;
         position: sticky;
         top: 0;
-        margin-bottom: 5rem;
         grid-area: header;
         background-color: transparent;
         padding: 1rem;
@@ -234,7 +233,7 @@ body{
     padding-bottom: 8rem;
     border-radius: 4rem;
 }
-.card{
+.home-card{
     
     width: 15rem;
     height: 25rem;
