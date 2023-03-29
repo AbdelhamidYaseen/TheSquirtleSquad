@@ -1,6 +1,9 @@
 /*#region ---ROOT---*/
 :root{
     --bg-color-primary: white;
+    --bg-color-secondary: #DFFAD5;
+    --bg-color-tertiary: #100BF5;
+    --bg-color-quaternary: #F53131;
     --bg-color-button: #666666;
     --bg-color-normal: #AAA67F;
     --bg-color-fighting: #c12239;
@@ -22,6 +25,711 @@
     --bg-color-fairy: #E69EAC;
 }
 /*#endregion*/
+/*#region ----GENERAL---*/
+@font-face {
+    font-family: poppins;
+    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family: poppinsBold;
+    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
+}
+/*#endregion*/
 
-/*#region ---xxx---*/
+/*#region ---BODY---*/
+body{
+    display: grid;
+    font-family: poppins;
+
+    grid-template-areas: 
+    "header aside"
+    "main aside"
+    "main aside"
+    "main aside"
+    "footer aside"
+    ;
+}
+    /*#region ---HEADER---*/
+    header{
+        z-index: 1;
+        display: flex;
+        position: sticky;
+        top: 0;
+        grid-area: header;
+        background-color: transparent;
+        padding: 1rem;
+        width: 85vw;
+        justify-content: space-between;
+    }
+    header a{
+        height: 3.2rem;
+        width: 3.2rem;
+        border-radius: 50%;
+    }
+    header section figure {
+        display: flex;
+    }
+    header figure{
+        border-radius: 50%;
+        height: 3.2rem;
+        width: 3.2rem;
+    }
+    #logo:hover{
+        background-color: var(--bg-color-quaternary);
+        transform: 
+        rotate(180deg);
+    }
+    #logo{
+        height: 3.2rem;
+        width: 3.2rem;
+        transition: ease-in-out 0.8s 100ms;
+        border-radius: 50%;
+    }
+    header section#search form input {
+        background: #FFFFFF;
+        box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.212);
+        border: 1px solid #fff;
+        border-radius: 16px;
+        padding: .4rem;
+    }
+
+    /*#endregion*/
+    /*#region ---ASIDE---*/
+    aside{
+        margin-left: auto;
+        width: 10rem;
+        grid-area: aside;
+        background-color: var(--bg-color-secondary);        
+        height: 100vh;
+        border-radius: 4rem 0% 0% 4rem;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+        /*#region ---MEDIAQUERIES---*/
+        @media screen and (max-width: 1000px) {
+        
+        }
+        @media screen and (max-width: 900px) {
+            
+        }
+        @media screen and (max-width: 800px) {
+            aside{
+                display: none;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            
+        }
+        @media screen and (max-width: 600px) {
+            
+        }
+        @media screen and (max-width: 500px) {
+            
+        }
+        @media screen and (max-width: 400px) {
+            
+        }
+        @media screen and (max-width: 300px) {
+            
+        }    
+    /*#endregion*/
+    /*#region ---NAV---*/
+    nav{
+        background-color: transparent;
+        height: 100%;
+    }
+    nav ul{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+    nav ul li{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        transition: 0.4s ease-in-out 100ms;
+        height: 5%;
+    }
+    nav ul li a{
+        text-decoration: none;
+        text-transform: capitalize;
+        color: black;
+        transition: 0.4s ease-in-out 100ms;
+
+    }
+    nav ul li:hover{
+        background-color:  var(--bg-color-button);
+        border-radius: 2rem 2rem 2rem 2rem;
+        transform: translate(-0.8rem, 0);
+    }
+    nav ul li:hover a{
+        color: var(--bg-color-primary);
+
+    }
+    #nav-account{
+        display: flex;
+        flex-direction: row;
+    }
+    #nav-account:hover{
+        background-color: transparent;
+        border-radius: 0 0 0 0;
+        transform: translate(0rem,0rem);
+    }
+    #nav-account a{
+        background-color: black;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+    #nav-level{
+        font-size: smaller;
+        color: var(--bg-color-button);
+    }
+    #hamburger-container{
+        display: none;
+    }
+    /*#endregion*/
+    /*#region ---MAIN---*/
+    main{
+        width: 85vw;
+        grid-area: main;
+        background-color: var(--bg-color-primary);
+    }
+    /*#endregion*/
+    /*#region ---FOOTER---*/
+    footer{
+        height: 10rem;
+        grid-area: footer;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+    
+        column-gap: 1rem;
+    }
+    footer section{
+        display: flex;
+        flex-direction: column;
+        justify-content:space-evenly;
+        background-color: var(--bg-color-secondary);
+        border-radius: 2rem 2rem 0rem 0rem;
+    }
+    footer p{
+        font-size: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    /*#endregion*/
+/*#endregion*/
+
+/*#region ---HOMEPAGE---*/
+#home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#creators{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 21rem;
+    row-gap: 10rem;
+    background-color: var(--bg-color-secondary);
+    margin: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+    border-radius: 4rem;
+}
+main#home .card{
+    
+    width: 15rem;
+    height: 25rem;
+    border-radius: 2rem;
+    border: 0.2rem solid black;
+  
+}
+.card-holder{
+    border: none;
+    transition: ease-in-out 1ms 100ms;
+}
+#card-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+        position: absolute;
+    z-index: 5;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-1{
+    transform: 
+    rotate(0deg)
+    translate(0rem,-2.8rem)
+    ;
+}
+#card-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-self: flex-end;
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    position: absolute;
+    z-index: 8;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-2{
+    transform:
+    rotate(0deg)
+    translate(8rem,7.5rem)
+    ;
+}
+#card-3{
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+        position: absolute;
+    z-index: 7;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-3{
+    transform:
+    rotate(-40deg)
+    translate(-3.8rem,-5rem)
+    ;
+}
+#card-4{
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    position: absolute;
+z-index: 8;
+transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-4{
+    transform:
+    rotate(40deg)
+    translate(3.8rem,-5rem)
+    ;
+}
+#card-5{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(220deg,#100BF5,#F53131);
+    position: absolute;
+    z-index: 9;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-5{
+    transform: 
+    rotate(0deg)
+    translate(0rem,8rem)
+    ;
+}
+#card-6{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: red;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    position: absolute;
+    z-index: 6;
+    transition: ease-in-out 0.8s 100ms;
+}
+.card-holder:hover #card-6{
+    transform:
+    rotate(0deg)
+    translate(-8rem,7.5rem)
+    ;
+}
+.card-name{
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin-bottom: 10%;
+    margin-top: 0.1rem;
+    text-align: center;
+    border-bottom: solid 0.1rem black;
+    width: 15rem;
+}
+.card-profile{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: black;
+    border-radius: 50%;
+    border:outset 0.2rem red;
+}
+.card-profile img{
+    border-radius: 50%; 
+    width: 5rem;
+}
+.card-pokemon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 5rem;
+    height: 5rem;
+    background-color: black;
+    border-radius: 50%;
+    border:outset 0.1rem black;
+    background-color: var(--bg-color-secondary);  
+    background-size: cover;
+}
+.card-pokemon img{
+    width: 4rem;
+    height: 4rem;  
+}
+.card-text{
+    margin: 1rem;
+    filter: blur(0.2rem);
+    transition: ease-in-out 1s 100ms;
+}
+.card-holder:hover .card-text{
+    filter: blur(0rem);
+}
+.card-hobby{
+    display: flex;
+    border: 0.1rem black solid;
+    background-color: var(--bg-color-secondary);
+    border-radius: 4rem;
+    width: 6.5rem;
+    height: 2rem;
+    margin: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    filter: blur(0.2rem);
+    transition: ease-in-out 1s 100ms;
+
+}
+.card-holder:hover .card-hobby{
+    filter: blur(0rem);
+}
+.card-special{
+    display: flex;
+    border: 0.1rem black solid;
+    background-color: var(--bg-color-secondary);
+    border-radius: 4rem;
+    width: 6.5rem;
+    height: 2rem;
+    margin: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    margin-left: auto;
+    filter: blur(0.2rem);
+    transition: ease-in-out 1s 100ms;
+}
+.card-holder:hover .card-special{
+    filter: blur(0rem);
+}
+#home h2{
+    font-size: 5rem;
+    text-transform:uppercase;
+    text-align: center;
+    height: 5rem;
+    margin-bottom: -5rem;
+}
+/*#endregion*/
+/*#region --BELLOW HEADER--*/
+.bellowheader {
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: -100px;
+    width: 100vw;
+    height: 320px;
+    background-color: var(--bg-color-grass);
+    justify-content: center;
+    align-items: center;
+}
+
+.bellowheader img {
+    position: relative;
+    height: 270px;
+    width: 270px;
+    margin-top: 50px;
+    opacity: 0.1;
+    right: 5rem;
+}
+    /*#region ---MEDIAQUERIES---*/
+    @media screen and (max-width: 1000px) {
+        
+    }
+    @media screen and (max-width: 900px) {
+        
+    }
+    @media screen and (max-width: 800px) {
+        
+    }
+    @media screen and (max-width: 700px) {
+        
+    }
+    @media screen and (max-width: 600px) {
+        
+    }
+    @media screen and (max-width: 500px) {
+        
+    }
+    @media screen and (max-width: 400px) {
+        
+    }
+    @media screen and (max-width: 300px) {
+        
+    }
+    /*#endregion*/
+/*#endregion*/
+/*#region --BELLOW HEADER--*/
+.bellowheader {
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: -100px;
+    width: 100vw;
+    height: 320px;
+    background-color: var(--bg-color-grass);
+    justify-content: center;
+    align-items: center;
+}
+
+.bellowheader img {
+    position: relative;
+    height: 270px;
+    width: 270px;
+    margin-top: 50px;
+    opacity: 0.1;
+    right: 5rem;
+}
+
+/*#endregion*/
+/*#region --POKEMON DETAILS--*/
+.pokemon-details {
+    top: 0;
+    display: flex;
+    margin-top: -200px;
+    height: 500px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+.pokemon-details .card {
+    margin-top: 100px;
+}
+
+.pokemon-details section section.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 16px;
+    width: 30vw;
+    background: #FFFFFF;
+    box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.pokemon-details section section.card .title {
+    font-family: poppinsBold;
+}
+
+.pokemon-details section section.card .subtitle {
+    font-family: poppinsBold;
+}
+
+.pokemon-details section section.card .types {
+    display: flex;
+    gap: 1rem;
+}
+
+.pokemon-details section section.card .about {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.pokemon-details section section.card .about .item {
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 0 2.3rem;
+    display: flex;
+    min-height: 4.3rem;
+    flex-direction: column;
+}
+
+.pokemon-details section section.card .about .item:last-of-type {
+    border-right: none;
+}
+
+.pokemon-details section section.card .about .item .value {
+    font-weight: 300;
+    text-align: center;
+}
+
+.pokemon-details section section.card .about .item .value-type {
+    margin-top: auto;
+    text-align: center;
+    color: var(--bg-color-button);
+}
+
+.pokemon-details section section.card>p {
+    text-align: center;
+}
+
+.pokemon-details section section.stats {
+    width: 100%;
+}
+
+.pokemon-details section section.stats section.item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon-details section section.stats section.item .details {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.pokemon-details section section.stats table tbody tr.item td {
+    width: 50px;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.divider {
+    border-left: 2px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+    margin: auto;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container {
+    width: 80%;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    width: 100%;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-bar {
+    background-color: #eeeeee;
+    border-radius: 15px;
+    height: .4rem;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-value {
+    background-color: var(--bg-color-grass);
+    border-radius: 15px;
+    height: .4rem;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    background-color: #eee;
+    border-radius: 15px;
+    height: .4rem;
+    margin: 5px 0;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-moz-progress-bar {
+    background-color: var(--bg-color-grass);
+    border-radius: 15px;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    background-color: #eee;
+    border-radius: 15px;
+}
+
+.pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
+    background-color: #039603;
+}
+
+/*#endregion*/
+/*#region --EVOLUTION LINE--*/
+.evolutionline h2 {
+    font-family: poppinsBold;
+    margin-left: 4rem;
+    font-size: 1.7rem;
+}
+
+.evolutionline .slider {
+    display: flex;
+    margin: 3rem;
+    gap: 2rem;
+    width: 75vw;
+    overflow-x: auto;
+}
+
+.evolutionline .slider::-webkit-scrollbar {
+    height: 10px;
+}
+
+.evolutionline .slider::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+}
+
+.evolutionline .slider::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.evolutionline .slider::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+.evolutionline .slider .card {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: relative;
+}
+
+.evolutionline .slider .card .card-hero img {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.evolutionline .slider .card .card-hero p {
+    float: right;
+    margin: 0.6rem;
+    color: var(--bg-color-button);
+}
+
+.evolutionline .slider .card .card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.3rem;
+    padding: .5rem 0;
+    background-color: #EFEFEF;
+}
+
+/*#region ---TYPES---*/
+.type-grass {
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    color: #FFF;
+    width: 50px;
+    height: 20px;
+    background-color: var(--bg-color-grass);
+    border-radius: 10px;
+}
+
+.type-poison {
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    color: #FFF;
+    width: 50px;
+    height: 20px;
+    background-color: var(--bg-color-poison);
+    border-radius: 10px;
+}
 /*#endregion*/
