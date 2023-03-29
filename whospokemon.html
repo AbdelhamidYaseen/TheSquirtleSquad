@@ -13,21 +13,28 @@
         <div id="kleurbalk">
             <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
         </div>
-        <div>
-            <img src="./assets/images/bulbasaurHidden.png" alt="silhouet van pokemon" srcset="">
-            <form action="">
+        <div id="pokeguesser">
+            <img src="./assets/images/bulbasaurHidden.png" alt="silhouet van pokemon" srcset="" id="pokehidden">
+            <form action="" >
             <fieldset>
-                <legend>Welke pokémon is dit?</legend>
-                <input type="radio" name="pokemonKeuze" value="pokemon1">Mr. Mime<br>
-                <input type="radio" name="pokemonKeuze" value="pokemon2">Arbok<br>
-                <input type="radio" name="pokemonKeuze" value="pokemon3">Hypno<br>
-                <input type="radio" name="pokemonKeuze" value="pokemon4">Bulbasaur<br>
-                <input type="radio" name="pokemonKeuze" value="pokemon5">Vulpix<br>
-                <input type="radio" name="pokemonKeuze" value="pokemon6">Clefairy<br>
-
-                <button type="button">Overslaan</button>
-                <button type="button">Hint</button>
-                <button type="submit">Submit</button>
+                <legend class="guesserTitel">Welke pokémon is dit?</legend>
+                <div id="guesserForm"><input type="radio" name="pokemonKeuze" value="pokemon1" id="pokemon1" class="radio isHidden">
+                <label for="pokemon1" class="label">Mr. Mime</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon2" id="pokemon2" class="radio isHidden">
+                <label for="pokemon2" class="label">Arbok</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon3" id="pokemon3" class="radio isHidden">
+                <label for="pokemon3" class="label">Hypno</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon4" id="pokemon4" class="radio isHidden">
+                <label for="pokemon4" class="label">Bulbasaur</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon5" id="pokemon5" class="radio isHidden">
+                <label for="pokemon5" class="label">Vulpix</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon6" id="pokemon6" class="radio isHidden">
+                <label for="pokemon6" class="label">Clefairy</label>
+            </div>
+                <button type="button" class="guesserButton">Overslaan</button>
+                <button type="button" class="guesserButton" onclick="getElementById('hint').innerHTML='Deze pokémon is een plant type'">Hint</button>
+                <button type="submit" class="guesserButton">Submit</button>
+                <p id="hint"></p>
             </fieldset>
         </form>
         </div>

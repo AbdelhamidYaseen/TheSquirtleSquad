@@ -37,8 +37,67 @@
     margin: 20px;
     opacity: 0.3;
 }
+#pokehidden{
+    width: 15rem;
+}
 #pokeguesser{
     display: flex;
-    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -130px;
 }
+fieldset{
+    text-align: center;
+}
+#guesserForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 4px;
+}
+.isHidden{
+    display: none;
+}
+.label {
+    display: block;
+    text-align: center;
+    background-color: var(--bg-color-steel);
+    width: 15vw;
+    min-width: 75px;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 15px;
+    border: 1px solid black;
+  }
+  
+  .radio:checked + .label {
+    background-color: var(--bg-color-grass);
+  }
+  .guesserButton{
+    background-color: var(--bg-color-grass); /* Green */
+    border: none;
+    border-radius: 12px;
+    margin-top: 15px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .guesserButton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  .guesserTitel{
+    text-transform: uppercase;
+    margin:20px;
+    text-align: center;
+    font-weight: bolder;
+    /*FIX LETTERTYPE*/
+  }
+  #hint{
+    margin-top: 25px;
+    font-weight: bolder;
+  }
 /*#endregion*/
