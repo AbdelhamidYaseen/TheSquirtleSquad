@@ -40,18 +40,18 @@
 /*#endregion*/
 
 /*#region ---PC---*/
-.main-pc{
+/*.main-pc{
     width:88.5vw;
 }
+*/
 
 .pc-body{
     display: grid;
-    grid-template:  "header  aside"
-                    "main  aside"
-                    "footer  aside";
-}
+    grid-template:  "header header  header aside"
+                    "main main main  aside"
+                    "footer  footer footer aside";
+} 
 .pc-header{
-    margin-top: -5rem;
     font-size:5rem;
     margin-bottom:1.5%;
     text-align:center;
@@ -63,15 +63,14 @@
 }
 
 .nested{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 100px 100px 100px 100px 100px;
+    display: flex;
+    flex-wrap:wrap;
 }
  
 .image-pokémon{
-    height: 5rem;
-    margin-left: 10%;
-    margin-top: 5%;
+    height: 4rem;
+    margin-left: 8%;
+    margin-top: 3%;
 } 
 
 
@@ -87,17 +86,20 @@
     border-color: lightgray;
     border-width: 0.5rem;
     border-style:inset;
-    margin-left:25%;
-    margin-right:25%;
+    margin-left:15%;
+    margin-right:15%;
     text-align: center;
     padding-top: 1.5%;
+    margin-bottom: -100px;
 } 
 .pcbox-background{
     background-repeat: no-repeat;
     background-image: url(../assets/images/pcbox1.png);
     background-size:contain;
     margin-top: 1%;
-    height:35rem;
+    margin-bottom: -4%;
+    height:50rem;
+    width:auto;
 }
 /*#endregion*/
 /*#region ---BODY---*/
@@ -115,7 +117,6 @@ body{
     header{
         position: sticky;
         top: 0;
-        margin-bottom: 5rem;
         grid-area: header;
         background-color: transparent;
     }
@@ -126,12 +127,12 @@ body{
         transition: ease-in-out 1s 100ms;
     }
     #logo:hover{
-        transform: rotate(360deg)
-        translate(5rem,5rem);
+        transform: rotate(180deg);
     }
     /*#endregion*/
     /*#region ---ASIDE---*/ 
     aside{
+        margin-left: auto;
         width: 10rem;
         grid-area: aside;
         background-color: var(--bg-color-secondary);        
