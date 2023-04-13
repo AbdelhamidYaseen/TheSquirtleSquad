@@ -204,7 +204,7 @@ body{
         }
         @media screen and (max-width: 300px) {
             
-        }    
+    }
     /*#endregion*/
     /*#region ---NAV---*/
     nav{
@@ -514,7 +514,7 @@ transition: ease-in-out 0.8s 100ms;
     /*#region ---MEDIAQUERIES---*/
     @media screen and (max-width: 1000px) {
         
-    }
+}
     @media screen and (max-width: 900px) {
         
     }
@@ -627,7 +627,7 @@ transition: ease-in-out 0.8s 100ms;
 
 .pokemon-details section section.card .about .item .value-type {
     margin-top: auto;
-    text-align: center;
+  text-align: center;
     color: var(--bg-color-button);
 }
 
@@ -642,43 +642,43 @@ transition: ease-in-out 0.8s 100ms;
 .pokemon-details section section.stats section.item {
     display: flex;
     justify-content: space-between;
-}
-
+  }
+  
 .pokemon-details section section.stats section.item .details {
     display: flex;
     justify-content: space-between;
     width: 20%;
-}
-
+  }
+  
 .pokemon-details section section.stats table tbody tr.item td {
     width: 50px;
-}
-
+  }
+  
 .pokemon-details section section.stats table tbody tr.item td.divider {
     border-left: 2px solid rgba(0, 0, 0, 0.3);
     padding-left: 5px;
     margin: auto;
-}
-
+  }
+  
 .pokemon-details section section.stats table tbody tr.item td.progress-container {
     width: 80%;
-}
-
+  }
+  
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
     width: 100%;
-}
-
+  }
+  
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-bar {
     background-color: #eeeeee;
     border-radius: 15px;
     height: .4rem;
-}
-
+  }
+  
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-value {
     background-color: var(--bg-color-grass);
     border-radius: 15px;
     height: .4rem;
-}
+  }
 
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
     background-color: #eee;
