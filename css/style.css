@@ -26,7 +26,6 @@
 }
 /*#endregion*/
 /*#region ----GENERAL---*/
-/*#region ----GENERAL---*/
 @font-face {
     font-family: poppins;
     src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
@@ -37,81 +36,17 @@
 }
 /*#endregion*/
 
-/*#region ---xxx---*/
-/*#endregion*/
-
-/*#region ---PC---*/
-/*.main-pc{
-    width:88.5vw;
-}
-*/
-
-#pc-body{
-    display: grid;
-    grid-template:  "header header  header aside"
-                    "main main main  aside"
-                    "footer  footer footer aside";
-} 
-#pc-header{
-    margin-top: -5rem;
-    font-size:5rem;
-    margin-bottom:1.5%;
-    text-align:center;
-
-}
-#pc-header-text{
-    text-align:center;
-    margin-bottom: 1.5%;
-}
-
-#nested{
-    display: flex;
-    flex-wrap:wrap;
-}
- 
-.image-pokémon{
-    height: 4rem;
-    margin-left: 8%;
-    margin-top: 3%;
-} 
-
-
-#text-in-pc{
-    margin-top: 5px;
-    font-size: 1.5rem;
-    border-color: lightgray;
-    border-width: 0.2rem;
-    border-style:inset;
-    background-image: url(../assets/images/pcBoxNameBackground.jpg);
-} 
-#border-around-pc{
-    border-color: lightgray;
-    border-width: 0.5rem;
-    border-style:inset;
-    margin-left:15%;
-    margin-right:15%;
-    text-align: center;
-    padding-top: 1.5%;
-    margin-bottom: -100px;
-} 
-.pcbox-background{
-    background-repeat: no-repeat;
-    background-image: url(../assets/images/pcbox1.png);
-    background-size:contain;
-    margin-top: 1%;
-    margin-bottom: -1%;
-    height:50rem;
-}
-/*#endregion*/
 /*#region ---BODY---*/
 body{
     display: grid;
     font-family: poppins;
 
     grid-template-areas: 
-    "header header aside"
-    "main main aside"
-    "footer footer aside"
+    "header aside"
+    "main aside"
+    "main aside"
+    "main aside"
+    "footer aside"
     ;
 }
     /*#region ---HEADER---*/
@@ -157,12 +92,6 @@ body{
         border-radius: 16px;
         padding: .4rem;
     }
-    #logo{
-        transition: ease-in-out 1s 100ms;
-    }
-    #logo:hover{
-        transform: rotate(180deg);
-    }
 
     /*#endregion*/
     /*#region ---ASIDE---*/
@@ -204,7 +133,7 @@ body{
         }
         @media screen and (max-width: 300px) {
             
-    }
+        }    
     /*#endregion*/
     /*#region ---NAV---*/
     nav{
@@ -514,7 +443,7 @@ transition: ease-in-out 0.8s 100ms;
     /*#region ---MEDIAQUERIES---*/
     @media screen and (max-width: 1000px) {
         
-}
+    }
     @media screen and (max-width: 900px) {
         
     }
@@ -627,7 +556,7 @@ transition: ease-in-out 0.8s 100ms;
 
 .pokemon-details section section.card .about .item .value-type {
     margin-top: auto;
-  text-align: center;
+    text-align: center;
     color: var(--bg-color-button);
 }
 
@@ -642,43 +571,43 @@ transition: ease-in-out 0.8s 100ms;
 .pokemon-details section section.stats section.item {
     display: flex;
     justify-content: space-between;
-  }
-  
+}
+
 .pokemon-details section section.stats section.item .details {
     display: flex;
     justify-content: space-between;
     width: 20%;
-  }
-  
+}
+
 .pokemon-details section section.stats table tbody tr.item td {
     width: 50px;
-  }
-  
+}
+
 .pokemon-details section section.stats table tbody tr.item td.divider {
     border-left: 2px solid rgba(0, 0, 0, 0.3);
     padding-left: 5px;
     margin: auto;
-  }
-  
+}
+
 .pokemon-details section section.stats table tbody tr.item td.progress-container {
     width: 80%;
-  }
-  
+}
+
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
     width: 100%;
-  }
-  
+}
+
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-bar {
     background-color: #eeeeee;
     border-radius: 15px;
     height: .4rem;
-  }
-  
+}
+
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress::-webkit-progress-value {
     background-color: var(--bg-color-grass);
     border-radius: 15px;
     height: .4rem;
-  }
+}
 
 .pokemon-details section section.stats table tbody tr.item td.progress-container .progress {
     background-color: #eee;
