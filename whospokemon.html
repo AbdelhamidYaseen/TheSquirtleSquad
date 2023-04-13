@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/base.js"></script>
+    <script src="js/hint.js"></script>
 </head>
 <body>
+    <section id="top-extra">
+        <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+    </section>
     <header>
         <a href=""><figure><img src="assets/images/logo.png" alt="logo-pokeball" id="logo"></figure></a>
   
@@ -50,11 +54,11 @@
               </ul>
           </nav>
       </aside>
-    <main id="mainpokeguesser">
-        <div id="kleurbalk">
+    <main id="mystery">
+        <section id="kleurbalk">
             <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
-        </div>
-        <div id="pokeguesser">
+        </section>
+        <section id="pokeguesser">
             <img src="./assets/images/bulbasaurHidden.png" alt="silhouet van pokemon" srcset="" id="pokehidden">
             <form action="" >
             <fieldset>
@@ -72,13 +76,17 @@
                 <input type="radio" name="pokemonKeuze" value="pokemon6" id="pokemon6" class="radio isHidden">
                 <label for="pokemon6" class="label">Clefairy</label>
             </div>
+            <section id="guesser-buttons">
                 <button type="button" class="guesserButton">Overslaan</button>
-                <button type="button" class="guesserButton" onclick="getElementById('hint').innerHTML='Deze pokémon is een plant type'">Hint</button>
+                <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
                 <button type="submit" class="guesserButton">Submit</button>
-                <p id="hint"></p>
+            </section>
+            <br>
+            <p id="hint" style="display:none;">Deze pokémon is een plant type</p>
             </fieldset>
         </form>
-        </div>
+        </section>
+
     </main>
     <footer>
         <section>

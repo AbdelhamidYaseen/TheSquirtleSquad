@@ -39,13 +39,39 @@
 /*#region ---xxx---*/
 /*#endregion*/
 
-/*#region ---Who's that pokémon---*/
+/*#region --MYSTERY---*/
+#mystery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F4FDF1;
+
+}
+#top-extra{
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    height: 50%;
+    width: 100%;
+    z-index: -1;
+}
+#top-extra img{
+    width: 30%;
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+ 
+}
 #kleurbalk{
     background-color: var(--bg-color-grass);
     display: flex;
     justify-content: center;
-    height: 250px;
-    width: 100%;    
+    transform: translateY(-6rem);
+}
+#kleurbalk img{
+    width: 15%;
 }
 #transparantebal{
     margin: 20px;
@@ -56,6 +82,7 @@
     width: 15rem;
 }
 #pokeguesser{
+    transform: translateY(-6rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,6 +97,22 @@
     flex-direction: column;
     align-items: center;
     margin-right: -70%;
+}
+#guesser-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 1.2rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+#guesser-buttons button{
+    font-size: 1.2rem;
+    width: 15rem;
 }
 #guesserUp, #guesseraside{
     z-index: 1;
@@ -91,7 +134,7 @@ fieldset{
     display: block;
     text-align: center;
     background-color: var(--bg-color-steel);
-    width: 15vw;
+    width: 15rem;
     min-width: 75px;
     padding: 5px;
     margin: 2px;
@@ -103,12 +146,11 @@ fieldset{
     cursor: pointer; 
     background-color: #A1BFA3;
   }
-  
   .radio:checked + .label {
     background-color: var(--bg-color-grass);
   }
   .guesserButton{
-    background-color: var(--bg-color-grass); /* Green */
+    background-color: var(--bg-color-grass); 
     border: none;
     border-radius: 12px;
     margin-top: 15px;
@@ -132,27 +174,32 @@ fieldset{
     margin-bottom:20px;
     text-align: center;
     font-weight: bolder;
-    /*FIX LETTERTYPE*/
   }
   #hint{
-    margin-top: 25px;
-    font-weight: bolder;
+    border: black solid 1px;
+    padding: 1.5rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2rem;
+    background-color: var(--bg-color-secondary);
   }
-  @media screen and (max-width: 1230px) {
-    #mainpokeguesser{
-        margin-right: -60%;
-    }
+  @media screen and (max-width: 1000px) {
+    #guesser-buttons{
+        flex-direction: column;
+    }        
   }
-  @media screen and (max-width: 870px) {
-    #mainpokeguesser{
-        margin-right: -60%;
-    }
+  @media screen and (max-width: 1400px) {
+    #kleurbalk img{
+        width: 20%;
+    }       
   }
-/*#endregion*/
+/*#endrgion*/
 /*#region ---BODY---*/
 body{
     display: grid;
     font-family: poppins;
+    background-color: #F4FDF1;
 
     grid-template-areas: 
     "header aside"
@@ -671,7 +718,8 @@ transition: ease-in-out 0.8s 100ms;
 .card-holder:hover .card-special{
     filter: blur(0rem);
 }
-#home h2{
+
+#home h2, #mystery h2{
     font-size: 4rem;
     text-transform:uppercase;
     text-align: center;
