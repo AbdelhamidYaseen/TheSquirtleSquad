@@ -65,11 +65,11 @@
 #mainpokeguesser{
     position: relative;
     top: -175px;
-    /* z-index: -1; */
     font-family: poppins;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /*this fucks it up*/
     margin-right: -60rem;
 }
 #guesserUp, #guesseraside{
