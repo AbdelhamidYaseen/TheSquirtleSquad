@@ -51,6 +51,7 @@ body{
 }
     /*#region ---HEADER---*/
     header{
+        z-index: 11;
         display: flex;
         position: sticky;
         top: 0;
@@ -74,11 +75,42 @@ body{
         rotate(180deg);
     }
     #logo{
+        background-color: var(--bg-color-tertiary);
         height: 3.2rem;
         width: 3.2rem;
         transition: ease-in-out 0.8s 100ms;
         border-radius: 50%;
     }
+        /*#endregion*/
+        /*#region ---MEDIAQUERIES---*/
+        @media screen and (max-width: 1000px) {
+        
+        }
+        @media screen and (max-width: 900px) {
+            
+        }
+        @media screen and (max-width: 800px) {
+            header{
+                justify-content: center;
+                background-color: rgba(255, 255, 255, 0.3);
+            }            
+        }
+        @media screen and (max-width: 700px) {
+            
+        }
+        @media screen and (max-width: 600px) {
+            
+        }
+        @media screen and (max-width: 500px) {
+            
+        }
+        @media screen and (max-width: 400px) {
+            
+        }
+        @media screen and (max-width: 300px) {
+            
+        }    
+    /*#endregion*/
 
     /*#endregion*/
     /*#region ---ASIDE---*/
@@ -122,11 +154,11 @@ body{
         }    
     /*#endregion*/
     /*#region ---NAV---*/
-    nav{
+    aside nav{
         background-color: transparent;
         height: 100%;
     }
-    nav ul{
+    aside nav ul{
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -134,7 +166,7 @@ body{
         align-items: center;
 
     }
-    nav ul li{
+    aside nav ul li{
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -143,44 +175,152 @@ body{
         transition: 0.4s ease-in-out 100ms;
         height: 5%;
     }
-    nav ul li a{
+    aside nav ul li a{
         text-decoration: none;
         text-transform: capitalize;
         color: black;
         transition: 0.4s ease-in-out 100ms;
 
     }
-    nav ul li:hover{
+    aside nav ul li:hover{
         background-color:  var(--bg-color-button);
         border-radius: 2rem 2rem 2rem 2rem;
         transform: translate(-0.8rem, 0);
     }
-    nav ul li:hover a{
+    aside nav ul li:hover a{
         color: var(--bg-color-primary);
 
     }
-    #nav-account{
+    aside #nav-account{
         display: flex;
         flex-direction: row;
     }
-    #nav-account:hover{
+    aside #nav-account:hover{
         background-color: transparent;
         border-radius: 0 0 0 0;
         transform: translate(0rem,0rem);
     }
-    #nav-account a{
+    aside #nav-account a{
         background-color: black;
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
     }
-    #nav-level{
+    aside #nav-level{
         font-size: smaller;
         color: var(--bg-color-button);
     }
-    #hamburger-container{
-        display: none;
+        /*#region ---OVERLAY ASIDE---*/
+        /*
+        */
+        header span{
+            border: black 0.1rem solid;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor:pointer;
+            background-color: var(--bg-color-tertiary);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            transition: 0.5s ease-in-out 100ms;
+        }
+        header span:hover{
+            background-color: var(--bg-color-quaternary);
+            transform: rotate(180deg);
+        }
+        .overlay {
+            border: black solid 0.1rem;
+            border-right: none ;
+            border-radius: 4rem 0% 0% 4rem;
+            height: 100vh;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: var(--bg-color-secondary);
+            background-color: rgba(#DFFAD5 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+        }  
+        header #nav-account{
+            position: absolute;
+            bottom: 1.8rem;
+            left: 4rem;
+            font-size: 0.8rem;
+
+        }
+        header #nav-level{
+            color: var(--bg-color-button);
+
+        }
+        .overlay-content {
+            font-size: 1.5rem;
+            height: 80%;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+        .overlay-content li{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.4s ease-in-out 100ms;
+            height: 5%;
+        }
+        .overlay-content li a {
+            text-align: center;
+            padding: 0.8rem;
+            height: fit-content;
+            min-width: fit-content;
+            width: 10rem;
+            display: block;
+            text-decoration: none;
+            text-transform: capitalize;
+            color: black;
+            transition: 0.4s ease-in-out 100ms;
+        
+        }
+        .overlay a:hover, .overlay a:focus {
+        background-color:  var(--bg-color-button);
+        border-radius: 2rem 2rem 2rem 2rem;
+        transform: translate(-0.8rem, 0);
+        color: var(--bg-color-primary);
+        }
+        header span {
+            position: absolute;
+            right: 15px;
+            font-size: 2rem;
+        }
+        .closebtn{
+            position: relative;
+            right: auto;
+            top: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.8rem;
+            background-color: transparent;
+        }
+        .closebtn:hover{
+            font-size: 3.5rem;
+            background-color: transparent;
+        }
+    @media screen and (max-width: 800px) {
+
+        header span{
+            display: flex;
+        }
     }
+    @media screen and (min-width: 800px) {
+        .overlay {
+            display:none
+        }  
+    }
+
+          /*#endregion*/
     /*#endregion*/
     /*#region ---MAIN---*/
     main{
@@ -213,7 +353,7 @@ body{
     }
     /*#endregion*/
 /*#endregion*/
-
+/*#endregion*/
 /*#region ---HOMEPAGE---*/
 #home{
     display: flex;
@@ -424,9 +564,9 @@ transition: ease-in-out 0.8s 100ms;
     height: 5rem;
 }
     /*#region ---MEDIAQUERIES---*/  
-    @media screen and (max-width: 1920px) {
+    @media screen and (min-width: 1920px) {
         #creators{
-            column-gap: 35rem;
+            column-gap: 15rem;
             row-gap: 10rem;
         }        
     }        
@@ -437,7 +577,6 @@ transition: ease-in-out 0.8s 100ms;
         #home h2{
             font-size: 3rem;
         }
-
     }
     @media screen and (max-width: 800px) {
         
@@ -458,3 +597,5 @@ transition: ease-in-out 0.8s 100ms;
     }
     /*#endregion*/
 /*#endregion*/
+
+  
