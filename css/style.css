@@ -64,13 +64,12 @@
 }
 #mainpokeguesser{
     position: relative;
-    top: -175px;
+    top: -85px;
     font-family: poppins;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*this fucks it up*/
-    margin-right: -60rem;
+    margin-right: -70%;
 }
 #guesserUp, #guesseraside{
     z-index: 1;
@@ -130,7 +129,7 @@ fieldset{
   }
   .guesserTitel{
     text-transform: uppercase;
-    margin:20px;
+    margin-bottom:20px;
     text-align: center;
     font-weight: bolder;
     /*FIX LETTERTYPE*/
@@ -138,6 +137,16 @@ fieldset{
   #hint{
     margin-top: 25px;
     font-weight: bolder;
+  }
+  @media screen and (max-width: 1230px) {
+    #mainpokeguesser{
+        margin-right: -60%;
+    }
+  }
+  @media screen and (max-width: 870px) {
+    #mainpokeguesser{
+        margin-right: -60%;
+    }
   }
 /*#endregion*/
 /*#region ---BODY---*/
