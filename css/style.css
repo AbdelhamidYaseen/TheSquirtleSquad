@@ -821,7 +821,7 @@ main#home .card {
     align-items: center;
     margin: 1rem .7rem;
     color: #fff;
-    height: 1.5rem;
+    padding: .4rem;
     border-radius: 0.625rem;
     border: none;
     font-size: medium;
