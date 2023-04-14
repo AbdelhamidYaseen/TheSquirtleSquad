@@ -8,6 +8,7 @@
     <title>Pokehome</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="./js/toggle-filter.js" defer></script>
 </head>
 
 <body>
@@ -45,153 +46,288 @@
         </nav>
     </aside>
     <main>
-        <section class="bellowheader">
-            <img src="./assets/images/Pokeball.png" alt="">
-        </section>
-        <section class="pokemon-details">
-            <section>
-                <img src="./assets/images/Bulbasaur.png" alt="">
+        <section>
+            <section id="filter">
+                <button class="btn btn-bg" id="filter-btn" onclick="filterMenuToggle()"><img class="dropdown-btn-img" src="./assets/icons/dropdown.png" alt="menu"> Filter</button>
+                <section class="filter-menu" id="filter-menu">
+                    <section class="filter-item">
+                        <img src="./assets/icons/arrow_down.png" alt="">
+                        <p>A->Z</p>
+                    </section>
+                    <section class="filter-item">
+                        <img src="./assets/icons/arrow_up.png" alt="">
+                        <p>Z->A</p>
+                    </section>
+                    <section class="filter-item">
+                        <img src="./assets/icons/arrow_down.png" alt="">
+                        <p>Low->High</p>
+                    </section>
+                    <section class="filter-item">
+                        <img src="./assets/icons/arrow_up.png" alt="">
+                        <p>High->Low</p>
+                    </section>
+                </section>
             </section>
-            <section>
-                <section class="card">
-                    <p class="title">Bulbasaur #001</p>
-                    <section class="types">
-                        <p class="type-grass">grass</p>
-                        <p class="type-poison">Poison</p>
+            <section id="type-selector">
+                <button class="btn btn-bg" id="type-selector-btn" onclick="filterTypeMenuToggle()">type selector</button>
+                <section class="type-filter-menu" id="type-filter-menu">
+                    <section class="filter-item">
+                        <button class="type-pill type-normal">Normal</button>
                     </section>
-                    <h3 class="subtitle" style="color: var(--bg-color-grass)">Over</h3>
-                    <section class="about">
-                        <section class="item">
-                            <p class="value">6,9 kg</p>
-                            <p class="value-type">Gewicht</p>
-                        </section>
-                        <section class="item">
-                            <p class="value">0,7 m</p>
-                            <p class="value-type">Grootte</p>
-                        </section>
-                        <section class="item">
-                            <p class="value">Chlorophyl</p>
-                            <p class="value">Overgrow</p>
-                            <p class="value-type">Moves</p>
-                        </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-fighting">Fighting</button>
                     </section>
-                    <h3 class="subtitle" style="color: var(--bg-color-grass)">base stats</h3>
-                    <section class="stats">
-                        <table>
-                            <tbody>
-                                <tr class="item">
-                                    <td>
-                                        <p class="value" style="color: var(--bg-color-grass)">HP</p>
-                                    </td>
-                                    <td class="divider">
-                                        <p class="value">45</p>
-                                    </td>
-                                    <td class="progress-container">
-                                        <progress class="progress" value="45" max="100"></progress>
-                                    </td>
-                                </tr>
-                                <tr class="item">
-                                    <td>
-                                        <p class="value" style="color: var(--bg-color-grass)">ATK</p>
-                                    </td>
-                                    <td class="divider">
-                                        <p class="value">49</p>
-                                    </td>
-                                    <td class="progress-container">
-                                        <progress class="progress" value="49" max="100"></progress>
-                                    </td>
-                                </tr>
-                                <tr class="item">
-                                    <td>
-                                        <p class="value" style="color: var(--bg-color-grass)">DEF</p>
-                                    </td>
-                                    <td class="divider">
-                                        <p class="value">49</p>
-                                    </td>
-                                    <td class="progress-container">
-                                        <progress class="progress" value="49" max="100"></progress>
-                                    </td>
-                                </tr>
-                                <tr class="item">
-                                    <td>
-                                        <p class="value" style="color: var(--bg-color-grass)">SATK</p>
-                                    </td>
-                                    <td class="divider">
-                                        <p class="value">65</p>
-                                    </td>
-                                    <td class="progress-container">
-                                        <progress class="progress" value="65" max="100"></progress>
-                                    </td>
-                                </tr>
-                                <tr class="item">
-                                    <td>
-                                        <p class="value" style="color: var(--bg-color-grass)">SDEF</p>
-                                    </td>
-                                    <td class="divider">
-                                        <p class="value">65</p>
-                                    </td>
-                                    <td class="progress-container">
-                                        <progress class="progress" value="65" max="100"></progress>
-                                    </td>
-                                </tr>
-                                <tr class="item">
-                                    <td>
-                                        <p class="value" style="color: var(--bg-color-grass)">SPD</p>
-                                    </td>
-                                    <td class="divider">
-                                        <p class="value">45</p>
-                                    </td>
-                                    <td class="progress-container">
-                                        <progress class="progress" value="45" max="100"></progress>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <section class="filter-item">
+                        <button class="type-pill type-flying">Flying</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-ground">Ground</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-poison">Poison</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-rock">Rock</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-bug">Bug</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-ghost">Ghost</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-steel">Steel</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-fire">Fire</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-water">Water</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-grass">Grass</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-electric">Electric</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-psychic">Psychic</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-ice">Ice</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-dragon">Dragon</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-dark">Dark</button>
+                    </section>
+                    <section class="filter-item">
+                        <button class="type-pill type-fairy">Fairy</button>
                     </section>
                 </section>
             </section>
         </section>
-        <section class="evolutionline">
-            <h2>Evolutie Lijn</h2>
-            <section class="slider">
-                <section class="card">
-                    <section class="card-hero">
-                        <p>#001</p>
-                        <img src="./assets/images/Bulbasaur.png" alt="">
-                    </section>
-                    <section class="card-footer">
-                        <p>Bulbasaur</p>
-                    </section>
+        <section class="types">
+            <button class="type-pill type-normal">Normal</button>
+            <button class="type-pill type-fighting">Fighting</button>
+            <button class="type-pill type-flying">Flying</button>
+            <button class="type-pill type-ground">Ground</button>
+            <button class="type-pill type-poison">Poison</button>
+            <button class="type-pill type-rock">Rock</button>
+            <button class="type-pill type-bug">Bug</button>
+            <button class="type-pill type-ghost">Ghost</button>
+            <button class="type-pill type-steel">Steel</button>
+            <button class="type-pill type-fire">Fire</button>
+            <button class="type-pill type-water">Water</button>
+            <button class="type-pill type-grass">Grass</button>
+            <button class="type-pill type-electric">Electric</button>
+            <button class="type-pill type-psychic">Psychic</button>
+            <button class="type-pill type-ice">Ice</button>
+            <button class="type-pill type-dragon">Dragon</button>
+            <button class="type-pill type-dark">Dark</button>
+            <button class="type-pill type-fairy">Fairy</button>
+        </section>
+        </section>
+        <section class="pokedex-cards">
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#001</p>
+                <img src="./assets/images/Bulbasaur.png" alt="Bulbasaur">
+                <section class="pokedex-card-footer">
+                    <p>Bulbasaur</p>
                 </section>
-                <section class="card">
-                    <section class="card-hero">
-                        <p>#001</p>
-                        <img src="./assets/images/Bulbasaur.png" alt="">
-                    </section>
-                    <section class="card-footer">
-                        <p>Bulbasaur</p>
-                    </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
                 </section>
-                <section class="card">
-                    <section class="card-hero">
-                        <p>#001</p>
-                        <img src="./assets/images/Bulbasaur.png" alt="">
-                    </section>
-                    <section class="card-footer">
-                        <p>Bulbasaur</p>
-                    </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
                 </section>
-                <section class="card">
-                    <section class="card-hero">
-                        <p>#001</p>
-                        <img src="./assets/images/Bulbasaur.png" alt="">
-                    </section>
-                    <section class="card-footer">
-                        <p>Bulbasaur</p>
-                    </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
                 </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+            <section class="pokedex-card">
+                <p class="pokedex-card-id">#???</p>
+                <img src="./assets/images/bulbasaurHidden.png" alt="hidden pokemon">
+                <section class="pokedex-card-footer">
+                    <p>Unknown Pokemon</p>
+                </section>
+            </section>
+        </section>
+        <section class="pokedex-footer">
+            <section class="pokedex-footer-container">
+                <button><img src="./assets/icons/arrow_left.png" alt=""></button>
+                <p> 1 / xxx</p>
+                <button><img src="./assets/icons/arrow_right.png" alt=""></button>
             </section>
         </section>
     </main>
 </body>
+
 </html>
