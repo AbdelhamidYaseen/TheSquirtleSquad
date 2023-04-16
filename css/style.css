@@ -725,6 +725,18 @@ transition: ease-in-out 0.8s 100ms;
     text-align: center;
     height: 5rem;
 }
+
+#pokemon-mc{
+    border: 0.1rem black solid;
+    background-color: var(--bg-color-secondary);
+    border-radius: 4rem;
+    width: 10.5rem;
+    height: 2rem;
+    margin: 0.5rem;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
     /*#region ---MEDIAQUERIES---*/  
     @media screen and (min-width: 1920px) {
         #creators{
