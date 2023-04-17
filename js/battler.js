@@ -23,7 +23,7 @@ function attack() {
 var ownHealth = document.getElementById("own-health");
 ownHealthWidth = 100;
 function enemyAttack() {
-    var attackInterval = window.setInterval(enemyDmg, 1000);
+    var attackInterval = window.setInterval(enemyDmg, 750);
     function enemyDmg() {
         ownHealthWidth-=10;
         if(healthWidth<=0){
