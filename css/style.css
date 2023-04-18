@@ -429,7 +429,7 @@ footer img{
 /*#region ---MAIN---*/
     main{
         grid-area: main;
-        background-color: var(--bg-color-primary);
+        /* background-color: var(--bg-color-primary); */
     }
     /*#endregion*/
 /*#region ---HOMEPAGE---*/
@@ -1331,7 +1331,7 @@ fieldset{
     top: 0;
     display: flex;
     flex-direction: column;
-    margin-top: -100px;
+    margin-top: -150px;
     margin-right: -100px;
     height: 320px;
     background-color: var(--bg-color-grass);
@@ -1696,9 +1696,6 @@ fieldset{
 
 /*#endregion*/
 /*#region --EVOLUTION LINE--*/
-.evolutionline {
-    position: absolute;
-}
 
 .evolutionline h2 {
     font-family: poppinsBold;
@@ -1971,6 +1968,18 @@ fieldset{
     border: none;
 }
 
+.pokedex-card a{
+    width: 10rem;
+    z-index: 1;
+    position: absolute;
+}
+.pokedex-card img {
+    margin-top: 20px;
+    width: 10rem;
+    z-index: 1;
+    position: absolute;
+}
+
 /*#endregion ---pokedex---*/
 
 @media screen and (max-width: 1600px) {
@@ -2035,9 +2044,21 @@ fieldset{
     .pokemon-details section img {
         width: 45vw;
     }
+    .types {
+        display: none;
+    }
+}
 
+@media screen and (min-width: 800px) {
     #type-selector {
         display: none;
+    }
+
+    body {
+        grid-template-areas: 
+            'header',
+            'main',
+            'header';
     }
 }
 @media screen and (max-width: 600px){
