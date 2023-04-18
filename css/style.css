@@ -37,11 +37,171 @@
 }
 /*#endregion*/
 
+/*#region ---xxx---*/
+/*#endregion*/
+
+/*#region --MYSTERY---*/
+#mystery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F4FDF1;
+
+}
+#top-extra{
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    height: 50%;
+    width: 100%;
+    z-index: -1;
+}
+#top-extra img{
+    width: 30%;
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+ 
+}
+#kleurbalk{
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+    transform: translateY(-6rem);
+}
+#kleurbalk img{
+    width: 15%;
+}
+#transparantebal{
+    margin: 20px;
+    opacity: 0.3;
+    width: 15rem;
+}
+#pokehidden{
+    width: 15rem;
+}
+#pokeguesser{
+    transform: translateY(-6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -130px;
+}
+#mainpokeguesser{
+    position: relative;
+    top: -85px;
+    font-family: poppins;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: -70%;
+}
+#guesser-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 1.2rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+#guesser-buttons button{
+    font-size: 1.2rem;
+    width: 15rem;
+}
+#guesserUp, #guesseraside{
+    z-index: 1;
+}
+fieldset{
+    text-align: center;
+}
+#guesserForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 4px;
+}
+
+.isHidden{
+    display: none;
+}
+.label {
+    display: block;
+    text-align: center;
+    background-color: var(--bg-color-steel);
+    width: 15rem;
+    min-width: 75px;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 15px;
+    transition: 0.3s;
+  }
+  .label:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer; 
+    background-color: #A1BFA3;
+  }
+  .radio:checked + .label {
+    background-color: var(--bg-color-grass);
+  }
+  .guesserButton{
+    background-color: var(--bg-color-grass); 
+    border: none;
+    border-radius: 12px;
+    margin-top: 15px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: poppins;
+    transition: 0.3s;
+
+  }
+  .guesserButton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    background-color: #559635;
+  }
+  .guesserTitel{
+    text-transform: uppercase;
+    margin-bottom:20px;
+    text-align: center;
+    font-weight: bolder;
+  }
+  #hint{
+    border: black solid 1px;
+    padding: 1.5rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2rem;
+    background-color: var(--bg-color-secondary);
+  }
+  @media screen and (max-width: 1000px) {
+    #guesser-buttons{
+        flex-direction: column;
+    }        
+  }
+  @media screen and (max-width: 1400px) {
+    #kleurbalk img{
+        width: 20%;
+    }       
+  }
+/*#endrgion*/
 /*#region ---BODY---*/
 body{
     display: grid;
     font-family: poppins;
-    background-color: var(--bg-body-color);
+    background-color: #F4FDF1;
+
     grid-template-areas: 
     "header aside"
     "main aside"

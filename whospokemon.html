@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's that pokémon?</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/base.js"></script>
+    <script src="js/hint.js"></script>
+</head>
+<body>
+    <section id="top-extra">
+        <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+    </section>
+    <header>
+        <a href=""><figure><img src="assets/images/logo.png" alt="logo-pokeball" id="logo"></figure></a>
+  
+        <span onclick="openNav()">&#9776;</span>
+        <nav id="myNav" class="overlay">
+          <span href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</span>
+          <ul class="overlay-content">
+            <li><a href=""> home</a></li>
+            <li><a href=""> adventure</a></li>
+            <li><a href=""> pokedex</a></li>
+            <li><a href=""> pokebag</a></li>
+            <li><a href=""> mystery</a></li>
+            <li><a href=""> contact</a></li>
+            <li id="nav-account">            
+                    <section>
+                        <p id="nav-name">username</p>
+                        <p id="nav-level">level 30</p>    
+                    </section>
+            </li>
+        </ul>
+        </nav>
+      </header>
+      <aside id="guesseraside">
+          <nav>
+              <ul>
+                  <li><a href=""> home</a></li>
+                  <li><a href=""> adventure</a></li>
+                  <li><a href=""> pokedex</a></li>
+                  <li><a href=""> pokebag</a></li>
+                  <li><a href=""> mystery</a></li>
+                  <li><a href=""> contact</a></li>
+                  <li id="nav-account">    
+                          <section>
+                              <p id="nav-name">username</p>
+                              <p id="nav-level">level 30</p>    
+                          </section>
+                  </li>
+              </ul>
+          </nav>
+      </aside>
+    <main id="mystery">
+        <section id="kleurbalk">
+            <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+        </section>
+        <section id="pokeguesser">
+            <img src="./assets/images/bulbasaurHidden.png" alt="silhouet van pokemon" srcset="" id="pokehidden">
+            <form action="" >
+            <fieldset>
+                <legend class="guesserTitel">Welke pokémon is dit?</legend>
+                <div id="guesserForm"><input type="radio" name="pokemonKeuze" value="pokemon1" id="pokemon1" class="radio isHidden">
+                <label for="pokemon1" class="label">Mr. Mime</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon2" id="pokemon2" class="radio isHidden">
+                <label for="pokemon2" class="label">Arbok</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon3" id="pokemon3" class="radio isHidden">
+                <label for="pokemon3" class="label">Hypno</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon4" id="pokemon4" class="radio isHidden">
+                <label for="pokemon4" class="label">Bulbasaur</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon5" id="pokemon5" class="radio isHidden">
+                <label for="pokemon5" class="label">Vulpix</label><br>
+                <input type="radio" name="pokemonKeuze" value="pokemon6" id="pokemon6" class="radio isHidden">
+                <label for="pokemon6" class="label">Clefairy</label>
+            </div>
+            <section id="guesser-buttons">
+                <button type="button" class="guesserButton">Overslaan</button>
+                <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
+                <button type="submit" class="guesserButton">Submit</button>
+            </section>
+            <br>
+            <p id="hint" style="display:none;">Deze pokémon is een plant type</p>
+            </fieldset>
+        </form>
+        </section>
+
+    </main>
+    <footer>
+        <section>
+        </section>
+        <section>
+        </section>
+        <section >
+        </section>
+    </footer>
+</body>
+</html>
