@@ -25,186 +25,6 @@
     --bg-color-fairy: #E69EAC;
 }
 /*#endregion*/
-/*#region ----GENERAL---*/
-@font-face {
-    font-family: poppins;
-    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
-}
-@font-face {
-    font-family: poppinsBold;
-    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
-}
-/*#endregion*/
-
-/*#region ---xxx---*/
-/*#endregion*/
-
-/*#region --MYSTERY---*/
-#mystery{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #F4FDF1;
-
-}
-#top-extra{
-    background-color: var(--bg-color-grass);
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    height: 50%;
-    width: 100%;
-    z-index: -1;
-}
-#top-extra img{
-    width: 30%;
-    background-color: var(--bg-color-grass);
-    display: flex;
-    justify-content: center;
- 
-}
-#kleurbalk{
-    background-color: var(--bg-color-grass);
-    display: flex;
-    justify-content: center;
-    transform: translateY(-6rem);
-}
-#kleurbalk img{
-    width: 15%;
-}
-#transparantebal{
-    margin: 20px;
-    opacity: 0.3;
-    width: 15rem;
-}
-#pokehidden{
-    width: 15rem;
-}
-#pokeguesser{
-    transform: translateY(-6rem);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    top: -130px;
-}
-#mainpokeguesser{
-    position: relative;
-    top: -85px;
-    font-family: poppins;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: -70%;
-}
-#guesser-buttons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    padding: 1.2rem;
-    column-gap: 2rem;
-    row-gap: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-#guesser-buttons button{
-    font-size: 1.2rem;
-    width: 15rem;
-}
-#guesserUp, #guesseraside{
-    z-index: 1;
-}
-fieldset{
-    text-align: center;
-}
-#guesserForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 4px;
-}
-
-.isHidden{
-    display: none;
-}
-.label {
-    display: block;
-    text-align: center;
-    background-color: var(--bg-color-steel);
-    width: 15rem;
-    min-width: 75px;
-    padding: 5px;
-    margin: 2px;
-    border-radius: 15px;
-    transition: 0.3s;
-  }
-  .label:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    cursor: pointer; 
-    background-color: #A1BFA3;
-  }
-  .radio:checked + .label {
-    background-color: var(--bg-color-grass);
-  }
-  .guesserButton{
-    background-color: var(--bg-color-grass); 
-    border: none;
-    border-radius: 12px;
-    margin-top: 15px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-family: poppins;
-    transition: 0.3s;
-
-  }
-  .guesserButton:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    cursor: pointer;
-    background-color: #559635;
-  }
-  .guesserTitel{
-    text-transform: uppercase;
-    margin-bottom:20px;
-    text-align: center;
-    font-weight: bolder;
-  }
-  #hint{
-    border: black solid 1px;
-    padding: 1.5rem;
-    width: 20rem;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 2rem;
-    background-color: var(--bg-color-secondary);
-  }
-  @media screen and (max-width: 1000px) {
-    #guesser-buttons{
-        flex-direction: column;
-    }        
-  }
-  @media screen and (max-width: 1400px) {
-    #kleurbalk img{
-        width: 20%;
-    }       
-  }
-  #pokemon-mc{
-    border: 0.1rem black solid;
-    background-color: var(--bg-color-secondary);
-    border-radius: 4rem;
-    width: 10.5rem;
-    height: 2rem;
-    margin: 0.5rem;
-    padding-left: 20px;
-    font-size: 20px;
-}
-/*#endrgion*/
 /*#region ---BODY---*/
 body{
     display: grid;
@@ -525,218 +345,172 @@ body{
     /*#endregion*/
 /*#endregion*/
 /*#endregion*/
-/*#region ---HOMEPAGE---*/
-#home{
+/*#region ----GENERAL---*/
+@font-face {
+    font-family: poppins;
+    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family: poppinsBold;
+    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
+}
+/*#endregion*/
+/*#region --MYSTERY---*/
+#mystery{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#creators{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    column-gap: 21rem;
-    row-gap: 10rem;
-    background-color: var(--bg-color-secondary);
-    margin: 2rem;
-    padding-top: 4rem;
-    padding-bottom: 8rem;
-    border-radius: 4rem;
-}
-.home-card{
-    
-    width: 15rem;
-    height: 25rem;
-    border-radius: 2rem;
-    border: 0.2rem solid black;
-  
-}
-.card-holder{
-    border: none;
-    transition: ease-in-out 1ms 100ms;
-}
-#card-1{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #FFE53B;
-    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
-        position: absolute;
-    z-index: 5;
-    transition: ease-in-out 0.8s 100ms;
-}
-.card-holder:hover #card-1{
-    transform: 
-    rotate(0deg)
-    translate(0rem,-2.8rem)
-    ;
-}
-#card-2{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-self: flex-end;
-    background-color: #FF3CAC;
-    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
-    position: absolute;
-    z-index: 8;
-    transition: ease-in-out 0.8s 100ms;
-}
-.card-holder:hover #card-2{
-    transform:
-    rotate(0deg)
-    translate(8rem,7.5rem)
-    ;
-}
-#card-3{
-    background-color: #85FFBD;
-    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
-        position: absolute;
-    z-index: 7;
-    transition: ease-in-out 0.8s 100ms;
-}
-.card-holder:hover #card-3{
-    transform:
-    rotate(-40deg)
-    translate(-3.8rem,-5rem)
-    ;
-}
-#card-4{
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-    position: absolute;
-z-index: 8;
-transition: ease-in-out 0.8s 100ms;
-}
-.card-holder:hover #card-4{
-    transform:
-    rotate(40deg)
-    translate(3.8rem,-5rem)
-    ;
-}
-#card-5{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(220deg,#100BF5,#F53131);
-    position: absolute;
-    z-index: 9;
-    transition: ease-in-out 0.8s 100ms;
-}
-.card-holder:hover #card-5{
-    transform: 
-    rotate(0deg)
-    translate(0rem,8rem)
-    ;
-}
-#card-6{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-color: red;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-    position: absolute;
-    z-index: 6;
-    transition: ease-in-out 0.8s 100ms;
-}
-.card-holder:hover #card-6{
-    transform:
-    rotate(0deg)
-    translate(-8rem,7.5rem)
-    ;
-}
-.card-name{
-    font-size: 1.5rem;
-    text-transform: capitalize;
-    margin-bottom: 10%;
-    margin-top: 0.1rem;
-    text-align: center;
-    border-bottom: solid 0.1rem black;
-    width: 15rem;
-}
-.card-profile{
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 5rem;
-    height: 5rem;
-    background-color: black;
-    border-radius: 50%;
-    border:outset 0.2rem red;
-}
-.card-profile img{
-    border-radius: 50%; 
-    width: 5rem;
-}
-.card-pokemon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    width: 5rem;
-    height: 5rem;
-    background-color: black;
-    border-radius: 50%;
-    border:outset 0.1rem black;
-    background-color: var(--bg-color-secondary);  
-    background-size: cover;
-}
-.card-pokemon img{
-    width: 4rem;
-    height: 4rem;  
-}
-.card-text{
-    margin: 1rem;
-    filter: blur(0.2rem);
-    transition: ease-in-out 1s 100ms;
-}
-.card-holder:hover .card-text{
-    filter: blur(0rem);
-}
-.card-hobby{
-    display: flex;
-    border: 0.1rem black solid;
-    background-color: var(--bg-color-secondary);
-    border-radius: 4rem;
-    width: 6.5rem;
-    height: 2rem;
-    margin: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    filter: blur(0.2rem);
-    transition: ease-in-out 1s 100ms;
+    background-color: #F4FDF1;
 
 }
-.card-holder:hover .card-hobby{
-    filter: blur(0rem);
-}
-.card-special{
+#top-extra{
+    background-color: var(--bg-color-grass);
     display: flex;
-    border: 0.1rem black solid;
-    background-color: var(--bg-color-secondary);
-    border-radius: 4rem;
-    width: 6.5rem;
-    height: 2rem;
-    margin: 0.5rem;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    height: 50%;
+    width: 100%;
+    z-index: -1;
+}
+#top-extra img{
+    width: 30%;
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+ 
+}
+#kleurbalk{
+    background-color: var(--bg-color-grass);
+    display: flex;
+    justify-content: center;
+    transform: translateY(-6rem);
+}
+#kleurbalk img{
+    width: 15%;
+}
+#transparantebal{
+    margin: 20px;
+    opacity: 0.3;
+    width: 15rem;
+}
+#pokehidden{
+    width: 15rem;
+}
+#pokeguesser{
+    transform: translateY(-6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -130px;
+}
+#mainpokeguesser{
+    position: relative;
+    top: -85px;
+    font-family: poppins;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: -70%;
+}
+#guesser-buttons{
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    right: 0;
+    width: fit-content;
+    padding: 1.2rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
     margin-left: auto;
-    filter: blur(0.2rem);
-    transition: ease-in-out 1s 100ms;
+    margin-right: auto;
 }
-.card-holder:hover .card-special{
-    filter: blur(0rem);
+#guesser-buttons button{
+    font-size: 1.2rem;
+    width: 15rem;
 }
-
-#home h2, #mystery h2{
-    font-size: 4rem;
-    text-transform:uppercase;
+#guesserUp, #guesseraside{
+    z-index: 1;
+}
+fieldset{
     text-align: center;
-    height: 5rem;
+}
+#guesserForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 4px;
 }
 
-#pokemon-mc{
+.isHidden{
+    display: none;
+}
+.label {
+    display: block;
+    text-align: center;
+    background-color: var(--bg-color-steel);
+    width: 15rem;
+    min-width: 75px;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 15px;
+    transition: 0.3s;
+  }
+  .label:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer; 
+    background-color: #A1BFA3;
+  }
+  .radio:checked + .label {
+    background-color: var(--bg-color-grass);
+  }
+  .guesserButton{
+    background-color: var(--bg-color-grass); 
+    border: none;
+    border-radius: 12px;
+    margin-top: 15px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: poppins;
+    transition: 0.3s;
+
+  }
+  .guesserButton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    background-color: #559635;
+  }
+  .guesserTitel{
+    text-transform: uppercase;
+    margin-bottom:20px;
+    text-align: center;
+    font-weight: bolder;
+  }
+  #hint{
+    border: black solid 1px;
+    padding: 1.5rem;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2rem;
+    background-color: var(--bg-color-secondary);
+  }
+  @media screen and (max-width: 1000px) {
+    #guesser-buttons{
+        flex-direction: column;
+    }        
+  }
+  @media screen and (max-width: 1400px) {
+    #kleurbalk img{
+        width: 20%;
+    }       
+  }
+  #pokemon-mc{
     border: 0.1rem black solid;
     background-color: var(--bg-color-secondary);
     border-radius: 4rem;
@@ -746,42 +520,13 @@ transition: ease-in-out 0.8s 100ms;
     padding-left: 20px;
     font-size: 20px;
 }
-
-    /*#region ---MEDIAQUERIES---*/  
-    @media screen and (min-width: 1920px) {
-        #creators{
-            column-gap: 15rem;
-            row-gap: 10rem;
-        }        
-    }        
-    @media screen and (max-width: 1000px) {
-        
-    }
-    @media screen and (max-width: 900px) {
-        #home h2{
-            font-size: 3rem;
-        }
-    }
-    @media screen and (max-width: 800px) {
-        
-    }
-    @media screen and (max-width: 700px) {
-    }
-    @media screen and (max-width: 600px) {
-        
-    }
-    @media screen and (max-width: 500px) {
-        
-    }
-    @media screen and (max-width: 400px) {
-        
-    }
-    @media screen and (max-width: 300px) {
-        
-    }
-    /*#endregion*/
-/*#endregion*/
-
+#mystery h2{
+    font-size: 4rem;
+    text-transform:uppercase;
+    text-align: center;
+    height: 5rem;
+}
+/*#endrgion*/
 /*#region ---POKEBATTLER---*/
 #pokebattler{
     display: flex;
@@ -843,7 +588,7 @@ transition: ease-in-out 0.8s 100ms;
     border-radius: 25px;
 }
 #battle-result{
-    position: fixed; 
+    position: fixed;
     display: none;
     width: 100%;
     height: 100%;
