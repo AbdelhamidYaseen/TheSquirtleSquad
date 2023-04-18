@@ -440,6 +440,26 @@ transition: ease-in-out 0.8s 100ms;
 }
 /*#endregion*/
 /*#region --BELLOW HEADER--*/
+.bellowheader {
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: -100px;
+    margin-right: -100px;
+    height: 320px;
+    background-color: var(--bg-color-grass);
+    justify-content: center;
+    align-items: center;
+}
+
+.bellowheader img {
+    position: relative;
+    height: 270px;
+    width: 270px;
+    margin-top: 50px;
+    opacity: 0.1;
+    right: 5rem;
+}
     /*#region ---MEDIAQUERIES---*/
     @media screen and (max-width: 1000px) {
         
@@ -466,28 +486,6 @@ transition: ease-in-out 0.8s 100ms;
         
     }
     /*#endregion*/
-/*#endregion*/
-/*#region --BELLOW HEADER--*/
-.bellowheader {
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    margin-top: -100px;
-    margin-right: -100px;
-    height: 320px;
-    background-color: var(--bg-color-grass);
-    justify-content: center;
-    align-items: center;
-}
-
-.bellowheader img {
-    position: relative;
-    height: 270px;
-    width: 270px;
-    margin-top: 50px;
-    opacity: 0.1;
-    right: 5rem;
-}
 
 /*#endregion*/
 /*#region --POKEMON DETAILS--*/
@@ -689,7 +687,7 @@ transition: ease-in-out 0.8s 100ms;
     padding: .5rem 0;
     background-color: #EFEFEF;
 }
-
+/*#endregion*/
 /*#region ---TYPES---*/
 .type-grass {
     justify-content: center;
