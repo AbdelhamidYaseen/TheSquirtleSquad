@@ -1327,7 +1327,6 @@ fieldset{
 /*#endregion LandingPageForm*/
 
 
-/*#region --BELLOW HEADER--*/
 .bellowheader {
     top: 0;
     display: flex;
@@ -1355,14 +1354,12 @@ fieldset{
 
 /*#endregion*/
 /*#region --POKEMON DETAILS--*/
-#pokepeaker{
-    background-color: transparent;
-}
 .pokemon-images, .pokemon-details {
     top: 0;
     display: flex;
     margin-top: -200px;
     height: 500px;
+    width: 77vw;
     justify-content: space-between;
     align-items: center;
     padding: 0 5rem;
@@ -1700,7 +1697,7 @@ fieldset{
 /*#endregion*/
 /*#region --EVOLUTION LINE--*/
 .evolutionline {
-    background-color: transparent;
+    position: absolute;
 }
 
 .evolutionline h2 {
@@ -1713,6 +1710,7 @@ fieldset{
     display: flex;
     margin: 3rem;
     gap: 2rem;
+    width: 75vw;
     overflow-x: auto;
 }
 
@@ -1759,6 +1757,7 @@ fieldset{
     padding: .5rem 0;
     background-color: #EFEFEF;
 }
+
 /*#region ---TYPES---*/
 .type-pill {
     /* Create pill shape */
@@ -1846,11 +1845,8 @@ fieldset{
 }
 
 /*#endregion*/
-/*#endregion*/
-/*#region ---POKEDEX---*/
-#pokedex{
-    background-color: transparent;
-}
+
+/*#region ---pokedex---*/
 .btn-bg {
     background-color: var(--bg-color-button);
 }
@@ -1937,11 +1933,7 @@ fieldset{
     color: var(--bg-color-button);
     font-weight: lighter;
 }
-.pokedex-card a {
-    width: 10rem;
-    z-index: 1;
-    position: absolute;
-}
+
 .pokedex-card img {
     width: 10rem;
     z-index: 1;
@@ -1978,7 +1970,9 @@ fieldset{
     background: none;
     border: none;
 }
-/*#region querries*/
+
+/*#endregion ---pokedex---*/
+
 @media screen and (max-width: 1600px) {
     .pokemon-details section section.card {
         max-width: 35vw;
@@ -2032,6 +2026,7 @@ fieldset{
 @media screen and (max-width: 800px) {
     .pokemon-details {
         flex-direction: column;
+        margin-top: -200px;
     }
     .pokemon-details section section.card {
         max-width: 45vw;
@@ -2078,5 +2073,3 @@ fieldset{
         width: 40vw;
     }
 }
-/*#endregion*/
-/*#endregion ---pokedex---*/
