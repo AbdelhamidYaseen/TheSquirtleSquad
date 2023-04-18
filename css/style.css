@@ -805,6 +805,9 @@ transition: ease-in-out 0.8s 100ms;
     margin: 5rem;
     margin-top: 0px;
 }
+.name-poke-battle{
+    font-size: 2rem!important;
+}
 #health-container{
     background-color: lightgray;
     width: 100%;
@@ -863,5 +866,26 @@ transition: ease-in-out 0.8s 100ms;
     color: var(--bg-color-secondary);
     transform: translate(-50%,-50%);
     user-select: none;
+}
+@media screen and (max-width: 800px) {
+    #pokebattler{
+        top: -150px;
+        flex-direction: row;
+    }
+    #pokemon-battle-info{
+        flex-direction: column;
+    }
+    #poke1, #poke2{
+        margin: auto;
+        flex-direction: column;
+    }
+    #hit{
+        margin-left: 1.5rem;
+        height: 5rem;
+        width: 5rem;
+        font-size: 1.6rem;
+        text-align: center;
+        line-height: 5rem;
+    }
 }
 /*#endregion*/
