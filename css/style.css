@@ -792,6 +792,7 @@ display: none;        }
 /*#endregion*/
 /*#region ---CAPTURE---*/
 #capture{
+    height: 100vh;
     margin-left: 5vw;
     margin-right: 5vw;
     text-transform: capitalize;
@@ -1040,22 +1041,6 @@ fieldset{
         width: 20%;
     }       
   }
-#pokemon-mc{
-    border: 0.1rem black solid;
-    background-color: var(--bg-color-secondary);
-    border-radius: 4rem;
-    width: 10.5rem;
-    height: 2rem;
-    margin: 0.5rem;
-    padding-left: 20px;
-    font-size: 20px;
-}
-#mystery h2{
-    font-size: 4rem;
-    text-transform:uppercase;
-    text-align: center;
-    height: 5rem;
-}
 /*#endregion*/
 /*#region ---POKEBATTLER---*/
 #pokebattler{
@@ -1342,13 +1327,15 @@ fieldset{
 }
 /*#endregion LandingPageForm*/
 
-
+/*#region ---BELLOWHEADER---*/
 .bellowheader {
+    z-index: -1;
+    position: absolute;
     top: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: -150px;
-    margin-right: -100px;
     height: 320px;
     background-color: var(--bg-color-grass);
     justify-content: center;
@@ -1370,15 +1357,18 @@ fieldset{
 
 /*#endregion*/
 /*#region --POKEMON DETAILS--*/
+#pokepeaker{
+    margin-left: auto;
+}
+.pokemon-images{
+    margin-left: auto;
+}
 .pokemon-images, .pokemon-details {
     top: 0;
     display: flex;
-    margin-top: -200px;
-    height: 500px;
     width: 77vw;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5rem;
 }
 
 .pokemon-images .pokemon-wrapper img {
@@ -1712,16 +1702,34 @@ fieldset{
 
 /*#endregion*/
 /*#region --EVOLUTION LINE--*/
-
+.evolutionline{
+    width: 10rem;
+}
+.slider{
+    width: 10rem;
+}
+#evolutionline-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    width: fit-content;
+}
+#evolutionline-section{
+    width: 60vw;
+}
 .evolutionline h2 {
     font-family: poppinsBold;
-    margin-left: 4rem;
     font-size: 1.7rem;
 }
-
+#evolutionline-h2{
+    width: auto;
+    margin-top: 3rem;
+}
 .evolutionline .slider {
     display: flex;
-    margin: 3rem;
     gap: 2rem;
     width: 75vw;
     overflow-x: auto;
@@ -1858,8 +1866,13 @@ fieldset{
 }
 
 /*#endregion*/
+/*#endregion*/
+/*#region ---POKEDEX---*/
+#vergelijken{
+    height: 100vh;
+    margin-bottom: -20vh;
 
-/*#region ---pokedex---*/
+}
 .btn-bg {
     background-color: var(--bg-color-button);
 }
@@ -1997,7 +2010,7 @@ fieldset{
 }
 
 /*#endregion ---pokedex---*/
-
+/*#region ---MEDIA--*/
 @media screen and (max-width: 1600px) {
     .pokemon-details section section.card {
         max-width: 35vw;
@@ -2005,8 +2018,13 @@ fieldset{
 }
 
 @media screen and (max-width: 1400px) {
-    .pokemon-images .chartWrapper {
-        display: none;
+    #vergelijken{
+        height: auto;
+        margin-bottom: auto;
+    }
+    .pokemon-images {
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -2032,11 +2050,18 @@ fieldset{
 
 }
 @media screen and (max-width: 1000px) {
+    #capture{
+        height: auto;
+    }
+    
+    #vergelijken{
+        height: auto;
+        margin-bottom: auto;
+    }
     .pokemon-images {
         display: flex;
         flex-direction: column;
     }
-
     .pokemon-details section section.card {
         width: 75vw ;
     }
@@ -2055,9 +2080,16 @@ fieldset{
 }
 
 @media screen and (max-width: 800px) {
+    .pokemon-images{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .pokemon-images, .pokemon-details {
+        margin-top: 10rem;
+        
+    }
     .pokemon-details {
         flex-direction: column;
-        margin-top: -200px;
     }
     .pokemon-details section section.card {
         max-width: 45vw;
@@ -2078,6 +2110,21 @@ fieldset{
     .pokemon-details section section.card .about .item {
         border: none;
     }
+    body{
+        grid-template-columns: 
+        "header"
+        "main"
+        "footer"
+        ;
+    }
+    #pokepeaker{
+        margin-right: auto;
+    }
+}
+@media screen and (max-width: 800px) {
+    .chartWrapper{
+        display: none;
+    }
 }
 
 .evolutionline .slider{
@@ -2091,12 +2138,6 @@ fieldset{
         display: none;
     }
 
-    body {
-        grid-template-areas: 
-            'header',
-            'main',
-            'header';
-    }
 }
 @media screen and (max-width: 600px){
     
@@ -2126,3 +2167,4 @@ fieldset{
         width: 40vw;
     }
 }
+/*#endregion*/
