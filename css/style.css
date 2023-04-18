@@ -88,11 +88,11 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: -130px;
+    margin-top: -130px;
 }
 #mainpokeguesser{
     position: relative;
-    top: -85px;
+    margin-top: -85px;
     font-family: poppins;
     display: flex;
     flex-direction: column;
@@ -195,7 +195,7 @@ fieldset{
         width: 20%;
     }       
   }
-/*#endrgion*/
+/*#endregion*/
 /*#region ---BODY---*/
 body{
     display: grid;
@@ -251,6 +251,15 @@ body{
             
         }
         @media screen and (max-width: 800px) {
+            body{
+                grid-template-areas: 
+                "header"
+                "main"
+                "main"
+                "main"
+                "footer"
+                ;
+            }
             header{
                 justify-content: center;
                 background-color: rgba(255, 255, 255, 0.3);
@@ -274,7 +283,7 @@ body{
     /*#endregion*/
 
     /*#endregion*/
-    /*#region ---ASIDE---*/
+/*#region ---ASIDE---*/
     aside{
         margin-left: auto;
         width: 10rem;
@@ -908,7 +917,7 @@ display: none;        }
     }
     /*#endregion*/
 /*#endregion*/
- /*#region ---CAPTURE---*/
+/*#region ---CAPTURE---*/
 #capture{
     margin-left: 5vw;
     margin-right: 5vw;
@@ -1131,3 +1140,5 @@ display: none;        }
     grid-template: 100%;
 }
 /*#endregion LandingPageForm*/
+/*region ---XXX---*/
+/*#endregion*/
