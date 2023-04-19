@@ -1031,6 +1031,22 @@ fieldset{
     border-radius: 2rem;
     background-color: var(--bg-color-secondary);
   }
+  #pokemon-mc{
+    border: 0.1rem black solid;
+    background-color: var(--bg-color-secondary);
+    border-radius: 4rem;
+    width: 10.5rem;
+    height: 2rem;
+    margin: 0.5rem;
+    padding-left: 20px;
+    font-size: 20px;
+}
+#mystery h2{
+    font-size: 4rem;
+    text-transform:uppercase;
+    text-align: center;
+    height: 5rem;
+}
   @media screen and (max-width: 1000px) {
     #guesser-buttons{
         flex-direction: column;
@@ -1195,6 +1211,10 @@ fieldset{
 /*#region ---LANDINGPAGE---*/
 #background-main-landing{
     background: transparent;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #background-main-landing a{
     text-decoration: none;
@@ -1219,11 +1239,13 @@ fieldset{
     display: flex;
     flex-wrap:wrap;
     flex-direction: row;
+    column-gap: 8rem;
     max-width: 125rem;
     margin-bottom: 5rem;
+    justify-content: center;
+    align-items: center;
 }
 .card-landing {
-    margin-left: 14rem;
     margin-top: 5rem;
     box-shadow: 0 0.5rem 0.8rem 0 rgba(0,0,0,0.2);
     transition: 0.3s;
