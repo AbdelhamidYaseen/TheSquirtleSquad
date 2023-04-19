@@ -1953,11 +1953,16 @@ fieldset{
     display: flex;
     flex-direction: column;
 }
-
+#pokedex{
+    display: flex;
+    flex-direction: column;
+}
 .pokedex-cards {
     display: flex;
     margin: 0 2rem;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .pokedex-card {
