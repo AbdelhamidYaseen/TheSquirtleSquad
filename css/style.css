@@ -134,7 +134,7 @@ footer{
     border: 1px black solid;
     border-bottom: none;
     grid-area: footer;
-    height: 6rem;
+    bottom: 0;
     justify-content:space-evenly;
     width: 95%;
     display: flex;
@@ -429,7 +429,6 @@ footer img{
 /*#region ---MAIN---*/
     main{
         grid-area: main;
-        /* background-color: var(--bg-color-primary); */
     }
     /*#endregion*/
 /*#region ---HOMEPAGE---*/
@@ -792,7 +791,6 @@ display: none;        }
 /*#endregion*/
 /*#region ---CAPTURE---*/
 #capture{
-    height: 100vh;
     margin-left: 5vw;
     margin-right: 5vw;
     text-transform: capitalize;
@@ -1891,7 +1889,7 @@ fieldset{
 /*#endregion*/
 /*#region ---POKEDEX---*/
 #vergelijken{
-    height: 100vh;
+  
     margin-bottom: -20vh;
 
 }
