@@ -14,5 +14,5 @@ function noAcces() {
 }
 
 function acces() {
-  window.location.href = "/index.html"
+  window.location.href = "/home.html"
 }
