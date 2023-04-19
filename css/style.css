@@ -1349,6 +1349,7 @@ fieldset{
 }
 /*#endregion LandingPageForm*/
 
+
 /*#region ---BELLOWHEADER---*/
 .bellowheader {
     z-index: -1;
@@ -1378,7 +1379,7 @@ fieldset{
 }
 
 /*#endregion*/
-/*#region --POKEMON DETAILS--*/
+/*#region --POKEMON DETAILS---*/
 #pokepeaker{
     margin-left: auto;
 }
@@ -1723,7 +1724,7 @@ fieldset{
 }
 
 /*#endregion*/
-/*#region --EVOLUTION LINE--*/
+/*#region --EVOLUTION LINE---*/
 .evolutionline{
     width: 10rem;
 }
@@ -2041,7 +2042,7 @@ fieldset{
 }
 
 /*#endregion ---pokedex---*/
-/*#region ---MEDIA--*/
+/*#region ---MEDIA---*/
 @media screen and (max-width: 1600px) {
     .pokemon-details section section.card {
         max-width: 35vw;
@@ -2200,3 +2201,4 @@ fieldset{
     }
 }
 /*#endregion*/
+
