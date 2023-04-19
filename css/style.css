@@ -1813,8 +1813,13 @@ fieldset{
     border: none;
     font-size: medium;
     font-weight: bold;
+    transition:  0.8s ease-in-out 100ms;
+    cursor: pointer;
 }
-
+.type-pill:hover{
+    background-color: var(--bg-color-button)
+    ;
+}
 .type-normal {
     background-color: var(--bg-color-normal);
 }
@@ -1913,7 +1918,6 @@ fieldset{
 .types {
     padding: 0 2rem;
 }
-
 .filter-menu {
     z-index: 2;
     position: absolute;
@@ -1923,7 +1927,9 @@ fieldset{
     left: 2rem;
     display: none;
 }
-
+#filter-btn{
+    cursor: pointer;
+}
 .filter-menu .filter-item {
     display: flex;
     padding: 1rem .6rem;
@@ -2156,7 +2162,9 @@ fieldset{
     border-radius: 2rem;
     padding: 2rem;
 }
-
+#type-selector-btn {
+    cursor: pointer;
+}
 @media screen and (min-width: 800px) {
     #type-selector {
         display: none;
