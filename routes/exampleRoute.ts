@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 // hier importeer je jou controller die je hebt gemaakt
-import controller from '../controller/exampleController';
+import controller from '../controllers/exampleController';
 
 // Hier zeg je welke routes die heeft.
 const route = () => {

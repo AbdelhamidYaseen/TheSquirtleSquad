@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import controller from '../controller/pokedexController';
+import controller from '../controllers/pokedexController';
 
 const route = () => {
     router.get('/pokedex', controller.get);
