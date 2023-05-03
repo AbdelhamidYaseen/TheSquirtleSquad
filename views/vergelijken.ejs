@@ -1,0 +1,198 @@
+<%- include('template/header', {title: 'Pokedex', showLogo: true}) %>
+<%- include('template/sidebar') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js" integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./js/vergelijken.js" defer></script>
+<section class="bellowheader bellowheader-gradient">
+    <img src="./assets/images/Pokeball.png" alt="">
+</section>
+<main id="vergelijken">
+    <section class="pokemon-images">
+        <section class="pokemon-wrapper">
+            <section class="button-wrapper">
+                <img src="./assets/images/Bulbasaur.png" alt="">
+                <button class="replace-btn">Vervang pokemon</button>
+            </section>
+            <section class="card">
+                <p class="title" style="color: var(--bg-color-tertiary)">Bulbasaur #001</p>
+                <section class="types">
+                    <p class="type-pill type-grass">grass</p>
+                    <p class="type-pill type-poison">Poison</p>
+                </section>
+                <h3 class="subtitle" style="color: var(--bg-color-tertiary)">Stats</h3>
+                <section class="stats">
+                    <table>
+                        <tbody>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-tertiary)">HP</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">45</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-tertiary)">ATK</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">49</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-tertiary)">DEF</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">49</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-tertiary)">SATK</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">65</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-tertiary)">SDEF</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">65</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-tertiary)">SPD</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">45</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </section>
+        <section class="chartWrapper">
+            <div style="width: 600px;"><canvas id="acquisitions"></canvas></div>
+        </section>
+        <section class="pokemon-wrapper">
+            <section class="button-wrapper">
+                <img src="./assets/images/Bulbasaur.png" alt="">
+                <button class="replace-btn">Vervang pokemon</button>
+            </section>
+            <section class="card">
+                <p class="title" style="color: var(--bg-color-quaternary);">Bulbasaur #001</p>
+                <section class="types">
+                    <p class="type-pill type-grass">grass</p>
+                    <p class="type-pill type-poison">Poison</p>
+                </section>
+                <h3 class="subtitle" style="color: var(--bg-color-quaternary);">Stats</h3>
+                <section class="stats">
+                    <table>
+                        <tbody>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-quaternary);">HP</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">45</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-quaternary)">ATK</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">49</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-quaternary)">DEF</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">49</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-quaternary)">SATK</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">65</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-quaternary)">SDEF</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">65</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-quaternary)">SPD</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">45</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </section>
+        <section class="modal">
+            <section class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Selecteer een nieuwe pokemon</h2>
+                <form>
+                    <label for="pokemon-name">Naam van de pokemon:</label>
+                    <input type="text" id="pokemon-name" name="pokemon-name">
+                    <button type="submit">Zoeken</button>
+                </form>
+            </section>
+        </section>
+    </section>
+</main>
+<%- include('template/footer') %>
