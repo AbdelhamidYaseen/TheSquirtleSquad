@@ -1,0 +1,149 @@
+<%- include('template/header', {title: 'Pokedex', showLogo: true}) %>
+<%- include('template/sidebar') %>
+<main id="pokepeaker">
+    <section class="pokemon-details">
+        <section>
+            <img src="./assets/images/Bulbasaur.png" alt="">
+        </section>
+        <section>
+            <section class="card">
+                <p class="title">Bulbasaur #001</p>
+                <section class="types">
+                    <p class="type-pill type-grass">grass</p>
+                    <p class="type-pill type-poison">Poison</p>
+                </section>
+                <h3 class="subtitle" style="color: var(--bg-color-grass)">Over</h3>
+                <section class="about">
+                    <section class="item">
+                        <p class="value">6,9 kg</p>
+                        <p class="value-type">Gewicht</p>
+                    </section>
+                    <section class="item">
+                        <p class="value">0,7 m</p>
+                        <p class="value-type">Grootte</p>
+                    </section>
+                    <section class="item">
+                        <p class="value">Chlorophyl</p>
+                        <p class="value">Overgrow</p>
+                        <p class="value-type">Moves</p>
+                    </section>
+                </section>
+                <h3 class="subtitle" style="color: var(--bg-color-grass)">base stats</h3>
+                <section class="stats">
+                    <table>
+                        <tbody>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-grass)">HP</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">45</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-grass);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-grass)">ATK</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">49</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-grass);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-grass)">DEF</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">49</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-grass);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-grass)">SATK</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">65</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-grass);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-grass)">SDEF</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">65</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-grass);"></progress>
+                                </td>
+                            </tr>
+                            <tr class="item">
+                                <td>
+                                    <p class="value" style="color: var(--bg-color-grass)">SPD</p>
+                                </td>
+                                <td class="divider">
+                                    <p class="value">45</p>
+                                </td>
+                                <td class="progress-container">
+                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-grass);"></progress>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="evolutionline" id="evolutionline-wrapper">
+        <h2 id="evolutionline-h2">Evolutie Lijn</h2>
+        <section class="slider" id="evolutionline-section">
+            <section class="card">
+                <section class="card-hero">
+                    <p>#001</p>
+                    <img src="./assets/images/Bulbasaur.png" alt="">
+                </section>
+                <section class="card-footer">
+                    <p>Bulbasaur</p>
+                </section>
+            </section>
+            <section class="card">
+                <section class="card-hero">
+                    <p>#001</p>
+                    <img src="./assets/images/Bulbasaur.png" alt="">
+                </section>
+                <section class="card-footer">
+                    <p>Bulbasaur</p>
+                </section>
+            </section>
+            <section class="card">
+                <section class="card-hero">
+                    <p>#001</p>
+                    <img src="./assets/images/Bulbasaur.png" alt="">
+                </section>
+                <section class="card-footer">
+                    <p>Bulbasaur</p>
+                </section>
+            </section>
+            <section class="card">
+                <section class="card-hero">
+                    <p>#001</p>
+                    <img src="./assets/images/Bulbasaur.png" alt="">
+                </section>
+                <section class="card-footer">
+                    <p>Bulbasaur</p>
+                </section>
+            </section>
+        </section>
+    </section>
+</main>
+<%- include('template/footer') %>
