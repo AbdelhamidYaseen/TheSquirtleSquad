@@ -1,18 +1,14 @@
-import mysql from "mysql";
+import { MongoClient } from 'mongodb'
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'thesquirtlesquad'
+const url = 'mongodb+srv://squirtle:TO5wQQOJO41ViIKv@thesquirtlesquad.stbcj4h.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(url);
+
+export const dbName = 'itproject';
+
+(async() => {
+    await client.connect();
+    console.log('Connected successfully to server');
+    const db = client.db(dbName);
 });
 
-connection.connect((e) => {
-    if(e){
-        console.error(e.message);
-        return;
-    }
-    console.log("Connectie gemaakt met de databank");
-});
-
-export default connection;
+export default client;
