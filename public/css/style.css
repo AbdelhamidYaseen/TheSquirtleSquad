@@ -2202,3 +2202,7 @@ fieldset{
 }
 /*#endregion*/
 
+
+.silhouette {
+    filter: brightness(0%);
+}

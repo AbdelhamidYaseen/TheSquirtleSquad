@@ -5,7 +5,7 @@ import controller from '../controllers/pokedexController';
 
 const route = () => {
     router.get('/pokedex', controller.get);
-    router.post('/addPokemon', controller.post);
+    router.get('/pokedex/:pagenumber', controller.getPage);
 }
 
 route();

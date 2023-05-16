@@ -5,10 +5,14 @@ const client = new MongoClient(url);
 
 export const dbName = 'itproject';
 
-(async() => {
-    await client.connect();
-    console.log('Connected successfully to server');
-    const db = client.db(dbName);
-});
+(async () => {
+    try {
+        await client.connect().then(() => {
+            console.log('Connected successfully to server');
+        });
+    } catch (e: any) {
+        console.error(e.message);
+    }
+})();
 
 export default client;
