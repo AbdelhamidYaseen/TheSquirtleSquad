@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
 
-import controller from '../controllers/battlerController';
+import controller from '../controllers/whospokemonController';
 
 const route = () => {
-    router.get('/battler', controller.get);
+    router.get('/whospokemon', controller.get);
 }
 
 route();
