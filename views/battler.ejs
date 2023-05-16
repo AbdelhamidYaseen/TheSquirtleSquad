@@ -1,0 +1,37 @@
+<%- include('template/header', {title: 'Who\'s that pokémon?', showLogo: true}) %>
+<%- include('template/sidebar') %>
+<section id="top-extra">
+    <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+</section>
+<main id="mystery">
+    <section id="kleurbalk">
+        <img src="/assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+    </section>
+    <section id="pokebattler">
+        <section id="pokemon-battle-info">
+            <section id="poke1">
+                <img src="/assets/images/aron.png" class="battle-pokemon">
+                <h2 class="name-poke-battle">Aron</h2>
+                <div id="own-health-container">
+                    <div id="own-health"></div>
+                </div>
+            </section>
+            <section id="poke2">
+                <img src="/assets/images/shuckle.png" class="battle-pokemon">
+                <h2 class="name-poke-battle">Shuckle</h2>
+                <div id="health-container">
+                    <div id="health"></div>
+                </div>
+            </section>
+        </section>
+        <div id="hit">HIT</div>
+    </section>
+    <p id="battle-log-title">GEVECHT-LOG</p>
+    <div id="battle-log">
+        <div id="battle-log-content"></div>
+    </div>
+    <div id="battle-result" onclick="off()">
+        <div id="battle-result-text"></div>
+    </div>
+</main>
+<%- include('template/footer') %>

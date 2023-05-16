@@ -1,4 +1,3 @@
-document.getElementById("hit").onclick = function() {attack()};
 var enemyHasAttacked = true;
 var inBattle = true;
 
@@ -113,3 +112,5 @@ function battleEnd() {
   function off() {
     document.getElementById("battle-result").style.display = "none";
   }
+  document.getElementById("hit").onclick = attack();
+
