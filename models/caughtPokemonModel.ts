@@ -1,6 +1,6 @@
 import client, { dbName } from "../db";
-import { iCaughtPokemon } from "../types";
-import { iUser } from "./usersModel";
+import { iCaughtPokemon, iPokemon } from "../types";
+import { getUserById, iUser } from "./usersModel";
 
 const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> => {
     const res = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.isBuddy": true });
@@ -21,5 +21,18 @@ const getAllCaughtPokemonFromuser = async (userid: number) : Promise<iCaughtPoke
     return res.caughtPokemon;
 }
 
+const addPokemonToUser = async (pokemon: iCaughtPokemon, user: iUser) =>{
+    console.log(user);
+    console.log(pokemon);
+
+    user.caughtPokemon.push(pokemon);
+
+}
+
+const upgradePokemon = async (pokemonId: number) =>{
+
+}
+
+
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { getAllCaughtPokemonFromuser, getBuddyFromUser };
+export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon };

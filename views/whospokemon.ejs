@@ -15,28 +15,29 @@
             <legend class="guesserTitel">Welke pokémon is dit?</legend>
             <input list="pokemon" name="pokemon" id="pokemon-mc">
                 <datalist id="pokemon">
-                    <option value="Mr. Mime">
-                    <option value="Arbok">
-                    <option value="Hypno">
-                    <option value="<%= pokemon.name %>">
-                    <option value="Vulpix">
-                    <option value="Clefairy">
+                    <% for(let i=0; i<=150; i++){%>
+                         <option  value="<%= pokelist[i].name%>"> 
+                    <%};%>
                 </datalist>
             <section id="guesser-buttons">
-                <button onClick="window.location.reload();" type="button" class="guesserButton">Overslaan</button>
+                <button onClick="window.location.reload();" onClick="window.location.reload();" type="button" class="guesserButton">Overslaan</button>                
                 <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
                 <button type="submit" class="guesserButton">Indienen</button>
             </section>
         <br>
-        <p id="hint" style="display:none;">Deze pokémon is een plant type</p>
+        <p id="hint" style="display:none;">Deze pokémon is een <%= stats.types[0].type.name %> type</p>
         </fieldset>
     </form>
     </section>
-    <div id="guesser-submit" onclick="guesserOff()">
+    <div id="guesser-submit">
         <div id="guesser-submit-content">
             <p id="guesser-result"></p>
             <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="">
             <p id="guesser-answer">De pokemon was <%= pokemon.name %></p>
+            <form action="/home" id="battler-buttons">
+                <button onClick="window.location.reload();" type="button" class="guesserButton">Nieuwe pokemon</button>
+                <button type="submit" class="guesserButton" id="battle-button-stop">Stop</button>
+            </form>
         </div>
     </div>
 </main>
@@ -64,14 +65,10 @@ function submitGuesserForm(){
         document.getElementById("guesser-submit-content").appendChild(node);
         node.style.fontStyle = "italic";
         node.style.fontSize = "40px";
+        node.style.marginTop = "25px";
     }
     else{
         document.getElementById('guesser-result').innerHTML = "Jammer!";
     }
-}
-
-function guesserOff() {
-    document.getElementById("guesser-submit").style.display = "none";
-    location.reload();
 }
 </script>

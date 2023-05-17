@@ -1080,23 +1080,18 @@ fieldset{
     font-size: 3rem;
     padding: 1rem;
     border-radius: 25px;
-    background-color: #54a12e;
+    background-color: rgba(0,0,0,0.75);
     color: var(--bg-color-secondary);
     transform: translate(-50%,-50%);
     user-select: none;
-
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    border: 3px solid #274b15;
 }
 #guesser-submit-content img{
     max-width: 380px;
     margin: auto;
-}
-#guesser-answer{
-    margin-bottom: 50px;
 }
 /*#endregion*/
 /*#region ---POKEBATTLER---*/

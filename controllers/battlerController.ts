@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
-import { getBuddyFromUser } from '../models/caughtPokemonModel';
+import { getBuddyFromUser, addPokemonToUser } from '../models/caughtPokemonModel';
 
 // Maakt een object aan, je kan hier alle mogelijke express http methodes mee geven (get, post, ...)
 const controller = {
@@ -12,6 +12,7 @@ const controller = {
         
         try {
             // Log the names of all the users in the array
+            //TODO 
             const user : iUser = await getUserById(1);
             const pokemonNumber : number = Math.floor(Math.random() * 150);
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
@@ -32,7 +33,7 @@ const controller = {
                 baseStats: apiFetchBuddy.stats,
 
             }
-            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats});
+            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, addPokemonToUser});
         } catch (err : any) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');
