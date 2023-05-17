@@ -12,9 +12,6 @@
             <section id="poke1">
                 <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
                 <h2 class="name-poke-battle"><%= buddy.name %></h2>
-                <p class="name-poke-battle">hp          <%=buddyStats.baseStats[0].base_stat%></p>
-                <p class="name-poke-battle">attack      <%=buddyStats.baseStats[1].base_stat%></p>
-                <p class="name-poke-battle">defense     <%=buddyStats.baseStats[2].base_stat%></p>
                 <div id="own-health-container">
                     <div id="own-health"></div>
                 </div>
@@ -22,9 +19,7 @@
             <section id="poke2">
                 <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
                 <h2 class="name-poke-battle"><%= pokemon.name  %></h2>
-                <p class="name-poke-battle">hp      <%=stats.baseStats[0].base_stat%></p>
-                <p class="name-poke-battle">attack  <%=stats.baseStats[1].base_stat%></p>
-                <p class="name-poke-battle">defense <%=stats.baseStats[2].base_stat%></p>
+
                 <div id="health-container">
                     <div id="health"></div>
                 </div>
@@ -36,8 +31,15 @@
     <div id="battle-log">
         <div id="battle-log-content"></div>
     </div>
-    <div id="battle-result" onclick="off()">
+    <div id="battle-result" >
+        <div id="battle-result-content">
         <div id="battle-result-text"></div>
+        <p id="battler-caught"></p>
+            <form action="/home" id="battler-buttons">
+                <button onClick="window.location.reload();" type="button" class="guesserButton">Nieuwe battle</button>
+                <button type="submit" class="guesserButton" id="battle-button-stop">Stop</button>
+            </form>
+        </div>
     </div>
 </main>
 <%- include('template/footer') %>
@@ -66,7 +68,7 @@ const ownPokemon ={
     attackName: "Tackle",
     attackDmg: parseInt("<%=buddyStats.baseStats[1].base_stat%>"),
     defense: parseInt("<%=buddyStats.baseStats[2].base_stat%>"),
-    hp: parseInt("<%=buddyStats.baseStats[0].base_stat%>") //should be 50, voor demo hoger
+    hp: parseInt("<%=buddyStats.baseStats[0].base_stat%>")
 };
 ownHP = ownPokemon.hp;
 
@@ -74,13 +76,9 @@ ownHP = ownPokemon.hp;
 function attack() {
     if(enemyHasAttacked){
         var damage;
-        if(ownPokemon.attackDmg >= enemy.defense){
-            damage = ownPokemon.attackDmg * 2 - enemy.defense;
-            enemyHP -= damage
-        }else{
-            damage = ownPokemon.attackDmg * (ownPokemon.attackDmg/enemy.defense);
-            enemyHP -= damage
-        }
+        damage = ((ownPokemon.attackDmg/((enemy.defense+100)/100))*50)/100;
+        enemyHP -= damage;
+
         //add to battle log
         if(inBattle){
             var node = document.createElement("p");
@@ -102,6 +100,7 @@ function attack() {
                 node.style.fontSize = "13px"
             }
             document.getElementById("battle-result-text").innerHTML = "You won!";
+            document.getElementById('battler-caught').innerHTML = "<%= pokemon.name %> werd gevangen";
             battleEnd();
             inBattle=false;
         }else{
@@ -116,14 +115,9 @@ function attack() {
 //enemy attacks
 function enemyAttack() {
     var damage;
-    if(enemy.attackDmg >= ownPokemon.defense){
-        damage = enemy.attackDmg * 2 - ownPokemon.defense;
-        ownHP -= damage;
-    }else{
-        damage = enemy.attackDmg * (enemy.attackDmg/ownPokemon.defense);
-        ownHP -= damage;
-    }
-    ownHP -= enemy.attackDmg/ownPokemon.defense;
+    damage = ((enemy.attackDmg/((ownPokemon.defense+100)/100))*50)/100;
+    ownHP -= damage;
+
     //add to battle log
     var node = document.createElement("p");
     var textnode = document.createTextNode(`${enemy.name} used ${enemy.attackName} for ${damage} damage`);
@@ -149,13 +143,11 @@ function enemyAttack() {
         document.getElementById("hit").style.cursor = "pointer";
     }
 }
-
+let showEndMsg = true
 function battleEnd() {
+    if(showEndMsg == true){
     document.getElementById("battle-result").style.display = "block";
-  }
-  
-  function off() {
-    document.getElementById("battle-result").style.display = "none";
-  }
+    }
+}
 
 </script>

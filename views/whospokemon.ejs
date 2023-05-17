@@ -10,7 +10,7 @@
     </section>
     <section id="pokeguesser">
         <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="" id="pokehidden" class="silhouette">
-        <form action="" >
+        <form  id="guesserForm" action="" onsubmit="submitGuesserForm();">
         <fieldset class="fieldset_data">
             <legend class="guesserTitel">Welke pokémon is dit?</legend>
             <input list="pokemon" name="pokemon" id="pokemon-mc">
@@ -23,7 +23,7 @@
                     <option value="Clefairy">
                 </datalist>
             <section id="guesser-buttons">
-                <button type="button" class="guesserButton">Overslaan</button>
+                <button onClick="window.location.reload();" type="button" class="guesserButton">Overslaan</button>
                 <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
                 <button type="submit" class="guesserButton">Indienen</button>
             </section>
@@ -32,6 +32,46 @@
         </fieldset>
     </form>
     </section>
-
+    <div id="guesser-submit" onclick="guesserOff()">
+        <div id="guesser-submit-content">
+            <p id="guesser-result"></p>
+            <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="">
+            <p id="guesser-answer">De pokemon was <%= pokemon.name %></p>
+        </div>
+    </div>
 </main>
 <%- include('template/footer') %>
+<script>
+function submitGuesserForm(){
+    event.preventDefault(); //-> niet refreshen
+    
+    document.getElementById("guesser-submit").style.display = "block";
+    let guesserInput = document.getElementById('pokemon-mc').value;
+    let guesserAnswer = "<%=pokemon.name%>";
+    if(guesserInput.toLowerCase() == guesserAnswer.toLowerCase()){
+        document.getElementById('guesser-result').innerHTML = "Goed!";
+        
+        //stat boost message
+        let defOrAtk = Math.floor(Math.random() * 2);
+        let node = document.createElement("p");
+        let textnode;
+        if(defOrAtk==0){ //defense up
+            textnode = document.createTextNode(`<%=buddy.name%> defense +1!`);
+        }else{//atk up
+            textnode = document.createTextNode(`<%=buddy.name%> attack +1!`);
+        }
+        node.appendChild(textnode);
+        document.getElementById("guesser-submit-content").appendChild(node);
+        node.style.fontStyle = "italic";
+        node.style.fontSize = "40px";
+    }
+    else{
+        document.getElementById('guesser-result').innerHTML = "Jammer!";
+    }
+}
+
+function guesserOff() {
+    document.getElementById("guesser-submit").style.display = "none";
+    location.reload();
+}
+</script>
