@@ -1,4 +1,4 @@
-<%- include('template/header', {title: 'Who\'s that pokémon?', showLogo: true}) %>
+<%- include('template/header', {title: 'Pokemon League', showLogo: true}) %>
 <%- include('template/sidebar') %>
 <section id="top-extra">
     <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
@@ -12,13 +12,19 @@
             <section id="poke1">
                 <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
                 <h2 class="name-poke-battle"><%= buddy.name %></h2>
+                <p class="name-poke-battle">hp          <%=buddyStats.baseStats[0].base_stat%></p>
+                <p class="name-poke-battle">attack      <%=buddyStats.baseStats[1].base_stat%></p>
+                <p class="name-poke-battle">defense     <%=buddyStats.baseStats[2].base_stat%></p>
                 <div id="own-health-container">
                     <div id="own-health"></div>
                 </div>
             </section>
             <section id="poke2">
                 <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
-                <h2 class="name-poke-battle"><%= pokemon.name %></h2>
+                <h2 class="name-poke-battle"><%= pokemon.name  %></h2>
+                <p class="name-poke-battle">hp      <%=stats.baseStats[0].base_stat%></p>
+                <p class="name-poke-battle">attack  <%=stats.baseStats[1].base_stat%></p>
+                <p class="name-poke-battle">defense <%=stats.baseStats[2].base_stat%></p>
                 <div id="health-container">
                     <div id="health"></div>
                 </div>
@@ -35,3 +41,121 @@
     </div>
 </main>
 <%- include('template/footer') %>
+<script>
+    document.getElementById("hit").onclick = function() {attack()};
+var enemyHasAttacked = true;
+var inBattle = true;
+
+//formule
+//HP – (defence – attack)
+
+//enemy details
+var enemyHealth = document.getElementById("health");
+const enemy ={
+    name: "<%- pokemon.name %>",
+    attackName: "Warp",
+    attackDmg: parseInt("<%=stats.baseStats[1].base_stat%>"),
+    defense: parseInt("<%=stats.baseStats[2].base_stat%>"),
+    hp: parseInt("<%=stats.baseStats[0].base_stat%>")
+};
+enemyHP = enemy.hp;
+//own details
+var ownHealth = document.getElementById("own-health");
+const ownPokemon ={
+    name: "<%- buddy.name %>",
+    attackName: "Tackle",
+    attackDmg: parseInt("<%=buddyStats.baseStats[1].base_stat%>"),
+    defense: parseInt("<%=buddyStats.baseStats[2].base_stat%>"),
+    hp: parseInt("<%=buddyStats.baseStats[0].base_stat%>") //should be 50, voor demo hoger
+};
+ownHP = ownPokemon.hp;
+
+//own pokemon attacks
+function attack() {
+    if(enemyHasAttacked){
+        var damage;
+        if(ownPokemon.attackDmg >= enemy.defense){
+            damage = ownPokemon.attackDmg * 2 - enemy.defense;
+            enemyHP -= damage
+        }else{
+            damage = ownPokemon.attackDmg * (ownPokemon.attackDmg/enemy.defense);
+            enemyHP -= damage
+        }
+        //add to battle log
+        if(inBattle){
+            var node = document.createElement("p");
+            var textnode = document.createTextNode(`${ownPokemon.name} used ${ownPokemon.attackName} for ${damage} damage`);
+            node.appendChild(textnode);
+            document.getElementById("battle-log-content").appendChild(node);
+            node.style.color = "green"; 
+        }
+        if(enemyHP<=0){
+            enemyHealth.style.width = 0;
+            console.log("you won!");
+            
+            if(inBattle){
+                var node = document.createElement("p");
+                var textnode = document.createTextNode(`${ownPokemon.name} did ${Math.round((enemy.hp-enemyHP)*100)/100} damage on ${enemy.name} and received ${Math.round((ownPokemon.hp-ownHP)*100)/100} damage.`);
+                node.appendChild(textnode);
+                document.getElementById("battle-log-content").appendChild(node);
+                node.style.fontStyle = "italic";
+                node.style.fontSize = "13px"
+            }
+            document.getElementById("battle-result-text").innerHTML = "You won!";
+            battleEnd();
+            inBattle=false;
+        }else{
+            enemyHasAttacked=false;
+            enemyHealth.style.width = (enemyHP/enemy.hp)*100 + '%';
+            document.getElementById("hit").style.cursor = "default";
+            setTimeout(enemyAttack, 500);
+        }
+    }
+}
+
+//enemy attacks
+function enemyAttack() {
+    var damage;
+    if(enemy.attackDmg >= ownPokemon.defense){
+        damage = enemy.attackDmg * 2 - ownPokemon.defense;
+        ownHP -= damage;
+    }else{
+        damage = enemy.attackDmg * (enemy.attackDmg/ownPokemon.defense);
+        ownHP -= damage;
+    }
+    ownHP -= enemy.attackDmg/ownPokemon.defense;
+    //add to battle log
+    var node = document.createElement("p");
+    var textnode = document.createTextNode(`${enemy.name} used ${enemy.attackName} for ${damage} damage`);
+    node.appendChild(textnode);
+    document.getElementById("battle-log-content").appendChild(node);
+    node.style.color = "red";
+    if(ownHP<=0){
+        ownHealth.style.width = 0;
+        console.log("GAME OVER!");
+
+        var node = document.createElement("p");
+        var textnode = document.createTextNode(`${enemy.name} did ${Math.round((ownPokemon.hp-ownHP)*100)/100} damage on ${ownPokemon.name} and received ${Math.round((enemy.hp-enemyHP)*100)/100} damage.`);
+        node.appendChild(textnode);
+        document.getElementById("battle-log-content").appendChild(node);
+        node.style.fontStyle = "italic";
+        node.style.fontSize = "13px"
+
+        document.getElementById("battle-result-text").innerHTML = "GAME OVER!";
+        battleEnd();
+    }else{
+        ownHealth.style.width = (ownHP/ownPokemon.hp)*100 + '%';
+        enemyHasAttacked=true;
+        document.getElementById("hit").style.cursor = "pointer";
+    }
+}
+
+function battleEnd() {
+    document.getElementById("battle-result").style.display = "block";
+  }
+  
+  function off() {
+    document.getElementById("battle-result").style.display = "none";
+  }
+
+</script>

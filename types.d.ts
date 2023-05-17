@@ -1,21 +1,38 @@
 export interface iPokemonAttack {
-    id: number,
-    name: string,
-    power: number,
+    id: number;
+    name: string;
+    power: number;
 }
 
 export interface iCaughtPokemon {
-    pokemon_id: number,
-    pokemon_hp: number,
-    pokemon_attack: number,
-    isBuddy: boolean, 
+    pokemon_id: number;
+    pokemon_hp: number;
+    pokemon_attack: number;
+    isBuddy: boolean;
 }
 
 export interface iPokemon {
     id: number;
     name: string;
     sprites: iSprites;
-    caught: boolean,
+    height?: number;
+    weight?: number;
+    ability?: iAbility[];
+    types?: iType[];
+    baseStats?: iBaseStats[];
+}
+
+export interface iBaseStats {
+    statName: string;
+    statValue: number;
+}
+
+export interface iType {
+    name: string;
+}
+
+export interface iAbility {
+    name: string;
 }
 
 export interface iSprites {
@@ -40,6 +57,6 @@ export interface iHome {
 
 
 export interface iOther {
-    home: Home;
+    home: iHome;
     "official-artwork": iOfficialArtwork;
 }
