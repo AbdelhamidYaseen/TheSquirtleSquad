@@ -10,15 +10,15 @@
     <section id="pokebattler">
         <section id="pokemon-battle-info">
             <section id="poke1">
-                <img src="/assets/images/aron.png" class="battle-pokemon">
-                <h2 class="name-poke-battle">Aron</h2>
+                <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
+                <h2 class="name-poke-battle"><%= buddy.name %></h2>
                 <div id="own-health-container">
                     <div id="own-health"></div>
                 </div>
             </section>
             <section id="poke2">
-                <img src="/assets/images/shuckle.png" class="battle-pokemon">
-                <h2 class="name-poke-battle">Shuckle</h2>
+                <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
+                <h2 class="name-poke-battle"><%= pokemon.name %></h2>
                 <div id="health-container">
                     <div id="health"></div>
                 </div>

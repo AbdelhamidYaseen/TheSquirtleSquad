@@ -1,33 +1,4 @@
-<main id="mystery">
-    <section id="kleurbalk">
-        <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
-    </section>
-    <section id="pokeguesser">
-        <img src="./assets/images/bulbasaurHidden.png" alt="silhouet van pokemon" srcset="" id="pokehidden">
-        <form action="" >
-        <fieldset>
-            <legend class="guesserTitel">Welke pokémon is dit?</legend>
-            <input list="pokemon" name="pokemon" id="pokemon-mc">
-                <datalist id="pokemon">
-                    <option value="Mr. Mime">
-                    <option value="Arbok">
-                    <option value="Hypno">
-                    <option value="Bulbasaur">
-                    <option value="Vulpix">
-                    <option value="Clefairy">
-                </datalist>
-            <section id="guesser-buttons">
-                <button type="button" class="guesserButton">Overslaan</button>
-                <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
-                <button type="submit" class="guesserButton">Indienen</button>
-            </section>
-        <br>
-        <p id="hint" style="display:none;">Deze pokémon is een plant type</p>
-        </fieldset>
-    </form>
-    </section>
 
-</main>
 <%- include('template/header', {title: 'Who\'s That Pokemon', showLogo: true}) %>
 <%- include('template/sidebar') %>
 <section id="top-extra">
@@ -38,16 +9,16 @@
         <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
     </section>
     <section id="pokeguesser">
-        <img src="./assets/images/bulbasaurHidden.png" alt="silhouet van pokemon" srcset="" id="pokehidden">
+        <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="" id="pokehidden" class="silhouette">
         <form action="" >
-        <fieldset>
+        <fieldset class="fieldset_data">
             <legend class="guesserTitel">Welke pokémon is dit?</legend>
             <input list="pokemon" name="pokemon" id="pokemon-mc">
                 <datalist id="pokemon">
                     <option value="Mr. Mime">
                     <option value="Arbok">
                     <option value="Hypno">
-                    <option value="Bulbasaur">
+                    <option value="<%= pokemon.name %>">
                     <option value="Vulpix">
                     <option value="Clefairy">
                 </datalist>

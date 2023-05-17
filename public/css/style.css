@@ -844,6 +844,9 @@ display: none;        }
     text-align: center;
     margin-bottom: 1rem;
 }
+.fieldset_data{
+    text-transform: capitalize;
+}
 .capture-pokemon{
     border: var(--bg-color-button) solid 1.5px;
     width: fit-content;
