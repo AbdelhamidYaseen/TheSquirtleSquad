@@ -50,6 +50,7 @@ const controller = {
         addPokemonToUser(1,pokemonId);
         
         }
+        
         const user : iUser = await getUserById(1);
         const pokemonNumber : number = Math.floor(Math.random() * 150);
         const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());

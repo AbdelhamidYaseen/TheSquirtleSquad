@@ -40,13 +40,15 @@
         <div id="battle-result-content">
         <div id="battle-result-text"></div>
         <p id="battler-caught"></p>
-            <form action="/battler" id="battler-buttons" method="post">
+            <form action="/battler" id="battler-buttons" method="post" target="hiddenFrame">
                 <input type="hidden" name="pokemonId" value="<%= pokemon.id%>">
                 <input type="hidden" name="battleStatus" id="battleStatus" value="">
-                <button onClick="window.location.reload();" type="submit" class="guesserButton">Nieuwe battle</button>
             </form>
+            <button onClick="window.location.reload();" class="guesserButton">Nieuwe battle</button>
+            <button onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
         </div>
     </div>
+    <iframe name="hiddenFrame" style="display: none;"></iframe>
 </main>
 <%- include('template/footer') %>
 <script defer>
@@ -107,6 +109,7 @@ function attack() {
             document.getElementById("battle-result-text").innerHTML = "You won!";
             document.getElementById('battler-caught').innerHTML = "<%= pokemon.name %> werd gevangen";
             document.getElementById("battleStatus").setAttribute("value", "false");
+            document.getElementById("battler-buttons").submit();
             battleEnd();
             inBattle=false;
         }else{

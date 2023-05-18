@@ -76,14 +76,16 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
         pokemon_special_defense: apiFetch.stats[4].base_stat,
         pokeomn_speed: apiFetch.stats[5].base_stat,
         isBuddy: false
-    }/*
+    }
+    /*
     let userObject : iUser = {
         id: 1,
         username: "ArtesisPlantijn",
         password: "test", 
         caughtPokemon: pokemonObject
     
-    }*/
+    }
+    */
         const collection = client.db(dbName).collection("users");
 
         //await collection.deleteMany({});
