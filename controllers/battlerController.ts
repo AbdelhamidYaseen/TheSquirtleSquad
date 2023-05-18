@@ -46,7 +46,7 @@ const controller = {
         const pokemonId = req.body.pokemonId;
         const statusSituation = req.body.battleStatus;
 
-        if(statusSituation == "true"){
+        if(statusSituation == "false"){
         addPokemonToUser(1,pokemonId);
         
         }

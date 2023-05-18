@@ -106,7 +106,7 @@ function attack() {
             }
             document.getElementById("battle-result-text").innerHTML = "You won!";
             document.getElementById('battler-caught').innerHTML = "<%= pokemon.name %> werd gevangen";
-            document.getElementById("battleStatus").setAttribute("value", "true");
+            document.getElementById("battleStatus").setAttribute("value", "false");
             battleEnd();
             inBattle=false;
         }else{
@@ -142,7 +142,7 @@ function enemyAttack() {
         node.style.fontSize = "13px"
 
         document.getElementById("battle-result-text").innerHTML = "GAME OVER!";
-        document.getElementById("battleStatus").setAttribute("value", "false");
+        document.getElementById("battleStatus").setAttribute("value", "true");
         battleEnd();
     }else{
         ownHealth.style.width = (ownHP/ownPokemon.hp)*100 + '%';
