@@ -24,7 +24,7 @@ const getAllCaughtPokemonFromuser = async (userid: number) : Promise<iCaughtPoke
 const addPokemonToUser = async (userId : number, pokemonId: number) =>{
 
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
-    
+    /*
     let pokemonObject : iCaughtPokemon[] = [
         {
         pokemon_id: 1,
@@ -66,7 +66,7 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
                     pokeomn_speed: 150,
                     isBuddy: false
                     }
-]
+]*/
     let newPokemonObject: iCaughtPokemon ={
         pokemon_id: apiFetch.id,
         pokemon_hp: apiFetch.stats[0].base_stat,
@@ -76,14 +76,14 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
         pokemon_special_defense: apiFetch.stats[4].base_stat,
         pokeomn_speed: apiFetch.stats[5].base_stat,
         isBuddy: false
-    }
+    }/*
     let userObject : iUser = {
         id: 1,
         username: "ArtesisPlantijn",
         password: "test", 
         caughtPokemon: pokemonObject
     
-    }
+    }*/
         const collection = client.db(dbName).collection("users");
 
         //await collection.deleteMany({});
