@@ -12,6 +12,9 @@
             <section id="poke1">
                 <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
                 <h2 class="name-poke-battle"><%= buddy.name %></h2>
+                <p>HP       <%= buddyStats.baseStats[0].base_stat  %></p>
+                <p>ATTACK   <%= buddyInfo?.pokemon_attack %></p>
+                <p>DEFENSE  <%=buddyInfo?.pokemon_defense%></p>
                 <div id="own-health-container">
                     <div id="own-health"></div>
                 </div>
@@ -19,7 +22,9 @@
             <section id="poke2">
                 <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
                 <h2 class="name-poke-battle"><%= pokemon.name  %></h2>
-
+                <p>HP       <%= stats.baseStats[0].base_stat  %></p>
+                <p>ATTACK   <%= stats.baseStats[1].base_stat  %></p>
+                <p>DEFENSE  <%= stats.baseStats[2].base_stat  %></p>
                 <div id="health-container">
                     <div id="health"></div>
                 </div>
@@ -43,7 +48,7 @@
     </div>
 </main>
 <%- include('template/footer') %>
-<script>
+<script defer>
     document.getElementById("hit").onclick = function() {attack()};
 var enemyHasAttacked = true;
 var inBattle = true;
@@ -66,12 +71,9 @@ var ownHealth = document.getElementById("own-health");
 const ownPokemon ={
     name: "<%- buddy.name %>",
     attackName: "Tackle",
-    attackDmg: parseInt("<%=buddyStats.baseStats[1].base_stat%>"),
-    defense: parseInt("<%=buddyStats.baseStats[2].base_stat%>"),
+    attackDmg: parseInt("<%=buddyInfo?.pokemon_attack%>"),
+    defense: parseInt("<%=buddyInfo?.pokemon_defense%>"),
     hp: parseInt("<%=buddyStats.baseStats[0].base_stat%>"),
-    attackDmg: Math.floor(parseInt("<%=buddyStats.baseStats[1].base_stat%>")),
-    defense: Math.floor(parseInt("<%=buddyStats.baseStats[2].base_stat%>")),
-    hp: Math.floor(parseInt("<%=buddyStats.baseStats[0].base_stat%>")) 
 };
 ownHP = ownPokemon.hp;
 
@@ -93,7 +95,6 @@ function attack() {
         if(enemyHP<=0){
             enemyHealth.style.width = 0;
             console.log("you won!");
-            
             if(inBattle){
                 var node = document.createElement("p");
                 var textnode = document.createTextNode(`${ownPokemon.name} did ${Math.floor((enemy.hp-enemyHP)*100)/100} damage on ${enemy.name} and received ${Math.floor((ownPokemon.hp-ownHP)*100)/100} damage.`);
@@ -105,7 +106,6 @@ function attack() {
             document.getElementById("battle-result-text").innerHTML = "You won!";
             document.getElementById('battler-caught').innerHTML = "<%= pokemon.name %> werd gevangen";
             battleEnd();
-            "<%=addPokemonToUser(pokemon,user);%>"
             inBattle=false;
         }else{
             enemyHasAttacked=false;
