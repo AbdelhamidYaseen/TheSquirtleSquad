@@ -24,6 +24,16 @@ const getAllCaughtPokemonFromuser = async (userid: number) : Promise<iCaughtPoke
 const addPokemonToUser = async (userId : number, pokemonId: number) =>{
 
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
+    let newPokemonObject: iCaughtPokemon ={
+        pokemon_id: apiFetch.id,
+        pokemon_hp: apiFetch.stats[0].base_stat,
+        pokemon_attack: apiFetch.stats[1].base_stat,
+        pokemon_defense: apiFetch.stats[2].base_stat,
+        pokemon_special_attack: apiFetch.stats[3].base_stat,
+        pokemon_special_defense: apiFetch.stats[4].base_stat,
+        pokeomn_speed: apiFetch.stats[5].base_stat,
+        isBuddy: false
+    }
     /*
     let pokemonObject : iCaughtPokemon[] = [
         {
@@ -66,18 +76,8 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
                     pokeomn_speed: 150,
                     isBuddy: false
                     }
-]*/
-    let newPokemonObject: iCaughtPokemon ={
-        pokemon_id: apiFetch.id,
-        pokemon_hp: apiFetch.stats[0].base_stat,
-        pokemon_attack: apiFetch.stats[1].base_stat,
-        pokemon_defense: apiFetch.stats[2].base_stat,
-        pokemon_special_attack: apiFetch.stats[3].base_stat,
-        pokemon_special_defense: apiFetch.stats[4].base_stat,
-        pokeomn_speed: apiFetch.stats[5].base_stat,
-        isBuddy: false
-    }
-    /*
+]
+
     let userObject : iUser = {
         id: 1,
         username: "ArtesisPlantijn",
@@ -87,9 +87,10 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
     }
     */
         const collection = client.db(dbName).collection("users");
-
-        //await collection.deleteMany({});
-        //await collection.insertOne(userObject);
+      /*  
+        await collection.deleteMany({});
+        await collection.insertOne(userObject);
+        */
         await collection.updateOne(
             {id: userId},
             {$push: {caughtPokemon: newPokemonObject}}
@@ -97,13 +98,31 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
         
 }   
 
-const upgradePokemon = async (user: iUser) =>{
-    //console.log(user);
+const upgradePokemon = async (userId: number, addition: number) =>{
+    const collection = client.db(dbName).collection("users");
+    const document = await collection.findOne({id: userId});
+    const buddyIndex = document?.caughtPokemon.findIndex((pokemon: any) => pokemon.isBuddy === true);
+    const arrayIndex = buddyIndex;
+    const fieldToUpdate = `caughtPokemon.${arrayIndex}.pokemon_attack`;
+    const fieldToUpdateDefense = `caughtPokemon.${arrayIndex}.pokemon_defense`;
+    if(addition == 2){
+        console.log("trying to add [defense]")
+        await collection.updateOne(
+            {id: userId, "caughtPokemon.isBuddy": true},
+            {$inc: {[fieldToUpdateDefense]: 1, }},
+            );    
+    }
+    if(addition == 1){
+        console.log("trying to add [attack]")
+    await collection.updateOne(
+        {id: userId, "caughtPokemon.isBuddy": true},
+        {$inc: {[fieldToUpdate]: 1, }},
+        );
+    }
 
 
 }
-
 const getBuddyStats = async (user : number) =>{
 }
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon, getBuddyStats };
+export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon ,getBuddyStats };

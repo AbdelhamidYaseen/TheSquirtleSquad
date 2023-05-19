@@ -10,7 +10,7 @@
     </section>
     <section id="pokeguesser">
         <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="" id="pokehidden" class="silhouette">
-        <form  id="guesserForm" action="" onsubmit="submitGuesserForm();">
+        <form  id="guesserForm" action="" target="hiddenFrame" onsubmit="submitGuesserForm();">
         <fieldset class="fieldset_data">
             <legend class="guesserTitel">Welke pokémon is dit?</legend>
             <input list="pokemon" name="pokemon" id="pokemon-mc">
@@ -22,7 +22,7 @@
             <section id="guesser-buttons">
                 <button onClick="window.location.reload();" onClick="window.location.reload();" type="button" class="guesserButton">Overslaan</button>                
                 <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
-                <button type="submit" class="guesserButton">Indienen</button>
+                <button class="guesserButton">Indienen</button>
             </section>
         <br>
         <p id="hint" style="display:none;">Deze pokémon is een <%= stats.types[0].type.name %> type</p>
@@ -34,18 +34,20 @@
             <p id="guesser-result"></p>
             <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="">
             <p id="guesser-answer">De pokemon was <%= pokemon.name %></p>
-            <form action="/home" id="battler-buttons">
-                <button onClick="window.location.reload();" type="button" class="guesserButton">Nieuwe pokemon</button>
-                <button type="submit" class="guesserButton" id="battle-button-stop">Stop</button>
+            <form action="/whospokemon" id="attackForm" target="hiddenFrame" method="post">
+                <input type="hidden" name="defenseFormStatus" id="defenseFormStatus" value="true">
+                <input type="hidden" name="attackFormStatus" id="attackFormStatus" value="true">
             </form>
+            <button onClick="window.location.reload();" type="button" class="guesserButton">Nieuwe pokemon</button>
+            <button onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
         </div>
     </div>
+    <iframe name="hiddenFrame" style="display: none;"></iframe>
 </main>
 <%- include('template/footer') %>
-<script>
+<script defer>
 function submitGuesserForm(){
     event.preventDefault(); //-> niet refreshen
-    
     document.getElementById("guesser-submit").style.display = "block";
     let guesserInput = document.getElementById('pokemon-mc').value;
     let guesserAnswer = "<%=pokemon.name%>";
@@ -58,8 +60,12 @@ function submitGuesserForm(){
         let textnode;
         if(defOrAtk==0){ //defense up
             textnode = document.createTextNode(`<%=buddy.name%> defense +1!`);
+            document.getElementById("defenseFormStatus").setAttribute("value", "false");
+            document.getElementById("attackForm").submit();
         }else{//atk up
             textnode = document.createTextNode(`<%=buddy.name%> attack +1!`);
+            document.getElementById("attackFormStatus").setAttribute("value", "false");
+            document.getElementById("attackForm").submit();
         }
         node.appendChild(textnode);
         document.getElementById("guesser-submit-content").appendChild(node);

@@ -5,6 +5,8 @@ import controller from '../controllers/whospokemonController';
 
 const route = () => {
     router.get('/whospokemon', controller.get);
+    router.post('/whospokemon', controller.post);
+
 }
 
 route();
