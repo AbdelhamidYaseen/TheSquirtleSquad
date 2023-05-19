@@ -1,7 +1,7 @@
 import express, { response } from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
-import { getBuddyFromUser } from '../models/caughtPokemonModel';
+import { getBuddyFromUser, changeBuddyFromUser } from '../models/caughtPokemonModel';
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
@@ -16,7 +16,7 @@ const controller = {
             const getBuddy = await getBuddyFromUser(1);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
 
-            res.render('capture', {user:user, pokemon : apiFetch, chances, buddy : apiFetchBuddy});
+            res.render('capture', {user:user, pokemon : apiFetch, chances, buddy : apiFetchBuddy, changeBuddyFromUser});
 
             
         } catch (err : any) {
