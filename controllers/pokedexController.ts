@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllCaughtPokemonFromuser } from '../models/caughtPokemonModel';
+import { getAllCaughtPokemonFromUser } from '../models/caughtPokemonModel';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 
@@ -10,7 +10,7 @@ const controller = {
             const pageSize = 18;
 
             // TODO: Change parameters of these functions to the actual userid that gets send when the login/register system is done
-            const pokemonInDB = await getAllCaughtPokemonFromuser(1);
+            const pokemonInDB = await getAllCaughtPokemonFromUser(1);
             const user : iUser = await getUserById(1);
 
             const apiRes: iPokemon[] = await Promise.all(
@@ -48,7 +48,7 @@ const controller = {
             const user : iUser = await getUserById(1);
             const pageNumber = parseInt(req.params.pagenumber);
             const pageSize = 18;
-            const pokemonInDB = await getAllCaughtPokemonFromuser(1);
+            const pokemonInDB = await getAllCaughtPokemonFromUser(1);
 
             const apiRes: iPokemon[] = await Promise.all(
                 Array.from({ length: 151 }, (_, i) =>
