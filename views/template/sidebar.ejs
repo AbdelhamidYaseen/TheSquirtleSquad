@@ -10,10 +10,14 @@
             <li class="nav-account">    
               <section>
                 <p class="nav-name"><%- user.username %></p>
-                <% if(getBuddyFromUser() != null){%>
+                <% if(getBuddyFromUser(1) !== null){%>
                   <p class="nav-pokemon"><%- buddy.name %></p>
                   <figure id="" class="poke-image">
                     <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" alt="" width="30px">
+                  </figure>
+                <%} else { %>
+                  <figure id="" class="poke-image">
+                    <p>?</p>
                   </figure>
                 <%}%>
               </section>

@@ -47,8 +47,7 @@ const controller = {
         const statusSituation = req.body.battleStatus;
 
         if(statusSituation == "false"){
-        addPokemonToUser(1,pokemonId);
-        
+        addPokemonToUser(1,pokemonId); 
         }
         
         const user : iUser = await getUserById(1);

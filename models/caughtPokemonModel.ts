@@ -6,10 +6,10 @@ const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> 
     const res = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.isBuddy": true });
 
     if (res) {
-        const buddyPokemon: iCaughtPokemon = res.caughtPokemon.find((pokemon: iCaughtPokemon) => pokemon.isBuddy === true);
+        const buddyPokemon: iCaughtPokemon = await res.caughtPokemon.find((pokemon: iCaughtPokemon) => pokemon.isBuddy === true);
         return buddyPokemon;
     }
-
+    console.log("buddy return null")
     return null;
 };
 const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
