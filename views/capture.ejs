@@ -8,9 +8,9 @@
         </figure>
     </section>
     <section id="capture-pokeball">
-        <p>overblijvende kansen</p>
-        <p><%= chances %></p>
-        <figure id="capture-ball">
+        <p id="capture-action">overblijvende kansen</p>
+        <p id="capture-chances">3</p>
+        <figure id="capture-ball" onclick="tryCapture()">
             <img src="./assets/images/Pokeball.png" alt="">
         </figure>
     </section>
@@ -20,5 +20,78 @@
             <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="">
         </figure>
     </section>
+    <div id="release-msg">
+        <div id="release-msg-content">
+            <p>Ben je zeker?</p>
+            <form action="" >
+                <button onClick="release()" type="button" class="guesserButton">ja</button>
+                <button onclick="cancelRelease()" type="button" class="guesserButton" id="battle-button-stop">nee</button>
+            </form>
+        </div>
+    </div>
+    <div id="capture-msg">
+        <div id="capture-msg-content">
+            <p id="capture-msg-text"><%= pokemon.name %> werd gevangen!</p>
+            <form action="/home">
+                <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
+                <button type="submit" class="guesserButton" id="battle-button-stop">Stop</button>
+            </form>
+        </div>
+    </div>
 </main>
 <%- include('template/footer') %>
+
+<script>    
+    //moet gelinkt worden aan db, test met bool
+    let gevangen = false;
+    let chances = 3;
+    
+    //pokemoninfo
+    let pokemonDefense = Math.floor(parseInt("<%=stats.baseStats[2].base_stat%>"));
+    let buddyAttack = parseInt("<%=buddyStats.baseStats[1].base_stat%>");
+    let captureChance = (buddyAttack/(buddyAttack+pokemonDefense))*0.9;
+    console.log("defense: "+pokemonDefense+"    atk: "+buddyAttack+"    kans: "+captureChance)
+    if(gevangen){
+            document.getElementById('capture-ball').style.backgroundColor = "#74cb484d";
+            document.getElementById('capture-ball').style.border = "10px solid #74CB48";
+            document.getElementById('capture-ball').style.boxShadow = "0 0 30px green";
+            document.getElementById('capture-action').innerHTML = "<%= pokemon.name %> vrijlaten?";
+            document.getElementById('capture-chances').style.display = "none";
+    }
+    function tryCapture(){
+        if(gevangen){
+            document.getElementById('release-msg').style.display = "block";
+        }
+        else if(chances>0){
+            let c = Math.random();
+            console.log(c);
+            if(c<captureChance){
+                //ADD TO DB
+                document.getElementById('capture-msg').style.display = "block";
+            }
+            else{
+                chances -= 1;
+                document.getElementById('capture-chances').innerHTML = chances;
+                if(chances<=0){
+                    document.getElementById('capture-msg-text').innerHTML = '<%= pokemon.name %> werd <span style="color:red;">niet</span> gevangen';
+                    document.getElementById('capture-msg').style.display = "block";
+            }}
+        }
+    }
+    
+    //knoppen op message overlay
+    function release(){
+        document.getElementById('release-msg').style.display = "none";
+        gevangen = false; //db
+        
+        //back to pokemon not caught style
+        document.getElementById('capture-ball').style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+        document.getElementById('capture-ball').style.border = "10px solid red";
+        document.getElementById('capture-ball').style.boxShadow = "0 0 30px red";
+        document.getElementById('capture-action').innerHTML = "overblijvende kansen";
+        document.getElementById('capture-chances').style.display = "block";
+    }
+    function cancelRelease(){
+        document.getElementById('release-msg').style.display = "none";
+    }
+</script>
