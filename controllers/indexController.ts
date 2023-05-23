@@ -12,7 +12,7 @@ const controller = {
         const getBuddy = await getBuddyFromUser(1);
         const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
 
-        res.render('index',{buddy:apiFetchBuddy,user:user, pokemon : apiFetch});
+        res.render('index',{buddy:apiFetchBuddy,user:user, pokemon : apiFetch, getBuddyFromUser});
     },
     post: (req: express.Request, res: express.Response) => {
         test();

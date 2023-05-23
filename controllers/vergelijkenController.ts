@@ -12,7 +12,7 @@ const controller = {
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
 
 
-            res.render('vergelijken', {user:user,buddy : apiFetchBuddy});
+            res.render('vergelijken', {user:user,buddy : apiFetchBuddy, getBuddyFromUser});
         } catch (err : any) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');

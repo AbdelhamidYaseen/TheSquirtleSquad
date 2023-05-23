@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="icon" href="/assets/images/logo.png">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/toggle-filter.js" defer></script>
     <script src="/js/base.js" defer></script>
     <script src="/js/hint.js" defer></script>
-    <script src="/js/battler.js" defer></script>
 </head>
 
 <body>
     <header>
       <% if (showLogo) { %>
-        <a href="home.html"><figure><img src="/assets/images/logo.png" alt="logo-pokeball" id="logo"></figure></a>
+        <a href="/home"><figure><img src="/assets/images/logo.png" alt="logo-pokeball" id="logo"></figure></a>
         <span onclick="openNav()">&#9776;</span>
       <% } %>
         <nav id="myNav" class="overlay">

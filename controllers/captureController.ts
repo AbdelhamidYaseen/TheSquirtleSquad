@@ -1,7 +1,7 @@
 import express, { response } from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
-import { getBuddyFromUser } from '../models/caughtPokemonModel';
+import { getBuddyFromUser, changeBuddyFromUser } from '../models/caughtPokemonModel';
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
@@ -27,7 +27,7 @@ const controller = {
                 baseStats: apiFetchBuddy.stats,
 
             }
-            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats});
+            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser});
 
             
         } catch (err : any) {
