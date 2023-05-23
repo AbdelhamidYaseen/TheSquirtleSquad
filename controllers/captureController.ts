@@ -16,7 +16,7 @@ const controller = {
             const getBuddy = await getBuddyFromUser(1);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
 
-            res.render('capture', {user:user, pokemon : apiFetch, chances, buddy : apiFetchBuddy, changeBuddyFromUser});
+            res.render('capture', {user:user, pokemon : apiFetch, chances, buddy : apiFetchBuddy, getBuddyFromUser});
 
             
         } catch (err : any) {

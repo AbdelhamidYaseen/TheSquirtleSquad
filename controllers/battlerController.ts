@@ -34,7 +34,7 @@ const controller = {
 
             }
             
-            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser});
+            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser,getBuddyFromUser});
             
 
         } catch (err : any) {
@@ -73,7 +73,7 @@ const controller = {
 
         }
         
-        res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser});
+        res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser, getBuddyFromUser});
 
 
     }
