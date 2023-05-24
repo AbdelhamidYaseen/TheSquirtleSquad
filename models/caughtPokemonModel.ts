@@ -1,6 +1,6 @@
 import client, { dbName } from "../db";
-import { iCaughtPokemon, iPokemon } from "../types";
-import { getUserById, iUser } from "./usersModel";
+import { iCaughtPokemon } from "../types";
+import {  iUser } from "./usersModel";
 
 const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> => {
     const res = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.isBuddy": true });
@@ -30,15 +30,28 @@ const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
             {$set: {[newBuddy]: true, }},
             );    
 
-}
+};
 const getAllCaughtPokemonFromuser = async (userid: number) : Promise<iCaughtPokemon[]> => {
     let res: iUser | null = await client.db(dbName).collection<iUser>("users").findOne<iUser>({id: userid});
     if(!res){
         return [];
     }
     return res.caughtPokemon;
-}
-
+};
+const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
+    const collection = client.db(dbName).collection("users");
+    const document = await collection.findOne({id: userid});
+    const pokemonIndex = document?.caughtPokemon.findIndex((pokemon:any)=>pokemon.pokemon_id == pokemonid);
+    const filter = { id: userid };
+    const update = {
+      $unset: { [`caughtPokemon.${pokemonIndex}`]: 1 },
+    };
+    await collection.updateOne(filter, update);
+    console.log(`Removed Pokémon at index ${pokemonIndex} for user ${userid}`);
+    const nullUpdate = {$pull: {[`caughtPokemon`]: null}};
+    await collection.updateOne(filter, nullUpdate)
+    console.log(`Removed nulls`)
+};
 const addPokemonToUser = async (userId : number, pokemonId: number) =>{
 
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
@@ -113,9 +126,8 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
             {id: userId},
             {$push: {caughtPokemon: newPokemonObject}}
         )
-        
-}   
-
+        console.log("adding pokemon to user")
+};
 const upgradePokemon = async (userId: number, addition: number) =>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userId});
@@ -139,8 +151,13 @@ const upgradePokemon = async (userId: number, addition: number) =>{
     }
 
 
-}
-const getBuddyStats = async (user : number) =>{
-}
+};
+const hasPokemonInDatabase = async(userid: number, pokemon: number) => {
+    let response = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.pokemon_id": pokemon });
+    if(response){
+        return true;
+    }
+    return false;
+};
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon ,getBuddyStats, changeBuddyFromUser };
+export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser};

@@ -22,37 +22,43 @@
         </figure>
     </section>
     <div id="release-msg">
-        <div id="release-msg-content">
+        <div id="release-msg-content" style="padding:0rem 1rem">
             <p>Ben je zeker?</p>
-            <form action="" >
-                <button onClick="release()" type="button" class="guesserButton">ja</button>
-                <button onclick="cancelRelease()" type="button" class="guesserButton" id="battle-button-stop">nee</button>
+            <form action="/capture" method="post" target="hiddenFrame" id="releaseForm">
+                <input type="hidden" name="pokemonIdRemove" value="<%= pokemon.id%>">
+                <input type="hidden" name="pokemonIdRemoveStatus" id="pokemonIdRemoveStatus" value="">
             </form>
+            <button onClick="release()" type="button" class="guesserButton">ja</button>
+            <button onclick="cancelRelease()" type="button" class="guesserButton" id="battle-button-stop">nee</button>
         </div>
     </div>
     <div id="capture-msg">
-        <div id="capture-msg-content">
+        <div id="capture-msg-content" style="padding:0rem 1rem">
             <p id="capture-msg-text"><%= pokemon.name %> werd gevangen!</p>
-            <form action="/home">
-                <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
-                <button type="submit" class="guesserButton" id="battle-button-stop">Stop</button>
+            <form action="/capture" method="post" target="hiddenFrame" id="captureForm">
+                <input type="hidden" name="pokemonIdAdd" value="<%= pokemon.id%>">
+                <input type="hidden" name="pokemonIdAddStatus" id="pokemonIdAddStatus" value="">
             </form>
+            <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
+            <button  onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
         </div>
     </div>
+    <iframe name="hiddenFrame" style="display: none;"></iframe>
 </main>
 <%- include('template/footer') %>
 
-<script>    
+<script defer>    
     //moet gelinkt worden aan db, test met bool
-    let gevangen = false;
+    let gevangen = "<%=hasPokemonStatus%>";
     let chances = 3;
+    console.log(gevangen)
     
     //pokemoninfo
     let pokemonDefense = Math.floor(parseInt("<%=stats.baseStats[2].base_stat%>"));
     let buddyAttack = parseInt("<%=buddyStats.baseStats[1].base_stat%>");
     let captureChance = (buddyAttack/(buddyAttack+pokemonDefense))*0.9;
     console.log("defense: "+pokemonDefense+"    atk: "+buddyAttack+"    kans: "+captureChance)
-    if(gevangen){
+    if(gevangen === "true"){
             document.getElementById('capture-ball').style.backgroundColor = "#74cb484d";
             document.getElementById('capture-ball').style.border = "10px solid #74CB48";
             document.getElementById('capture-ball').style.boxShadow = "0 0 30px green";
@@ -60,7 +66,7 @@
             document.getElementById('capture-chances').style.display = "none";
     }
     function tryCapture(){
-        if(gevangen){
+        if(gevangen === "true"){
             document.getElementById('release-msg').style.display = "block";
         }
         else if(chances>0){
@@ -68,6 +74,8 @@
             console.log(c);
             if(c<captureChance){
                 //ADD TO DB
+                document.getElementById("pokemonIdAddStatus").setAttribute("value", "false");
+                document.getElementById("captureForm").submit();
                 document.getElementById('capture-msg').style.display = "block";
             }
             else{
@@ -83,8 +91,9 @@
     //knoppen op message overlay
     function release(){
         document.getElementById('release-msg').style.display = "none";
+        document.getElementById("pokemonIdRemoveStatus").setAttribute("value", "false");
+        document.getElementById("releaseForm").submit();
         gevangen = false; //db
-        
         //back to pokemon not caught style
         document.getElementById('capture-ball').style.backgroundColor = "rgba(255, 0, 0, 0.5)";
         document.getElementById('capture-ball').style.border = "10px solid red";
