@@ -72,7 +72,7 @@
 
     <button class="landing-open-button" onclick="openForm()">Open Form</button>
     <div class="landing-form-popup" id="login-Form">
-        <form class="landing-form-container">
+        <form class="landing-form-container" method="post" action="/">
             <h3 id="h3-landing">Login</h3>
 
             <label for="username"><b>Gebruikersnaam</b></label>
@@ -81,12 +81,14 @@
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Vul uw wachtwoord in" name="password" required>
 
-            <button type="submit" class="landing-btn" onclick="login()">Login</button>
+            <button type="submit" class="landing-btn">Login</button>
             <button type="button" class="landing-btn cancel" onclick="closeForm()">Close</button>
         </form>
     </div>
 
     <div id="no-acces">
-        <div id="no-acces-text"></div>
+        <div id="no-acces-text">
+            <p>U hebt geen toegang tot deze pagina.</p>
+        </div>
     </div>
 </main>

@@ -1,26 +1,55 @@
 import express from 'express';
 import { iPokemon } from '../types';
 import { getBuddyFromUser } from '../models/caughtPokemonModel';
-import { getUserById, iUser } from '../models/usersModel';
+import { getAllUsers, getUserById, iUser } from '../models/usersModel';
+import * as crypto from "crypto-js";
+const session = require('express-session');
+
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         const user : iUser = await getUserById(1);
-        const pokemonNumber : number = Math.floor(Math.random() * 150);
-        const apiFetch : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
 
         const getBuddy = await getBuddyFromUser(1);
         const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
 
-        res.render('index',{buddy:apiFetchBuddy,user:user, pokemon : apiFetch, getBuddyFromUser});
+        /*buddy oproepen doordat deze in template staat. Zonder buddy = crash */
+        res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser});
     },
-    post: (req: express.Request, res: express.Response) => {
-        test();
-    }
-}
+    post: async (req: express.Request, res: express.Response) => {
+        const username = req.body.username;
+        const password = req.body.password;
 
-const test = () => {
-    console.log(test);
+        console.log(username);
+        console.log(password);
+
+        let inputPasswordHash = crypto.SHA1(password).toString();
+
+        console.log(inputPasswordHash);
+        
+        const allUsers: iUser[] = await getAllUsers();
+
+        for (let i = 0; i < allUsers.length; i++) {
+            const user : iUser = allUsers[i];
+
+            if (username == user.username){
+                if (inputPasswordHash == user.password){
+                    console.log("goedzo, da werikt");
+                    res.cookie('userid',user.id,{
+                        path: '/',
+                        maxAge: 864000000, /*10 dagen lang cookie levend*/
+                    })
+                    const getBuddy = await getBuddyFromUser(user.id);
+                    const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
+            
+                    /*buddy oproepen doordat deze in template staat. Zonder buddy = crash */
+                    res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser});
+                }
+            }
+            
+        }
+
+    }
 }
 
 export default controller;

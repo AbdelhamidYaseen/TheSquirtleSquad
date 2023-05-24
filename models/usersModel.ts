@@ -26,4 +26,4 @@ const getUserById = async (id: number) : Promise<iUser> => {
 }
 
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { iUser, getUserById };
+export { iUser, getUserById, getAllUsers};
