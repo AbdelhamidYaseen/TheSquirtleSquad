@@ -13,7 +13,7 @@ const controller = {
         try {
             // Log the names of all the users in the array
             const user : iUser = await getUserById(1);
-            const pokemonNumber : number = Math.floor(Math.random() * 150);
+            const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
             const getBuddy = await getBuddyFromUser(1);
             const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
@@ -51,7 +51,7 @@ const controller = {
         }
         
         const user : iUser = await getUserById(1);
-        const pokemonNumber : number = Math.floor(Math.random() * 150);
+        const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
         const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
         const getBuddy = await getBuddyFromUser(1);
         const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
