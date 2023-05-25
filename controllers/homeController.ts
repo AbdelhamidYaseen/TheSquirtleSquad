@@ -6,7 +6,7 @@ import { getBuddyFromUser, changePokemonName } from '../models/caughtPokemonMode
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
-            const userIdLocal = 2;
+            const userIdLocal = 1;
             // Log the names of all the users in the array
             const user : iUser = await getUserById(userIdLocal);
             let buddyStatus = true;
