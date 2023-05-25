@@ -685,7 +685,33 @@ transition: ease-in-out 0.8s 100ms;
     border-radius: 2rem;
     margin-bottom: 0.8rem;
 }
-
+#home-buddies{
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#home-buddies h2{
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+}
+#home-buddies img{
+    border: var(--bg-color-button) 1.4px solid; 
+    border-radius: 2rem;
+    background-color: var(--bg-color-water);
+    width: 10rem;
+    border-radius: 2rem;
+    margin-bottom: 0.8rem;
+    transition: ease-in-out 0.8s 100ms;
+    cursor: pointer;
+}
+#home-buddies img:hover{
+    background-color: var(--bg-color-button);
+}
 #home-container-1{
     display: flex;
 

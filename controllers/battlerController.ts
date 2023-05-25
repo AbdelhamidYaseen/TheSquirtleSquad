@@ -14,6 +14,7 @@ const controller = {
             // Log the names of all the users in the array
             const user : iUser = await getUserById(1);
             const getBuddy = await getBuddyFromUser(1);
+            let buddyStatus = true;
             let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             while(pokemonNumber == getBuddy?.pokemon_id){
                 console.log("random pokemon was buddy");
@@ -44,7 +45,7 @@ const controller = {
             const hasPokemon = await hasPokemonInDatabase(user.id, pokemonStats.id);
             const hasPokemonStatus = String(hasPokemon);
             console.log(hasPokemonStatus);
-            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser,getBuddyFromUser, kaas:hasPokemonStatus});  
+            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser,getBuddyFromUser, kaas:hasPokemonStatus, buddyStatus});  
 
         } catch (err : any) {
             console.error(err.message);
@@ -65,8 +66,10 @@ const controller = {
         }
         
         //RELOAD
+            // Log the names of all the users in the array
             const user : iUser = await getUserById(1);
             const getBuddy = await getBuddyFromUser(1);
+            let buddyStatus = true;
             let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             while(pokemonNumber == getBuddy?.pokemon_id){
                 console.log("random pokemon was buddy");
@@ -97,8 +100,7 @@ const controller = {
             const hasPokemon = await hasPokemonInDatabase(user.id, pokemonStats.id);
             const hasPokemonStatus = String(hasPokemon);
             console.log(hasPokemonStatus);
-            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser,getBuddyFromUser, kaas:hasPokemonStatus});  
-
+            res.render('battler', {user:user, pokemon:apiFetch, buddy:apiFetchBuddy, stats:pokemonStats, buddyStats : buddyStats, buddyInfo : getBuddy, addPokemonToUser,getBuddyFromUser, kaas:hasPokemonStatus, buddyStatus});  
         }
 
 

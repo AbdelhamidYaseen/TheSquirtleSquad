@@ -5,6 +5,19 @@
     <section>
       <h2>welkom tot SquirtleSquad</h2>
     </section>
+    <% if(buddyStatus === false){%>
+      <br>
+      <section class="home-region" id="home-buddies">
+        <h2>get your buddy</h2>
+        <section id="home-buddies-images">
+          <img src="<%= squirtle.sprites.other?.['official-artwork'].front_default %>" alt="squirtle" onclick="addSquirtlePokemon()">
+        </section>
+      </section>
+      <%}%>
+      <form action="/home"  id="addSquirtleForm" method="post">
+        <input type="hidden" name="addSquirtle" id="addSquirtle" value="">
+      </form>
+
     <br>   
     <section id="home-container-1">
       <section id="home-befriend" class="home-region">
@@ -181,3 +194,10 @@
     </section>              
 </main>
 <%- include('template/footer') %>
+<script defer>
+  function addSquirtlePokemon(){ 
+    console.log("squirtle has been added")
+    document.getElementById("addSquirtle").setAttribute("value", "false");
+    document.getElementById("addSquirtleForm").submit();
+  }
+</script>

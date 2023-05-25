@@ -9,6 +9,7 @@ const controller = {
             // Log the names of all the users in the array
             const user : iUser = await getUserById(1);
             const getBuddy = await getBuddyFromUser(1);
+            let buddyStatus = true;
             let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             while(pokemonNumber == getBuddy?.pokemon_id){
                 console.log("random pokemon was buddy");
@@ -37,7 +38,7 @@ const controller = {
             const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
 
 
-            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus, buddyInfo : getBuddy});
+            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus, buddyInfo : getBuddy, buddyStatus});
 
             
         } catch (err : any) {
@@ -65,6 +66,7 @@ const controller = {
         //RELOAD
         const user : iUser = await getUserById(1);
         const getBuddy = await getBuddyFromUser(1);
+        let buddyStatus = true;
         let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
         while(pokemonNumber == getBuddy?.pokemon_id){
             console.log("random pokemon was buddy");
@@ -93,7 +95,7 @@ const controller = {
         const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
 
 
-        res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus});
+        res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus, buddyInfo : getBuddy, buddyStatus});
 
     }
 }
