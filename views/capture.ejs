@@ -3,7 +3,7 @@
 <%- include('template/sidebar') %>
 <main id="capture">
     <section id="capture-own-pokemon">
-        <p><%= buddy.name %></p>
+        <p><%= buddyInfo?.pokemon_name %></p>
         <figure id="capture-own-pokemon-img" class="capture-pokemon">
             <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" alt="">
         </figure>
@@ -38,6 +38,7 @@
             <form action="/capture" method="post" target="hiddenFrame" id="captureForm">
                 <input type="hidden" name="pokemonIdAdd" value="<%= pokemon.id%>">
                 <input type="hidden" name="pokemonIdAddStatus" id="pokemonIdAddStatus" value="">
+                <input type="hidden" name="pokemonName" id="pokemonName" value="<=% pokemon.name %>">
             </form>
             <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
             <button  onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>

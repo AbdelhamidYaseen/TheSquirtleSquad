@@ -42,7 +42,7 @@ const controller = {
             }
             const getBuddy = await getBuddyFromUser(1);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-            return res.render('pokedex', { user: user, pokemon: paginatedEntries, currentPageNumer: pageNumber, totalPages: Math.ceil(pokemonData.length / pageSize), buddy: apiFetchBuddy ,getBuddyFromUser})
+            return res.render('pokedex', { user: user, pokemon: paginatedEntries, currentPageNumer: pageNumber, totalPages: Math.ceil(pokemonData.length / pageSize), buddy: apiFetchBuddy ,getBuddyFromUser, buddyInfo : getBuddy})
         } catch (error) {
             console.error(error);
             return res.status(500).send('Internal Server Error');

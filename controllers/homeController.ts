@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
-import { getBuddyFromUser } from '../models/caughtPokemonModel';
+import { getBuddyFromUser, changePokemonName } from '../models/caughtPokemonModel';
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
@@ -14,9 +14,9 @@ const controller = {
             }
             else{
                 console.log("WE HAVE A BUDDY")
-                const getBuddy = await getBuddyFromUser(2);
+                const getBuddy = await getBuddyFromUser(1);
                 const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-                res.render('home', {user:user,buddy:apiFetchBuddy, getBuddyFromUser});
+                res.render('home', {user:user,buddy:apiFetchBuddy, getBuddyFromUser, changePokemonName,buddyInfo : getBuddy});
             }
 
         } catch (err : any) {

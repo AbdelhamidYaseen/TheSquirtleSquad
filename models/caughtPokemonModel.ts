@@ -57,12 +57,13 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
     let newPokemonObject: iCaughtPokemon ={
         pokemon_id: apiFetch.id,
+        pokemon_name: apiFetch.name,
         pokemon_hp: apiFetch.stats[0].base_stat,
         pokemon_attack: apiFetch.stats[1].base_stat,
         pokemon_defense: apiFetch.stats[2].base_stat,
         pokemon_special_attack: apiFetch.stats[3].base_stat,
         pokemon_special_defense: apiFetch.stats[4].base_stat,
-        pokeomn_speed: apiFetch.stats[5].base_stat,
+        pokemon_speed: apiFetch.stats[5].base_stat,
         isBuddy: false
     }
     /*
@@ -159,5 +160,16 @@ const hasPokemonInDatabase = async(userid: number, pokemon: number) => {
     }
     return false;
 };
+const changePokemonName = async(userid: number, pokemonid: number, name: string)=>{
+    const collection = client.db(dbName).collection("users");
+    const document = await collection.findOne({id: userid});
+    const pokemonIndex = document?.caughtPokemon.findIndex((pokemon:any)=>pokemon.pokemon_id == pokemonid);
+    const arrayIndex = pokemonIndex;
+    const fieldToUpdate = `caughtPokemon.${arrayIndex}.pokemon_name`;
+    await collection.updateOne(
+        {id: userid},
+        {$set: {[fieldToUpdate]: name}}
+        )
+}
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser};
+export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser, changePokemonName};

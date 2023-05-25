@@ -6,12 +6,13 @@ export interface iPokemonAttack {
 
 export interface iCaughtPokemon {
     pokemon_id: number;
+    pokemon_name: string;
     pokemon_hp: number;
     pokemon_attack: number;
     pokemon_defense: number;
     pokemon_special_attack: number;
     pokemon_special_defense: number;
-    pokeomn_speed: number;
+    pokemon_speed: number;
     isBuddy: boolean;
 }
 

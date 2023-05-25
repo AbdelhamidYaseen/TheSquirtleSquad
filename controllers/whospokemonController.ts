@@ -34,7 +34,7 @@ const controller = {
                 baseStats: apiFetch.stats,
                 types: apiFetch.types
             }
-            res.render('whospokemon', {user:user, pokemon:apiFetch,buddy : apiFetchBuddy,stats: pokemonStats, pokelist : apiRes, upgradePokemon, getBuddyFromUser});
+            res.render('whospokemon', {user:user, pokemon:apiFetch,buddy : apiFetchBuddy,stats: pokemonStats, pokelist : apiRes, upgradePokemon, getBuddyFromUser, buddyInfo : getBuddy});
         } catch (err : any) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');
@@ -75,7 +75,7 @@ const controller = {
             baseStats: apiFetch.stats,
             types: apiFetch.types
         }
-        res.render('whospokemon', {user:user, pokemon:apiFetch,buddy : apiFetchBuddy,stats: pokemonStats, pokelist : apiRes, upgradePokemon, getBuddyFromUser});
+        res.render('whospokemon', {user:user, pokemon:apiFetch,buddy : apiFetchBuddy,stats: pokemonStats, pokelist : apiRes, upgradePokemon, getBuddyFromUser, buddyInfo : getBuddy});
     }
 }
 

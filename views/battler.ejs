@@ -12,7 +12,7 @@
         <section id="pokemon-battle-info">
             <section id="poke1">
                 <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
-                <h2 class="name-poke-battle"><%= buddy.name %></h2>
+                <h2 class="name-poke-battle"><%=buddyInfo?.pokemon_name %></h2>
                 <p>HP       <%= buddyInfo?.pokemon_hp  %></p>
                 <p>ATTACK   <%= buddyInfo?.pokemon_attack %></p>
                 <p>DEFENSE  <%=buddyInfo?.pokemon_defense%></p>
@@ -45,6 +45,7 @@
                 <input type="hidden" name="pokemonId" value="<%= pokemon.id%>">
                 <input type="hidden" name="battleStatus" id="battleStatus" value="">
             </form>
+            <input type="hidden" name="hasPokemonStatusInput" id="hasPokemonStatusInput" value="<%-kaas%>">
             <button onClick="window.location.reload();" class="guesserButton">Nieuwe battle</button>
             <button onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
         </div>
@@ -53,6 +54,7 @@
 </main>
 <%- include('template/footer') %>
 <script defer>
+    
 document.getElementById("hit").onclick = function() {attack()};
 var enemyHasAttacked = true;
 var inBattle = true;
@@ -73,11 +75,11 @@ enemyHP = enemy.hp;
 //own details
 var ownHealth = document.getElementById("own-health");
 const ownPokemon ={
-    name: "<%- buddy.name %>",
+    name: "<%- buddyInfo?.pokemon_name %>",
     attackName: "Tackle",
     attackDmg: parseInt("<%=buddyInfo?.pokemon_attack%>"),
     defense: parseInt("<%=buddyInfo?.pokemon_defense%>"),
-    hp: parseInt("<%=buddyStats.baseStats[0].base_stat%>"),
+    hp: parseInt("<%=buddyInfo?.pokemon_hp%>"),
 };
 ownHP = ownPokemon.hp;
 

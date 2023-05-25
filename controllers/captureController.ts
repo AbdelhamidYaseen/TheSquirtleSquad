@@ -8,10 +8,16 @@ const controller = {
         try {
             // Log the names of all the users in the array
             const user : iUser = await getUserById(1);
-            const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
-            const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
             const getBuddy = await getBuddyFromUser(1);
+            let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
+            while(pokemonNumber == getBuddy?.pokemon_id){
+                console.log("random pokemon was buddy");
+                console.log(`buddy_id: ${getBuddy?.pokemon_id}\nrandom_nmbr: ${pokemonNumber}`);
+                pokemonNumber = Math.floor(Math.random() * 150)+1;
+
+            }
             const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
+            const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
             const pokemonStats : iPokemon = {
                 id: apiFetch.id,
                 name: apiFetch.name,
@@ -31,7 +37,7 @@ const controller = {
             const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
 
 
-            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus});
+            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus, buddyInfo : getBuddy});
 
             
         } catch (err : any) {
@@ -57,33 +63,37 @@ const controller = {
 
 
         //RELOAD
-            // Log the names of all the users in the array
-            const user : iUser = await getUserById(1);
-            const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
-            const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
-            const getBuddy = await getBuddyFromUser(1);
-            const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-            const pokemonStats : iPokemon = {
-                id: apiFetch.id,
-                name: apiFetch.name,
-                sprites: apiFetch.sprites,
-                ability: apiFetch.ability,
-                baseStats: apiFetch.stats,
-            }
-            const buddyStats : iPokemon = {
-                id: apiFetchBuddy.id,
-                name: apiFetchBuddy.name,
-                sprites: apiFetchBuddy.sprites,
-                ability: apiFetchBuddy.ability,
-                baseStats: apiFetchBuddy.stats,
+        const user : iUser = await getUserById(1);
+        const getBuddy = await getBuddyFromUser(1);
+        let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
+        while(pokemonNumber == getBuddy?.pokemon_id){
+            console.log("random pokemon was buddy");
+            console.log(`buddy_id: ${getBuddy?.pokemon_id}\nrandom_nmbr: ${pokemonNumber}`);
+            pokemonNumber = Math.floor(Math.random() * 150)+1;
 
-            }
-            //dit checked of je de pokemon in je database hebt --> is een await function
-            const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
+        }
+        const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
+        const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
+        const pokemonStats : iPokemon = {
+            id: apiFetch.id,
+            name: apiFetch.name,
+            sprites: apiFetch.sprites,
+            ability: apiFetch.ability,
+            baseStats: apiFetch.stats,
+        }
+        const buddyStats : iPokemon = {
+            id: apiFetchBuddy.id,
+            name: apiFetchBuddy.name,
+            sprites: apiFetchBuddy.sprites,
+            ability: apiFetchBuddy.ability,
+            baseStats: apiFetchBuddy.stats,
+
+        }
+        //dit checked of je de pokemon in je database hebt --> is een await function
+        const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
 
 
-            res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus});
-
+        res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus});
 
     }
 }
