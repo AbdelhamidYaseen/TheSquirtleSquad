@@ -6,17 +6,21 @@ import { getBuddyFromUser, changePokemonName } from '../models/caughtPokemonMode
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
+            const userIdLocal = 2;
             // Log the names of all the users in the array
-            const user : iUser = await getUserById(1);
-            if(await getBuddyFromUser(2) == null){
-                console.log("NO BUDDY")
-                res.render('home', {user:user, getBuddyFromUser});
+            const user : iUser = await getUserById(userIdLocal);
+            let buddyStatus = true;
+            console.log(user.username)
+            if(await getBuddyFromUser(userIdLocal) === null){
+                console.log(`NO BUDDY - ${getBuddyFromUser(userIdLocal)}`)
+                buddyStatus = false;
+                res.render('home', {user:user, buddyStatus});
             }
             else{
                 console.log("WE HAVE A BUDDY")
-                const getBuddy = await getBuddyFromUser(1);
+                const getBuddy = await getBuddyFromUser(userIdLocal);
                 const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-                res.render('home', {user:user,buddy:apiFetchBuddy, getBuddyFromUser, changePokemonName,buddyInfo : getBuddy});
+                res.render('home', {user:user,buddy:apiFetchBuddy, getBuddyFromUser, changePokemonName,buddyInfo : getBuddy, buddyStatus});
             }
 
         } catch (err : any) {
