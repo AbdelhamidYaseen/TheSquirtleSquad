@@ -9,7 +9,6 @@ const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> 
         const buddyPokemon: iCaughtPokemon = await res.caughtPokemon.find((pokemon: iCaughtPokemon) => pokemon.isBuddy === true);
         return buddyPokemon;
     }
-    console.log("buddy return null")
     return null;
 };
 const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
@@ -52,7 +51,7 @@ const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
     await collection.updateOne(filter, nullUpdate)
     console.log(`Removed nulls`)
 };
-const addPokemonToUser = async (userId : number, pokemonId: number) =>{
+const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus: boolean) =>{
 
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
     let newPokemonObject: iCaughtPokemon ={
@@ -64,7 +63,7 @@ const addPokemonToUser = async (userId : number, pokemonId: number) =>{
         pokemon_special_attack: apiFetch.stats[3].base_stat,
         pokemon_special_defense: apiFetch.stats[4].base_stat,
         pokemon_speed: apiFetch.stats[5].base_stat,
-        isBuddy: false
+        isBuddy: buddyStatus
     }
     /*
     let pokemonObject : iCaughtPokemon[] = [

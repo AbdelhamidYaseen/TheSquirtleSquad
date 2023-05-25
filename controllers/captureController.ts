@@ -59,7 +59,7 @@ const controller = {
         }
         
         if(statusSituationCapture == "false"){
-        addPokemonToUser(1,pokemonIdAdd); 
+        addPokemonToUser(1,pokemonIdAdd,false); 
         }
 
 

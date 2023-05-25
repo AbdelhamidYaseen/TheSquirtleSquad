@@ -13,10 +13,11 @@
           <img src="<%= squirtle.sprites.other?.['official-artwork'].front_default %>" alt="squirtle" onclick="addSquirtlePokemon()">
         </section>
       </section>
-      <%}%>
-      <form action="/home"  id="addSquirtleForm" method="post">
+      <form action="/home"  id="addSquirtleForm" method="post" target="hiddenFrame">
         <input type="hidden" name="addSquirtle" id="addSquirtle" value="">
       </form>
+      <iframe name="hiddenFrame" style="display: none;"></iframe>
+      <%}%>
 
     <br>   
     <section id="home-container-1">
@@ -199,5 +200,12 @@
     console.log("squirtle has been added")
     document.getElementById("addSquirtle").setAttribute("value", "false");
     document.getElementById("addSquirtleForm").submit();
+    let sleep = ms => {  
+  return new Promise(resolve => setTimeout(resolve, ms));  
+  }; 
+    refreshPage();
+  }
+  function refreshPage(){
+    location.replace('/home');
   }
 </script>

@@ -62,7 +62,7 @@ const controller = {
             if(hasPokemonDatabase === "true"){
                 removePokemonFromUser(1, pokemonId);
             }
-        addPokemonToUser(1,pokemonId); 
+        addPokemonToUser(1,pokemonId, false); 
         }
         
         //RELOAD
