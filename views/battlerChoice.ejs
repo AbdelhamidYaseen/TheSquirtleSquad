@@ -1,0 +1,26 @@
+<%- include('template/head', {title: 'Pokemon League'}) %>
+<%- include('template/header', {showLogo: true}) %>
+<%- include('template/sidebar') %>
+<section id="top-extra">
+  <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+</section>
+<main id="mystery">
+    <section id="kleurbalk">
+        <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+    </section>
+    <div class="battler-expl-box">
+        <p>Kies een pokemon om met je buddy tegen te vechten. <br> Als je wint, vang je deze automatisch!</p>  
+        <figure class="battler-intro-pic"><img src="./assets/images/battler-intro.png"></figure>
+        <form method="post" action="/battlerChoice" class="battler-choice-form">
+            <input list="pokemon" name="pokemon" class="pokemon-choice" placeholder="Kies een vijand" required>
+                <datalist id="pokemon">
+                    <% for(let i=0; i<=150; i++){%>
+                         <option  value="<%= pokelist[i].name%>"> 
+                    <%};%>
+                </datalist>
+            <button type="submit" class="choice-form-submit">START</button>
+        </form>
+         
+    </div>
+    </main>
+    <%- include('template/footer') %>
