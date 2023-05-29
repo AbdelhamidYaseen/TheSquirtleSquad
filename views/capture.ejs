@@ -34,20 +34,28 @@
     </div>
     <div id="capture-msg">
         <div id="capture-msg-content" style="padding:0rem 1rem">
-            <p id="capture-msg-text"><%= pokemon.name %> werd gevangen!</p>
+            
+            
+            <form id="capture-msg-text" method="post" action="/capture" target="hiddenFrame">
+                    <input type="hidden" name="pokemonNameChange" value="<%= pokemon.id%>">
+                    <input type="hidden" name="pokemonNameChangeStatus" value="false">
+                    <input type="text" placeholder="<%=pokemon.name%>" min="3" max="13" id="nameChange" value="" name="nameChange"> werd gevangen!
+                </form>
+            
+            
             <form action="/capture" method="post" target="hiddenFrame" id="captureForm">
                 <input type="hidden" name="pokemonIdAdd" value="<%= pokemon.id%>">
                 <input type="hidden" name="pokemonIdAddStatus" id="pokemonIdAddStatus" value="">
                 <input type="hidden" name="pokemonName" id="pokemonName" value="<=% pokemon.name %>">
             </form>
             <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
+            <button type="button" class="guesserButton" style="background-color: gray;" onclick="changeName()" id="changeNameButton">verander naam</button>
             <button  onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
         </div>
     </div>
     <iframe name="hiddenFrame" style="display: none;"></iframe>
 </main>
 <%- include('template/footer') %>
-
 <script defer>    
     //moet gelinkt worden aan db, test met bool
     let gevangen = "<%=hasPokemonStatus%>";
@@ -83,6 +91,7 @@
                 chances -= 1;
                 document.getElementById('capture-chances').innerHTML = chances;
                 if(chances<=0){
+                    document.getElementById('changeNameButton').style.display = "none";
                     document.getElementById('capture-msg-text').innerHTML = '<%= pokemon.name %> werd <span style="color:red;">niet</span> gevangen';
                     document.getElementById('capture-msg').style.display = "block";
             }}
@@ -104,5 +113,8 @@
     }
     function cancelRelease(){
         document.getElementById('release-msg').style.display = "none";
+    }
+    function changeName(){
+        document.getElementById("capture-msg-text").submit();
     }
 </script>

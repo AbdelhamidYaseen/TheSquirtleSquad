@@ -828,6 +828,18 @@ display: none;        }
     padding: 2rem;
     background-color: transparent;
 }
+#nameChange{
+    background-color: transparent;
+    font-size: 2rem;
+    width: fit-content;
+    max-width: 50%  ;
+    border: none;
+    color: white    ;
+}
+#nameChange::placeholder{
+    color: var(--bg-color-secondary);
+    opacity: 1;
+}
 #capture-own-pokemon{
     font-size: 2.5vw;
     width: 80%;

@@ -2,6 +2,7 @@ import express, { response } from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 import { getBuddyFromUser, hasPokemonInDatabase , addPokemonToUser, removePokemonFromUser} from '../models/caughtPokemonModel';
+import { changePokemonName } from '../models/caughtPokemonModel';
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
@@ -50,16 +51,22 @@ const controller = {
     post: async (req: express.Request, res: express.Response) => {
         const pokemonIdRemove = req.body.pokemonIdRemove;
         const pokemonIdAdd = req.body.pokemonIdAdd;
-        console.log(pokemonIdAdd)
         const statusSituationRemove = req.body.pokemonIdRemoveStatus;
         const statusSituationCapture = req.body.pokemonIdAddStatus;
-        
+        const pokemonNameChangeStatus = req.body.pokemonNameChangeStatus;
+        const pokemonNameChange = req.body.pokemonNameChange;
+        let pokemonName : string = req.body.nameChange;
+
         if(statusSituationRemove == "false"){
             removePokemonFromUser(1,pokemonIdRemove); 
         }
         
         if(statusSituationCapture == "false"){
-        addPokemonToUser(1,pokemonIdAdd,false); 
+            addPokemonToUser(1,pokemonIdAdd,false); 
+        }
+        if(pokemonNameChangeStatus == "false"){
+            console.log(`Function pokeName: ${pokemonName}\n Function pokeId ${pokemonNameChange}`);
+            changePokemonName(1, pokemonNameChange, pokemonName);
         }
 
 
