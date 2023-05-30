@@ -2,7 +2,9 @@ import express from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 import { getBuddyFromUser , addPokemonToUser, hasPokemonInDatabase, removePokemonFromUser} from '../models/caughtPokemonModel';
+import { log } from 'console';
 
+let userId: number=0;
 // Maakt een object aan, je kan hier alle mogelijke express http methodes mee geven (get, post, ...)
 const controller = {
     
@@ -11,10 +13,15 @@ const controller = {
     get: async (req: express.Request, res: express.Response) => {
         
         try {
-            // Log the names of all the users in the array
             const queryPokemon = req.query.pokemonEnemy;
-            const user : iUser = await getUserById(1);
-            const getBuddy = await getBuddyFromUser(1);
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
+            const user : iUser = await getUserById(userId);
+            const getBuddy = await getBuddyFromUser(userId);
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
             let buddyStatus = true;
 
@@ -54,15 +61,15 @@ const controller = {
         console.log(`hasPokemonStatus: ${hasPokemonDatabase}`);
         if(statusSituation == "false"){
             if(hasPokemonDatabase === "true"){
-                removePokemonFromUser(1, pokemonId);
+                removePokemonFromUser(userId, pokemonId);
             }
-        addPokemonToUser(1,pokemonId, false); 
+        addPokemonToUser(userId,pokemonId, false); 
         }
         
         //RELOAD
             // Log the names of all the users in the array
-            const user : iUser = await getUserById(1);
-            const getBuddy = await getBuddyFromUser(1);
+            const user : iUser = await getUserById(userId);
+            const getBuddy = await getBuddyFromUser(userId);
             let buddyStatus = true;
             let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             while(pokemonNumber == getBuddy?.pokemon_id){
