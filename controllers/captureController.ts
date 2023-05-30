@@ -8,7 +8,9 @@ const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
             // Log the names of all the users in the array
+            const queryPokemon = req.query.pokemonCatch;
             const user : iUser = await getUserById(1);
+            const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
             const getBuddy = await getBuddyFromUser(1);
             let buddyStatus = true;
             let pokemonNumber : number = Math.floor(Math.random() * 150)+1;

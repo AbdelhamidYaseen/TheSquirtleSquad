@@ -1360,6 +1360,69 @@ fieldset{
 /*#endregion*/
 
 
+/*#region ---POKEBATTLER-INTRO---*/
+
+.battler-expl-box{
+    background: #f4e9f9;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #8B34B7;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow:
+        inset #8B34B7 0 0 0 5px, 
+        inset #984BC0 0 0 0 1px, 
+        inset #A662C8 0 0 0 10px, 
+        inset #B379D1 0 0 0 11px, 
+        inset #C18FD9 0 0 0 16px, 
+        inset #CEA6E2 0 0 0 17px, 
+        inset #DCBDEA 0 0 0 21px, 
+        inset #E9D4F3 0 0 0 22px;
+    text-shadow: 3px 3px 1px #E9D4F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -50px;
+}
+.battler-expl-box p{
+color: black;
+text-align: center;
+line-height: 50px;
+}
+.battler-intro-pic{
+    background-color: #b7b9d081;
+    border-radius: 25px;
+    padding: 0.1rem;
+    width: auto;
+}
+.battler-choice-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pokemon-choice{
+    border: 0.085rem black solid;
+    background-color: #E9D4F3;
+    border-radius: 4rem;
+    width: 10.5rem;
+    height: 2rem;
+    margin: 0.5rem;
+    padding-left: 20px;
+    font-size: 20px;
+}
+.choice-form-submit{
+    border: 0.085rem black solid;
+    background-color: var(--bg-color-grass);
+    border-radius: 4rem;
+    width: fit-content;
+    height: 2rem;
+    margin: 0.5rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+/*#endregion*/
+
 /*#region ---LANDINGPAGE---*/
 #background-main-landing{
     background: transparent;
