@@ -3,6 +3,7 @@ import ejs from "ejs";
 import * as path from 'path';
 import * as fs from 'fs';
 import bodyParser from "body-parser";
+const session = require('express-session');
 
 const registerRoutes = (): Router => {
     const router = Router();
@@ -25,6 +26,11 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(registerRoutes());
+app.use(session({
+    secret: 'squirtle-squad',
+    resave: true,
+    saveUnitilialized:true
+}))
 app.listen(app.get("port"), () => {
     console.log("[Server] running on http://localhost:" + app.get("port"));
 });
