@@ -10,9 +10,15 @@ function login() {
   window.alert("Deze functie is momenteel nog niet beschikbaar.")
 }
 function noAcces() {
-  window.alert("U hebt geen toegang tot deze pagina.")
+  document.getElementById("no-acces").style.display = "block";
+  document.getElementById("no-acces-text").innerHTML = "U hebt geen toegang tot deze pagina."; 
+  setTimeout(() => {
+    document.getElementById("no-acces").style.display = "none";
+  }, 1400);
 }
 
 function acces() {
-  window.location.href = "/home.html"
+  window.location.href = "views/home.ejs"
 }
+
+
