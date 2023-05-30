@@ -3,6 +3,7 @@ import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 import { getBuddyFromUser , upgradePokemon} from '../models/caughtPokemonModel';
 
+let userId: number=0;
 // Maakt een object aan, je kan hier alle mogelijke express http methodes mee geven (get, post, ...)
 const controller = {
     
@@ -12,8 +13,14 @@ const controller = {
         
         try {
             let buddyStatus = true;
-            const user : iUser = await getUserById(1);
-            const getBuddy = await getBuddyFromUser(1);
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
+            const user : iUser = await getUserById(userId);
+            const getBuddy = await getBuddyFromUser(userId);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             const apiRes: iPokemon[] = await Promise.all(
                 // Fetch 151 pokémon

@@ -3,6 +3,7 @@ import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 import { getBuddyFromUser , upgradePokemon} from '../models/caughtPokemonModel';
 
+let userId: number=0;
 // Maakt een object aan, je kan hier alle mogelijke express http methodes mee geven (get, post, ...)
 const controller = {
     
@@ -10,11 +11,17 @@ const controller = {
     // Maak dit ene async functie als je database requests doet
     get: async (req: express.Request, res: express.Response) => {
         try {
-            const user : iUser = await getUserById(1);
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
+            const user : iUser = await getUserById(userId);
             const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             let buddyStatus = true;
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
-            const getBuddy = await getBuddyFromUser(1);
+            const getBuddy = await getBuddyFromUser(userId);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             const apiRes: iPokemon[] = await Promise.all(
                 // Fetch 151 pokémon
@@ -46,19 +53,19 @@ const controller = {
   
         if(statusSituationAttack == "false"){
             console.log("ATTACK UPGRADE CONTROLLER")
-            upgradePokemon(1,1);
+            upgradePokemon(userId,1);
         }
         if(statusSituationDefense == "false"){
             console.log("DEFENSE UPGRADE CONTROLLER")
-            upgradePokemon(1,2);
+            upgradePokemon(userId,2);
         }
 
         //RELOAD
-        const user : iUser = await getUserById(1);
+        const user : iUser = await getUserById(userId);
         const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
         let buddyStatus = true;
         const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
-        const getBuddy = await getBuddyFromUser(1);
+        const getBuddy = await getBuddyFromUser(userId);
         const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
         const apiRes: iPokemon[] = await Promise.all(
             // Fetch 151 pokémon
