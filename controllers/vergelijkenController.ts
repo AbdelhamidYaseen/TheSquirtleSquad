@@ -3,12 +3,18 @@ import { getUserById, iUser } from '../models/usersModel';
 import { getBuddyFromUser } from '../models/caughtPokemonModel';
 import { iPokemon } from '../types';
 
+let userId: number=0;
 const controller = {
     get: async (req: express.Request, res: express.Response) => {
         try {
-            // Log the names of all the users in the array
-            const user : iUser = await getUserById(1);
-            const getBuddy = await getBuddyFromUser(1);
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
+            const user : iUser = await getUserById(userId);
+            const getBuddy = await getBuddyFromUser(userId);
             let buddyStatus = true;
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             const invalidPokemon = req.query.invalidPokemon === "true";

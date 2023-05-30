@@ -3,14 +3,20 @@ import { changeBuddyFromUser, getAllCaughtPokemonFromUser, getBuddyFromUser, get
 import { getUserById, iUser } from '../models/usersModel';
 import { iCaughtPokemon, iPokemon, iBaseStats } from '../types';
 
+let userId: number=0;
 const controller = {
     get: async (req: express.Request, res: express.Response) => {
         try {
-            // TODO: Get the user from req header stuff when authentication system is done
-            const user: iUser = await getUserById(1);
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
+            const user: iUser = await getUserById(userId);
             const pokemonId = parseInt(req.params.pokemonId);
-            const pokemon = await getCaughtPokemonFromUser(1, pokemonId);
-            const buddy : iCaughtPokemon | null = await getBuddyFromUser(1);
+            const pokemon = await getCaughtPokemonFromUser(userId, pokemonId);
+            const buddy : iCaughtPokemon | null = await getBuddyFromUser(userId);
 
             const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${buddy?.pokemon_id}`).then((response) => response.json());
             const buddyStats : iPokemon = {
@@ -101,7 +107,6 @@ const controller = {
     },
     setBuddy: async (req: express.Request, res: express.Response) => {
         const newPokemonBuddy = parseInt(req.params.pokemonId);
-        const userId = 1;
         changeBuddyFromUser(userId, newPokemonBuddy);
         res.redirect(`/pokepeaker/${newPokemonBuddy}`);
     }

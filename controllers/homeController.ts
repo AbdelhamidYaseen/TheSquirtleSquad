@@ -4,14 +4,20 @@ import { iPokemon } from '../types';
 import { getBuddyFromUser, changePokemonName, addPokemonToUser, getAllCaughtPokemonFromUser } from '../models/caughtPokemonModel';
 import { changeBuddyFromUser } from '../models/caughtPokemonModel';
 
-const userIdLocal = 3;
+let userId: number=0;
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
-            const user : iUser = await getUserById(userIdLocal);
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
+            const user : iUser = await getUserById(userId);
             let buddyStatus = true;
-            const allCaughtPokemon = await getAllCaughtPokemonFromUser(userIdLocal);
+            const allCaughtPokemon = await getAllCaughtPokemonFromUser(userId);
             if(allCaughtPokemon.length==0){
                 buddyStatus = false;
                 const apiFetchBulbasaur : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${1}`).then((response) => response.json());
@@ -20,7 +26,7 @@ const controller = {
                 res.render('home', {user:user, buddyStatus, bulbasaur: apiFetchBulbasaur, charmander: apiFetchCharmander, squirtle: apiFetchSquirtle});
             }
             else{
-                const getBuddy = await getBuddyFromUser(userIdLocal);
+                const getBuddy = await getBuddyFromUser(userId);
                 const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
                 res.render('home', {user:user,buddy:apiFetchBuddy, getBuddyFromUser, changePokemonName,buddyInfo : getBuddy, buddyStatus});
             }
@@ -35,28 +41,28 @@ const controller = {
         
         switch (starterToAdd) {
             case "bulbasaur":
-                addPokemonToUser(userIdLocal,1,true);
+                addPokemonToUser(userId,1,true);
                 break;
             case "charmander":
-                addPokemonToUser(userIdLocal,4,true);
+                addPokemonToUser(userId,4,true);
                 break;
             case "squirtle":
-                addPokemonToUser(userIdLocal,7,true);
+                addPokemonToUser(userId,7,true);
                 break;
             default:
               break;
           }
         //RELOAD
         // Log the names of all the users in the array
-        const user : iUser = await getUserById(userIdLocal);
+        const user : iUser = await getUserById(userId);
         let buddyStatus = true;
-        if(await getBuddyFromUser(userIdLocal) === null){
+        if(await getBuddyFromUser(userId) === null){
             buddyStatus = false;
             const apiFetchSquirtle : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${7}`).then((response) => response.json());
 
             res.render('home', {user:user, buddyStatus, squirtle: apiFetchSquirtle});
         }else{
-            const getBuddy = await getBuddyFromUser(userIdLocal);
+            const getBuddy = await getBuddyFromUser(userId);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             res.render('home', {user:user,buddy:apiFetchBuddy, getBuddyFromUser, changePokemonName,buddyInfo : getBuddy, buddyStatus});
         }

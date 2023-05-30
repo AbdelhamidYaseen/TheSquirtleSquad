@@ -4,14 +4,20 @@ import { iPokemon } from '../types';
 import { getBuddyFromUser, hasPokemonInDatabase , addPokemonToUser, removePokemonFromUser} from '../models/caughtPokemonModel';
 import { changePokemonName } from '../models/caughtPokemonModel';
 
+let userId: number=0;
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
-            // Log the names of all the users in the array
+            // get user id from cookies
+            const cookie = req.headers.cookie;
+            if(typeof(cookie) !== 'undefined'){
+                const cookiesplit = cookie?.split("=");
+                userId = +cookiesplit[1];
+            }
             const queryPokemon = req.query.pokemonCatch;
-            const user : iUser = await getUserById(1);
+            const user : iUser = await getUserById(userId);
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
-            const getBuddy = await getBuddyFromUser(1);
+            const getBuddy = await getBuddyFromUser(userId);
             let buddyStatus = true;
             const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             const pokemonStats : iPokemon = {
@@ -52,22 +58,22 @@ const controller = {
         let pokemonName : string = req.body.nameChange;
 
         if(statusSituationRemove == "false"){
-            removePokemonFromUser(1,pokemonIdRemove); 
+            removePokemonFromUser(userId,pokemonIdRemove); 
         }
         
         if(statusSituationCapture == "false"){
-            addPokemonToUser(1,pokemonIdAdd,false); 
+            addPokemonToUser(userId,pokemonIdAdd,false); 
         }
         if(pokemonNameChangeStatus == "false"){
             console.log(`Function pokeName: ${pokemonName}\n Function pokeId ${pokemonNameChange}`);
-            changePokemonName(1, pokemonNameChange, pokemonName);
+            changePokemonName(userId, pokemonNameChange, pokemonName);
         }
 
 
         //RELOAD
         const queryPokemon = req.query.pokemonCatch;
-        const user : iUser = await getUserById(1);
-        const getBuddy = await getBuddyFromUser(1);
+        const user : iUser = await getUserById(userId);
+        const getBuddy = await getBuddyFromUser(userId);
         let buddyStatus = true;
         const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
         const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
