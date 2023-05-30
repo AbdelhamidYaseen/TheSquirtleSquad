@@ -1,7 +1,8 @@
 import express from "express";
+import { authMiddelware } from "./index";
 const router = express.Router();
 
-import authMiddelware from '../routes/index'
+
 
 import controller from '../controllers/homeController';
 

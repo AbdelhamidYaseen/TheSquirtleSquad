@@ -18,11 +18,13 @@ export const authMiddelware = (req: express.Request, res:express.Response, next:
         
         if (userIdCookie) {
           const userId = userIdCookie.split('=')[1];
-          console.log('UserID:', userId);
+        //   console.log('UserID:', userId);
           next();
         }else{
             return res.redirect('/?loggedIn=false');
         }
+    }else{
+        return res.redirect('/?loggedIn=false');
     }
 };
 

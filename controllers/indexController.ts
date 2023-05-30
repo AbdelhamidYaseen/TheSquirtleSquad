@@ -9,11 +9,25 @@ let loggedIn : boolean = false;
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         const user : iUser = await getUserById(1);
-
+        const cookie = req.headers.cookie;
+        const queryParam = req.query.loggedIn === "false";
+        if(typeof(cookie) !== 'undefined'){
+            const cookies = cookie.split(';').map((cookieString) => cookieString.trim());
+            const userIdCookie = cookies.find((cookieString) => cookieString.startsWith('userid='));
+            if(!userIdCookie){
+                loggedIn = false;
+            }else{
+                loggedIn = true;
+            }
+        }else{
+            loggedIn = false;
+        }
         const getBuddy = await getBuddyFromUser(1);
         const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-
-        res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser});         /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
+        console.log(cookie);
+        console.log(loggedIn);
+        
+        res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser, loggedIn, queryParam});         /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
     },
     post: async (req: express.Request, res: express.Response) => {
         const username = req.body.username;
@@ -41,8 +55,8 @@ const controller = {
                     })
                     const getBuddy = await getBuddyFromUser(user.id);
                     const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-            
-                    res.render('index',{loggedIn, buddy:apiFetchBuddy,user:user, getBuddyFromUser}); /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
+                    res.redirect('/');
+                    // res.render('index',{loggedIn, buddy:apiFetchBuddy,user:user, getBuddyFromUser}); /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
                 }
             }
             
