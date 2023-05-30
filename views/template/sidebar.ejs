@@ -1,15 +1,6 @@
 <aside>
     <nav>
         <ul>
-          <% if(buddyStatus === false){%>
-            <li><a href="/home"> home</a></li>
-            <li><a href="/home"> [NO ACCES]</a></li>
-            <li><a href="/home"> [NO ACCES]</a></li>
-            <li><a href="/home"> [NO ACCES]</a></li>
-            <li><a href="/home"> [NO ACCES]</a></li>
-            <li><a href="/home"> [NO ACCES]</a></li>
-            <li class="nav-account">  
-          <%} else { %>
             <li><a href="/home"> home</a></li>
             <li><a href="/capture"> avontuur</a></li>
             <li><a href="/pokedex"> pokedex</a></li>
@@ -17,7 +8,6 @@
             <li><a href="/battler"> pokemon league</a></li>
             <li><a href="/whospokemon"> mysterie</a></li>
             <li class="nav-account">  
-          <%}%>
               <section>
                 <p class="nav-name"><%- user.username %></p>
                 <% if(buddyStatus === false){%>

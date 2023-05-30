@@ -10,7 +10,9 @@
       <section class="home-region" id="home-buddies">
         <h2>get your buddy</h2>
         <section id="home-buddies-images">
-          <img src="<%= squirtle.sprites.other?.['official-artwork'].front_default %>" alt="squirtle" onclick="addSquirtlePokemon()">
+          <img src="<%= bulbasaur.sprites.other?.['official-artwork'].front_default %>" alt="bulbasaur" onclick="addStarterPokemon(starterBulbasaur)" id="starterBulbasaur">
+          <img src="<%= charmander.sprites.other?.['official-artwork'].front_default %>" alt="charmander" onclick="addStarterPokemon(starterCharmander)" id="starterCharmander">
+          <img src="<%= squirtle.sprites.other?.['official-artwork'].front_default %>" alt="squirtle" onclick="addStarterPokemon(starterSquirtle)" id="starterSquirtle">
         </section>
       </section>
       <form action="/home"  id="addSquirtleForm" method="post" target="hiddenFrame">
@@ -196,11 +198,30 @@
 </main>
 <%- include('template/footer') %>
 <script defer>
-  function addSquirtlePokemon(){ 
-    console.log("squirtle has been added")
-    document.getElementById("addSquirtle").setAttribute("value", "false");
-    document.getElementById("addSquirtleForm").submit();
-    refreshPage();
+  const starterBulbasaur = "bulbasaur";
+  const starterCharmander = "charmander";
+  const starterSquirtle = "squirtle"
+  function addStarterPokemon(chosenStarter){ 
+    console.log("squirtle has been added");
+    switch (chosenStarter) {
+      case "bulbasaur":
+        document.getElementById("addSquirtle").setAttribute("value", "bulbasaur");
+        document.getElementById("addSquirtleForm").submit();
+        setTimeout(()=>{location.reload()},1000);
+        break;
+      case "charmander":
+        document.getElementById("addSquirtle").setAttribute("value", "charmander");
+        document.getElementById("addSquirtleForm").submit();
+        setTimeout(()=>{location.reload()},1000);
+        break;
+      case "squirtle":
+        document.getElementById("addSquirtle").setAttribute("value", "squirtle");
+        document.getElementById("addSquirtleForm").submit();
+        setTimeout(()=>{location.reload()},1000);
+        break;
+      default:
+        break;
+    }
   }
   function refreshPage(){
     location.replace('/home');

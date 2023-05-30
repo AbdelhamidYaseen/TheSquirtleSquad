@@ -686,11 +686,16 @@ transition: ease-in-out 0.8s 100ms;
     margin-bottom: 0.8rem;
 }
 #home-buddies{
-    width: 20rem;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#home-buddies-images{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 #home-buddies h2{
     font-size: 1.5rem;
@@ -702,19 +707,26 @@ transition: ease-in-out 0.8s 100ms;
 #home-buddies img{
     border: var(--bg-color-button) 1.4px solid; 
     border-radius: 2rem;
-    background-color: var(--bg-color-water);
     width: 10rem;
     border-radius: 2rem;
-    margin-bottom: 0.8rem;
+    margin: 0.8rem;
     transition: ease-in-out 0.8s 100ms;
     cursor: pointer;
+}
+#starterBulbasaur{
+    background-color: var(--bg-color-grass);
+}
+#starterCharmander{
+    background-color: var(--bg-color-fire);
+}
+#starterSquirtle{
+    background-color: var(--bg-color-water);
 }
 #home-buddies img:hover{
     background-color: var(--bg-color-button);
 }
 #home-container-1{
     display: flex;
-
 }
 #creators h2{
     width: 100%;

@@ -1,21 +1,23 @@
 import express from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
-import { getBuddyFromUser, changePokemonName, addPokemonToUser } from '../models/caughtPokemonModel';
+import { getBuddyFromUser, changePokemonName, addPokemonToUser, getAllCaughtPokemonFromuser } from '../models/caughtPokemonModel';
 import { changeBuddyFromUser } from '../models/caughtPokemonModel';
+
+const userIdLocal = 3;
 
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
-            const userIdLocal = 2;
-            // Log the names of all the users in the array
             const user : iUser = await getUserById(userIdLocal);
             let buddyStatus = true;
-            if(await getBuddyFromUser(userIdLocal) === null){
+            const allCaughtPokemon = await getAllCaughtPokemonFromuser(userIdLocal);
+            if(allCaughtPokemon.length==0){
                 buddyStatus = false;
+                const apiFetchBulbasaur : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${1}`).then((response) => response.json());
+                const apiFetchCharmander : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${4}`).then((response) => response.json());
                 const apiFetchSquirtle : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${7}`).then((response) => response.json());
-
-                res.render('home', {user:user, buddyStatus, squirtle: apiFetchSquirtle});
+                res.render('home', {user:user, buddyStatus, bulbasaur: apiFetchBulbasaur, charmander: apiFetchCharmander, squirtle: apiFetchSquirtle});
             }
             else{
                 const getBuddy = await getBuddyFromUser(userIdLocal);
@@ -29,12 +31,22 @@ const controller = {
         }
     },
     post: async(req: express.Request, res: express.Response) => {
-        const squirtle = req.body.addSquirtle;
-        if(squirtle === "false"){
-            addPokemonToUser(2,7,true);
-        }
+        const starterToAdd = req.body.addSquirtle;
+        
+        switch (starterToAdd) {
+            case "bulbasaur":
+                addPokemonToUser(userIdLocal,1,true);
+                break;
+            case "charmander":
+                addPokemonToUser(userIdLocal,4,true);
+                break;
+            case "squirtle":
+                addPokemonToUser(userIdLocal,7,true);
+                break;
+            default:
+              break;
+          }
         //RELOAD
-        const userIdLocal = 2;
         // Log the names of all the users in the array
         const user : iUser = await getUserById(userIdLocal);
         let buddyStatus = true;
