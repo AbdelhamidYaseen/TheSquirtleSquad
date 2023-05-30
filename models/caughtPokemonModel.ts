@@ -30,7 +30,7 @@ const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
             );    
 
 };
-const getAllCaughtPokemonFromuser = async (userid: number) : Promise<iCaughtPokemon[]> => {
+const getAllCaughtPokemonFromUser = async (userid: number) : Promise<iCaughtPokemon[]> => {
     let res: iUser | null = await client.db(dbName).collection<iUser>("users").findOne<iUser>({id: userid});
     if(!res){
         return [];
@@ -188,4 +188,4 @@ const getCaughtPokemonFromUser = async (userid: number, pokemonId: number): Prom
     return null;
 }
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser, changePokemonName, getCaughtPokemonFromUser};
+export { getAllCaughtPokemonFromUser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser, changePokemonName, getCaughtPokemonFromUser};

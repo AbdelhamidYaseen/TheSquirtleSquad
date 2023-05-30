@@ -89,7 +89,6 @@ const controller = {
                 sprites: apiFetchBuddy.sprites,
                 ability: apiFetchBuddy.ability,
                 baseStats: apiFetchBuddy.stats,
-
             }
             const hasPokemon = await hasPokemonInDatabase(user.id, pokemonStats.id);
             const hasPokemonStatus = String(hasPokemon);

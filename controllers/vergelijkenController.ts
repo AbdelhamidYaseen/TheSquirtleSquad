@@ -147,9 +147,6 @@ const controller = {
             }else{
                 res.render('vergelijken', { user: user, invalidPokemon, buddy : apiFetchBuddy, getBuddyFromUser, buddyInfo : getBuddy, buddyStatus });
             }
-
-        } catch (err: any) {
-            res.render('vergelijken', {user:user});
         } catch (err : any) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');

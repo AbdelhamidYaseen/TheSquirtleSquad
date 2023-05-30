@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
-import { getBuddyFromUser, changePokemonName, addPokemonToUser, getAllCaughtPokemonFromuser } from '../models/caughtPokemonModel';
+import { getBuddyFromUser, changePokemonName, addPokemonToUser, getAllCaughtPokemonFromUser } from '../models/caughtPokemonModel';
 import { changeBuddyFromUser } from '../models/caughtPokemonModel';
 
 const userIdLocal = 3;
@@ -11,7 +11,7 @@ const controller = {
         try {
             const user : iUser = await getUserById(userIdLocal);
             let buddyStatus = true;
-            const allCaughtPokemon = await getAllCaughtPokemonFromuser(userIdLocal);
+            const allCaughtPokemon = await getAllCaughtPokemonFromUser(userIdLocal);
             if(allCaughtPokemon.length==0){
                 buddyStatus = false;
                 const apiFetchBulbasaur : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${1}`).then((response) => response.json());

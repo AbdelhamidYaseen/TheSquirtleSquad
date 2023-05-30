@@ -1,7 +1,6 @@
 import express from 'express';
 import { changeBuddyFromUser, getAllCaughtPokemonFromUser, getBuddyFromUser, getCaughtPokemonFromUser } from '../models/caughtPokemonModel';
 import { getUserById, iUser } from '../models/usersModel';
-import { getBuddyFromUser } from '../models/caughtPokemonModel';
 import { iCaughtPokemon, iPokemon, iBaseStats } from '../types';
 
 const controller = {
@@ -12,6 +11,16 @@ const controller = {
             const pokemonId = parseInt(req.params.pokemonId);
             const pokemon = await getCaughtPokemonFromUser(1, pokemonId);
             const buddy : iCaughtPokemon | null = await getBuddyFromUser(1);
+
+            const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${buddy?.pokemon_id}`).then((response) => response.json());
+            const buddyStats : iPokemon = {
+                id: apiFetchBuddy.id,
+                name: apiFetchBuddy.name,
+                sprites: apiFetchBuddy.sprites,
+                ability: apiFetchBuddy.ability,
+                baseStats: apiFetchBuddy.stats,
+            }
+            let buddyStatus = true;
             if (!pokemon) {
                 // TODO: Make actual error pages
                 return res.status(500).send("Internal Server Error");
@@ -83,7 +92,7 @@ const controller = {
                 weight: pokemonFromApi.weight / 10,
                 types: pokemonFromApi.types,
             };
-            res.render('pokepeaker', { user: user, pokemon: pokemonUpdated, evolutions: evolutions, buddy: buddy });
+            res.render('pokepeaker', { user: user, pokemon: pokemonUpdated, evolutions: evolutions, buddy: buddyStats, buddyStatus, buddyInfo: buddyStats });
         } catch (err: any) {
             // console.error(err.message);
             // TODO: Make actual error pages
