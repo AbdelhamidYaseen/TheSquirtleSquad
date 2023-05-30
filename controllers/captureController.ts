@@ -13,15 +13,7 @@ const controller = {
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
             const getBuddy = await getBuddyFromUser(1);
             let buddyStatus = true;
-            let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
-            while(pokemonNumber == getBuddy?.pokemon_id){
-                console.log("random pokemon was buddy");
-                console.log(`buddy_id: ${getBuddy?.pokemon_id}\nrandom_nmbr: ${pokemonNumber}`);
-                pokemonNumber = Math.floor(Math.random() * 150)+1;
-
-            }
             const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-            const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
             const pokemonStats : iPokemon = {
                 id: apiFetch.id,
                 name: apiFetch.name,
@@ -73,18 +65,12 @@ const controller = {
 
 
         //RELOAD
+        const queryPokemon = req.query.pokemonCatch;
         const user : iUser = await getUserById(1);
         const getBuddy = await getBuddyFromUser(1);
         let buddyStatus = true;
-        let pokemonNumber : number = Math.floor(Math.random() * 150)+1;
-        while(pokemonNumber == getBuddy?.pokemon_id){
-            console.log("random pokemon was buddy");
-            console.log(`buddy_id: ${getBuddy?.pokemon_id}\nrandom_nmbr: ${pokemonNumber}`);
-            pokemonNumber = Math.floor(Math.random() * 150)+1;
-
-        }
+        const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
         const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-        const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
         const pokemonStats : iPokemon = {
             id: apiFetch.id,
             name: apiFetch.name,

@@ -11,6 +11,7 @@ const controller = {
     get: async (req: express.Request, res: express.Response) => {
         
         try {
+            let buddyStatus = true;
             const user : iUser = await getUserById(1);
             const getBuddy = await getBuddyFromUser(1);
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
@@ -23,7 +24,7 @@ const controller = {
                     )
                 )
             );
-            res.render('battlerChoice', {user:user, buddy : apiFetchBuddy, pokelist : apiRes, getBuddyFromUser});
+            res.render('battlerChoice', {user:user, buddy : apiFetchBuddy, pokelist : apiRes, getBuddyFromUser, buddyStatus, buddyInfo : getBuddy});
         } catch (err : any) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');

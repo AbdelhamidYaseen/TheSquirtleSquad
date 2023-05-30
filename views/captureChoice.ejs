@@ -12,7 +12,7 @@
         <p>Kies een pokemon om te vangen. <br>of<br>Kies een pokemon om vrij te laten.</p>  
         <figure class="battler-intro-pic"><img src="./assets/images/catch-intro.png"></figure>
         <form method="post" action="/captureChoice" class="battler-choice-form">
-            <input list="pokemon" name="pokemon" class="pokemon-choice" placeholder="Kies een vijand" required>
+            <input list="pokemon" name="pokemon" class="pokemon-choice" placeholder="Kies pokemon" required>
                 <datalist id="pokemon">
                     <% for(let i=0; i<=150; i++){%>
                          <option  value="<%= pokelist[i].name%>"> 
