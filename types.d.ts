@@ -2,6 +2,9 @@ export interface iPokemonAttack {
     id: number;
     name: string;
     power: number;
+    id: number;
+    name: string;
+    power: number;
 }
 
 export interface iCaughtPokemon {
@@ -20,6 +23,24 @@ export interface iPokemon {
     id: number;
     name: string;
     sprites: iSprites;
+    height?: number;
+    weight?: number;
+    ability?: iAbility[];
+    types?: iType[];
+    baseStats?: iBaseStats[];
+}
+
+export interface iBaseStats {
+    statName: string;
+    statValue: number;
+}
+
+export interface iType {
+    name: string;
+}
+
+export interface iAbility {
+    name: string;
     height?: number;
     weight?: number;
     ability?: iAbility[];
@@ -62,6 +83,7 @@ export interface iHome {
 
 
 export interface iOther {
+    home: iHome;
     home: iHome;
     "official-artwork": iOfficialArtwork;
 }

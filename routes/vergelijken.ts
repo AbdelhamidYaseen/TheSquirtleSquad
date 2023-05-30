@@ -6,7 +6,8 @@ import authMiddelware from '../routes/index'
 import controller from '../controllers/vergelijkenController';
 
 const route = () => {
-    router.get('/vergelijken', authMiddelware, controller.get);
+    router.get('/vergelijken', controller.get);
+    router.post('/vergelijken', controller.changePokemon);
 }
 
 route();

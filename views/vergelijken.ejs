@@ -2,198 +2,318 @@
 <%- include('template/header', {showLogo: true}) %>
 <%- include('template/sidebar') %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js" integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="./js/vergelijken.js" defer></script>
+<script src="/js/vergelijken.js" defer></script>
 <section class="bellowheader bellowheader-gradient">
     <img src="./assets/images/Pokeball.png" alt="">
 </section>
 <main id="vergelijken">
     <section class="pokemon-images">
+        <% if (typeof(pokemon1FromApi) === 'undefined') { %>
+            <section class="pokemon-wrapper">
+                <section class="button-wrapper">
+                    <img src="./assets/images/Bulbasaur.png" alt="">
+                    <button class="replace-btn">Vervang pokemon</button>
+                </section>
+                <section class="card">
+                    <p class="title" style="color: var(--bg-color-tertiary)">Bulbasaur #001</p>
+                    <section class="types">
+                        <p class="type-pill type-grass">grass</p>
+                        <p class="type-pill type-poison">Poison</p>
+                    </section>
+                    <h3 class="subtitle" style="color: var(--bg-color-tertiary)">Stats</h3>
+                    <section class="stats">
+                        <table>
+                            <tbody>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">HP</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">45</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">ATK</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">49</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">DEF</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">49</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">SATK</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">65</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">SDEF</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">65</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">SPD</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">45</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+            </section>
+        <% }else { %>
         <section class="pokemon-wrapper">
             <section class="button-wrapper">
-                <img src="./assets/images/Bulbasaur.png" alt="">
+                <img src="<%=pokemon1FromApi.sprites.other?.['official-artwork'].front_default %>" alt="">
                 <button class="replace-btn">Vervang pokemon</button>
             </section>
             <section class="card">
-                <p class="title" style="color: var(--bg-color-tertiary)">Bulbasaur #001</p>
+                <p class="title <%=pokemon1FromApi.types[0].type.name%>"><%- pokemon1FromApi.name %></p>
                 <section class="types">
-                    <p class="type-pill type-grass">grass</p>
-                    <p class="type-pill type-poison">Poison</p>
+                    <% pokemon1FromApi.types.forEach(type => { %>
+                        <p class="type-pill type-<%=type.type.name%>"><%=type.type.name%></p>
+                    <% }) %>
                 </section>
-                <h3 class="subtitle" style="color: var(--bg-color-tertiary)">Stats</h3>
+                <h3 class="subtitle <%=pokemon1FromApi.types[0].type.name%>">Stats</h3>
                 <section class="stats">
                     <table>
                         <tbody>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-tertiary)">HP</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">45</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-tertiary)">ATK</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">49</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-tertiary)">DEF</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">49</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-tertiary)">SATK</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">65</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-tertiary)">SDEF</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">65</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-tertiary)">SPD</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">45</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
-                                </td>
-                            </tr>
+                            <% pokemon1FromApi.baseStats.forEach(stat => { %>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value <%= pokemon1FromApi.types[0].type.name%>"><%= stat.statName%></p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value"><%= stat.base_stat %></p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress <%= pokemon1FromApi.types[0].type.name%>" value="<%=stat.base_stat%>" max="100"></progress>
+                                    </td>
+                                </tr>
+                            <% }) %> 
                         </tbody>
                     </table>
                 </section>
             </section>
         </section>
+        <% } %>
+
         <section class="chartWrapper">
             <div style="width: 600px;"><canvas id="acquisitions"></canvas></div>
         </section>
+        <% if (typeof(pokemon2FromApi) === 'undefined') { %>
+            <section class="pokemon-wrapper">
+                <section class="button-wrapper">
+                    <img src="./assets/images/Bulbasaur.png" alt="">
+                    <button class="replace-btn">Vervang pokemon</button>
+                </section>
+                <section class="card">
+                    <p class="title" style="color: var(--bg-color-tertiary)">Bulbasaur #001</p>
+                    <section class="types">
+                        <p class="type-pill type-grass">grass</p>
+                        <p class="type-pill type-poison">Poison</p>
+                    </section>
+                    <h3 class="subtitle" style="color: var(--bg-color-tertiary)">Stats</h3>
+                    <section class="stats">
+                        <table>
+                            <tbody>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">HP</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">45</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">ATK</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">49</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">DEF</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">49</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">SATK</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">65</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">SDEF</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">65</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value" style="color: var(--bg-color-tertiary)">SPD</p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value">45</p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-tertiary);"></progress>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+            </section>
+        <% }else { %>
         <section class="pokemon-wrapper">
             <section class="button-wrapper">
-                <img src="./assets/images/Bulbasaur.png" alt="">
+                <img src="<%=pokemon2FromApi.sprites.other?.['official-artwork'].front_default %>" alt="">
                 <button class="replace-btn">Vervang pokemon</button>
             </section>
             <section class="card">
-                <p class="title" style="color: var(--bg-color-quaternary);">Bulbasaur #001</p>
+                <p class="title <%=pokemon2FromApi.types[0].type.name%>"><%- pokemon2FromApi.name %></p>
                 <section class="types">
-                    <p class="type-pill type-grass">grass</p>
-                    <p class="type-pill type-poison">Poison</p>
+                    <% pokemon2FromApi.types.forEach(type => { %>
+                        <p class="type-pill type-<%=type.type.name%>"><%=type.type.name%></p>
+                    <% }) %>
                 </section>
-                <h3 class="subtitle" style="color: var(--bg-color-quaternary);">Stats</h3>
+                <h3 class="subtitle <%=pokemon2FromApi.types[0].type.name%>">Stats</h3>
                 <section class="stats">
                     <table>
                         <tbody>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-quaternary);">HP</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">45</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-quaternary)">ATK</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">49</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-quaternary)">DEF</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">49</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="49" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-quaternary)">SATK</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">65</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-quaternary)">SDEF</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">65</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="65" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
-                                </td>
-                            </tr>
-                            <tr class="item">
-                                <td>
-                                    <p class="value" style="color: var(--bg-color-quaternary)">SPD</p>
-                                </td>
-                                <td class="divider">
-                                    <p class="value">45</p>
-                                </td>
-                                <td class="progress-container">
-                                    <progress class="progress" value="45" max="100" style="--progress-color: var(--bg-color-quaternary);"></progress>
-                                </td>
-                            </tr>
+                            <% pokemon2FromApi.baseStats.forEach(stat => { %>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value <%= pokemon2FromApi.types[0].type.name%>"><%= stat.statName%></p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value"><%= stat.base_stat %></p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress <%= pokemon2FromApi.types[0].type.name%>" value="<%=stat.base_stat%>" max="100"></progress>
+                                    </td>
+                                </tr>
+                            <% }) %> 
                         </tbody>
                     </table>
                 </section>
             </section>
         </section>
+        <% } %>
+         
         <section class="modal">
             <section class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Selecteer een nieuwe pokemon</h2>
-                <form>
+                <form class="vervang-pokemon-model" method="post" action="/vergelijken">
                     <label for="pokemon-name">Naam van de pokemon:</label>
-                    <input type="text" id="pokemon-name" name="pokemon-name">
+                    <input type="text" id="pokemon-name" name="pokemonName">
                     <button type="submit">Zoeken</button>
                 </form>
             </section>
-        </section>
+        </section>  
     </section>
 </main>
+<script>
+    let data = {};
+</script>
+<% if (typeof(pokemon1FromApi) !== 'undefined' && typeof(pokemon2FromApi) !== 'undefined') { %>
+    <script>
+    
+        data = {
+            labels: ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'],
+            datasets: [{
+                label: '<%=pokemon1FromApi.name%>',
+                data: ['<%=pokemon1FromApi.baseStats[0].base_stat%>', '<%=pokemon1FromApi.baseStats[1].base_stat%>', '<%=pokemon1FromApi.baseStats[2].base_stat%>', '<%=pokemon1FromApi.baseStats[3].base_stat%>', '<%=pokemon1FromApi.baseStats[4].base_stat%>', '<%=pokemon1FromApi.baseStats[5].base_stat%>'],
+                backgroundColor: 'rgba(16, 11, 245, 0.2)',
+                borderColor: 'rgba(16, 11, 245, 1)',
+                borderWidth: 1
+            }, {
+                label: '<%=pokemon2FromApi.name%>',
+                data: ['<%=pokemon2FromApi.baseStats[0].base_stat%>', '<%=pokemon2FromApi.baseStats[1].base_stat%>', '<%=pokemon2FromApi.baseStats[2].base_stat%>', '<%=pokemon2FromApi.baseStats[3].base_stat%>', '<%=pokemon2FromApi.baseStats[4].base_stat%>', '<%=pokemon2FromApi.baseStats[5].base_stat%>'],
+                backgroundColor: 'rgba(245, 49, 49, 0.2)',
+                borderColor: 'rgba(245, 49, 49, 1)',
+                borderWidth: 1
+            }]
+        };
+    </script>
+<% } else {%>
+    <script>
+    data = {
+        labels: ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'],
+        datasets: [{
+            label: 'Pokemon 1\'s name',
+            data: [65, 59, 90, 81, 56, 55],
+            backgroundColor: 'rgba(16, 11, 245, 0.2)',
+            borderColor: 'rgba(16, 11, 245, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Pokemon 2\'s name',
+            data: [40, 55, 56, 81, 90, 56],
+            backgroundColor: 'rgba(245, 49, 49, 0.2)',
+            borderColor: 'rgba(245, 49, 49, 1)',
+            borderWidth: 1
+        }]
+    };
+</script>
+
+<%}%>
 <%- include('template/footer') %>

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllCaughtPokemonFromuser, getBuddyFromUser } from '../models/caughtPokemonModel';
+import { getAllCaughtPokemonFromUser, getBuddyFromUser } from '../models/caughtPokemonModel';
 import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 
@@ -10,7 +10,7 @@ const controller = {
             const pageSize = 18;
             let buddyStatus = true;
             // TODO: Change parameters of these functions to the actual userid that gets send when the login/register system is done
-            const pokemonInDB = await getAllCaughtPokemonFromuser(1);
+            const pokemonInDB = await getAllCaughtPokemonFromUser(1);
             const user : iUser = await getUserById(1);
 
 
@@ -35,7 +35,6 @@ const controller = {
                     caught: caught,
                 };
             }).slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
-
             
             if (pageNumber > Math.ceil(pokemonData.length / pageSize)) {
                 return res.status(500).send('Internal Server Error');
@@ -54,7 +53,7 @@ const controller = {
             let buddyStatus = true;
             const pageNumber = parseInt(req.params.pagenumber);
             const pageSize = 18;
-            const pokemonInDB = await getAllCaughtPokemonFromuser(1);
+            const pokemonInDB = await getAllCaughtPokemonFromUser(1);
 
             const apiRes: iPokemon[] = await Promise.all(
                 Array.from({ length: 151 }, (_, i) =>

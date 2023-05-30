@@ -170,5 +170,22 @@ const changePokemonName = async(userid: number, pokemonid: number, name: string)
         {$set: {[fieldToUpdate]: name}}
         )
 }
+
+const getCaughtPokemonFromUser = async (userid: number, pokemonId: number): Promise<iCaughtPokemon | null> => {
+    const res = await client
+        .db(dbName)
+        .collection("users")
+        .findOne({ id: userid });
+
+    if (res) {
+        const caughtPokemon: iCaughtPokemon = res.caughtPokemon.find(
+            (pokemon: iCaughtPokemon) => Number(pokemon.pokemon_id) === pokemonId
+        );
+
+        return caughtPokemon ? caughtPokemon : null;
+    }
+
+    return null;
+}
 // Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
-export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser, changePokemonName};
+export { getAllCaughtPokemonFromuser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser, changePokemonName, getCaughtPokemonFromUser};

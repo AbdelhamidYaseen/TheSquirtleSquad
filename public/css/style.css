@@ -2444,3 +2444,93 @@ line-height: 50px;
 .silhouette {
     filter: brightness(0%);
 }
+
+.grass {
+    color: var(--bg-color-grass);
+    --progress-color: var(--bg-color-grass);
+}
+
+.normal {
+    color: var(--bg-color-normal);
+    --progress-color: var(--bg-color-normal);
+}
+
+.fighting {
+    color: var(--bg-color-fighting);
+    --progress-color: var(--bg-color-fighting);
+}
+
+.flying {
+    color: var(--bg-color-flying);
+    --progress-color: var(--bg-color-flying);
+}
+
+.ground {
+    color: var(--bg-color-ground);
+    --progress-color: var(--bg-color-ground);
+}
+
+.poison {
+    color: var(--bg-color-poison);
+    --progress-color: var(--bg-color-poison);
+}
+
+.rock {
+    color: var(--bg-color-rock);
+    --progress-color: var(--bg-color-rock);
+}
+
+.bug {
+    color: var(--bg-color-bug);
+    --progress-color: var(--bg-color-bug);
+}
+
+.ghost {
+    color: var(--bg-color-ghost);
+    --progress-color: var(--bg-color-ghost);
+}
+
+.steel {
+    color: var(--bg-color-steel);
+    --progress-color: var(--bg-color-steel);
+}
+
+.fire {
+    color: var(--bg-color-fire);
+    --progress-color: var(--bg-color-fire);
+}
+
+.water {
+    color: var(--bg-color-water);
+    --progress-color: var(--bg-color-water);
+}
+
+.electric {
+    color: var(--bg-color-electric);
+    --progress-color: var(--bg-color-electric);
+}
+
+.psychic {
+    color: var(--bg-color-psychic);
+    --progress-color: var(--bg-color-psychic);
+}
+
+.ice {
+    color: var(--bg-color-ice);
+    --progress-color: var(--bg-color-ice);
+}
+
+.dragon {
+    color: var(--bg-color-dragon);
+    --progress-color: var(--bg-color-dragon);
+}
+
+.dark {
+    color: var(--bg-color-dark);
+    --progress-color: var(--bg-color-dark);
+}
+
+.fairy {
+    color: var(--bg-color-fairy);
+    --progress-color: var(--bg-color-fairy);
+}
