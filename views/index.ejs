@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <button class="landing-open-button"  id="landing-page-button"onclick="openForm()">Open Form</button>
+    <button class="landing-open-button" onclick="openForm()">Open Form</button>
     <div class="landing-form-popup" id="login-Form">
         <form class="landing-form-container" method="post" action="/">
             <h3 id="h3-landing">Login</h3>
@@ -84,21 +84,9 @@
             <button type="button" class="landing-btn cancel" onclick="closeForm()">Close</button>
         </form>
     </div>
-    
     <div id="no-acces">
         <div id="no-acces-text">
             <p>U hebt geen toegang tot deze pagina.</p>
         </div>
     </div>
-    <% if (queryParam) { %>
-    <script>
-        noAcces();
-    </script>
-    <% } %>
-    <% if (loggedIn) { %>
-    <script>
-        isLoggedIn();
-    </script>
-    <% } %>
-    
 </main> 

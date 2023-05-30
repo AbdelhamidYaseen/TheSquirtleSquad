@@ -27,7 +27,8 @@ const controller = {
         console.log(cookie);
         console.log(loggedIn);
         
-        res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser, loggedIn, queryParam});         /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
+        res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser, loggedIn, queryParam}); 
+        /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
     },
     post: async (req: express.Request, res: express.Response) => {
         const username = req.body.username;
@@ -56,7 +57,7 @@ const controller = {
                     const getBuddy = await getBuddyFromUser(user.id);
                     const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
                     res.redirect('/');
-                    // res.render('index',{loggedIn, buddy:apiFetchBuddy,user:user, getBuddyFromUser}); /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
+                    /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
                 }
             }
             

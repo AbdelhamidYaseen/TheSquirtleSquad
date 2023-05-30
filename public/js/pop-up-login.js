@@ -19,10 +19,6 @@ function noAcces() {
 /*makes login form invisible*/
 function isLoggedIn(){
   document.getElementById("landing-page-button").style.display = "none";
-  // document.getElementsByClassName("landing-open-button").style.display = "none";
-
-  // if (loggedIn = true){
-  // }
 }
 
 /*checks if you got acces to visit a page or not*/
