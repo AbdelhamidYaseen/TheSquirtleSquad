@@ -1,0 +1,122 @@
+<%- include('template/head', {title: 'Pokedex'}) %>
+<%- include('template/header', {showLogo: true}) %>
+<%- include('template/sidebar') %>
+<main id="pokedex">
+    <section>
+        <section id="filter">
+            <button class="btn btn-bg" id="filter-btn" onclick="filterMenuToggle()"><img class="dropdown-btn-img" src="/assets/icons/dropdown.png" alt="menu"> Filter</button>
+            <section class="filter-menu" id="filter-menu">
+                <section class="filter-item">
+                    <img src="/assets/icons/arrow_down.png" alt="">
+                    <p>A->Z</p>
+                </section>
+                <section class="filter-item">
+                    <img src="/assets/icons/arrow_up.png" alt="">
+                    <p>Z->A</p>
+                </section>
+                <section class="filter-item">
+                    <img src="/assets/icons/arrow_down.png" alt="">
+                    <p>Low->High</p>
+                </section>
+                <section class="filter-item">
+                    <img src="/assets/icons/arrow_up.png" alt="">
+                    <p>High->Low</p>
+                </section>
+            </section>
+        </section>
+        <section id="type-selector">
+            <button class="btn btn-bg" id="type-selector-btn" onclick="filterTypeMenuToggle()">type selector</button>
+            <section class="type-filter-menu" id="type-filter-menu">
+                <section class="filter-item">
+                    <button class="type-pill type-normal">Normal</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-fighting">Fighting</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-flying">Flying</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-ground">Ground</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-poison">Poison</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-rock">Rock</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-bug">Bug</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-ghost">Ghost</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-steel">Steel</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-fire">Fire</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-water">Water</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-grass">Grass</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-electric">Electric</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-psychic">Psychic</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-ice">Ice</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-dragon">Dragon</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-dark">Dark</button>
+                </section>
+                <section class="filter-item">
+                    <button class="type-pill type-fairy">Fairy</button>
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="types">
+        <button class="type-pill type-normal">Normal</button>
+        <button class="type-pill type-fighting">Fighting</button>
+        <button class="type-pill type-flying">Flying</button>
+        <button class="type-pill type-ground">Ground</button>
+        <button class="type-pill type-poison">Poison</button>
+        <button class="type-pill type-rock">Rock</button>
+        <button class="type-pill type-bug">Bug</button>
+        <button class="type-pill type-ghost">Ghost</button>
+        <button class="type-pill type-steel">Steel</button>
+        <button class="type-pill type-fire">Fire</button>
+        <button class="type-pill type-water">Water</button>
+        <button class="type-pill type-grass">Grass</button>
+        <button class="type-pill type-electric">Electric</button>
+        <button class="type-pill type-psychic">Psychic</button>
+        <button class="type-pill type-ice">Ice</button>
+        <button class="type-pill type-dragon">Dragon</button>
+        <button class="type-pill type-dark">Dark</button>
+        <button class="type-pill type-fairy">Fairy</button>
+    </section>
+    </section>
+    <section class="pokedex-cards">
+        
+        <% for (let i = 0; i < pokemon.length; i++) { %>
+            <%- include('template/pokedexcard', {pokemon_id: pokemon[i].id , pokemon_img: pokemon[i].sprites.other?.['official-artwork'].front_default, pokemon_name: pokemon[i].name, caught: pokemon[i].caught}) %>
+        <% } %>
+    </section>
+    <section class="pokedex-footer">
+        <section class="pokedex-footer-container">
+            <a href="/pokedex/<%- currentPageNumer-1 %>"><img src="/assets/icons/arrow_left.png" alt=""></a>
+            <p> <%- currentPageNumer %> / <%- totalPages %></p>
+            <a href="/pokedex/<%- currentPageNumer + 1 %>"><img src="/assets/icons/arrow_right.png" alt=""></a>
+        </section>
+    </section>
+</main>
+<%- include('template/footer') %>

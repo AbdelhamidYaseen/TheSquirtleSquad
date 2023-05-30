@@ -1,0 +1,77 @@
+<%- include('template/head', {title: 'Pokedex'}) %>
+<%- include('template/header', {showLogo: true}) %>
+<%- include('template/sidebar') %>
+<section class="bellowheader">
+    <img src="/assets/images/Pokeball.png" alt="">
+</section>
+<main id="pokepeaker">
+    <section class="pokemon-details">
+        <section>
+            <img src="<%- pokemon.sprites.other?.['official-artwork'].front_default %>" alt="">
+        </section>
+        <section>
+            <section class="card">
+                <section style="display: flex; justify-content: space-between; width: 60%;">
+                    <p class="title"><%- pokemon.name %> #<%- pokemon.id %></p>
+                    <% if(buddy.pokemon_id === pokemon.id){%>
+                        <a href="" ><img src="/assets/images/starFilledIn.png" alt="" style="height: 2rem;"></a>
+                    <%}else{%>
+                        <a href="/setBuddy/<%-pokemon.id%>" ><img src="/assets/images/star.png" alt="" style="height: 2rem;"></a>
+                    <%}%>
+                </section>
+                <section class="types">
+                    <% pokemon.types.forEach(type => { %>
+                        <p class="type-pill type-<%=type.type.name%>"><%=type.type.name%></p>
+                    <% }) %>
+                    
+                </section>
+                <h3 class="subtitle <%=pokemon.types[0].type.name%>">Over</h3>
+                <section class="about">
+                    <section class="item">
+                        <p class="value"><%= pokemon.weight%> kg</p>
+                        <p class="value-type">Gewicht</p>
+                    </section>
+                    <section class="item">
+                        <p class="value"><%= pokemon.height%> m</p>
+                        <p class="value-type">Grootte</p>
+                    </section>
+                    <section class="item">
+                        <% pokemon.ability.forEach(ability => {%>
+                            <p class="value"><%=ability.ability.name%></p>
+                        <%})%>
+                        <p class="value-type">Abilities</p>
+                    </section>
+                </section>
+                <h3 class="subtitle <%=pokemon.types[0].type.name%>">base stats</h3>
+                <section class="stats">
+                    <table>
+                        <tbody>
+                            <% pokemon.baseStats.forEach(stat => { %>
+                                <tr class="item">
+                                    <td>
+                                        <p class="value <%= pokemon.types[0].type.name%>"><%= stat.statName%></p>
+                                    </td>
+                                    <td class="divider">
+                                        <p class="value"><%= stat.base_stat %></p>
+                                    </td>
+                                    <td class="progress-container">
+                                        <progress class="progress <%= pokemon.types[0].type.name%>" value="<%=stat.base_stat%>" max="100"></progress>
+                                    </td>
+                                </tr>
+                            <% }) %>                            
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="evolutionline" id="evolutionline-wrapper">
+        <h2 id="evolutionline-h2">Evolutie Lijn</h2>
+        <section class="slider" id="evolutionline-section">
+            <% evolutions.forEach(evolution => { %>
+                <%- include('template/evolutionCard', {pokemon_id: evolution.id , pokemon_img: evolution.sprites.other?.['official-artwork'].front_default, pokemon_name: evolution.name, caught: evolution.caught}) %>
+            <% }) %>
+        </section>
+    </section>
+</main>
+<%- include('template/footer') %>

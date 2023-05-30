@@ -1,0 +1,120 @@
+<%- include('template/head', {title: 'Capture'}) %>
+<%- include('template/header', {showLogo: true}) %>
+<%- include('template/sidebar') %>
+<main id="capture">
+    <section id="capture-own-pokemon">
+        <p><%= buddyInfo?.pokemon_name %></p>
+        <figure id="capture-own-pokemon-img" class="capture-pokemon">
+            <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" alt="">
+        </figure>
+    </section>
+    <section id="capture-pokeball">
+        <p id="capture-action">overblijvende kansen</p>
+        <p id="capture-chances">3</p>
+        <figure id="capture-ball" onclick="tryCapture()">
+            <img src="./assets/images/Pokeball.png" alt="">
+        </figure>
+    </section>
+    <section id="capture-other-pokemon">
+        <p><%= pokemon.name %></p>
+        <figure id="capture-other-pokemon-img" class="capture-pokemon">
+            <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="">
+        </figure>
+    </section>
+    <div id="release-msg">
+        <div id="release-msg-content" style="padding:0rem 1rem">
+            <p>Ben je zeker?</p>
+            <form action="/capture" method="post" target="hiddenFrame" id="releaseForm">
+                <input type="hidden" name="pokemonIdRemove" value="<%= pokemon.id%>">
+                <input type="hidden" name="pokemonIdRemoveStatus" id="pokemonIdRemoveStatus" value="">
+            </form>
+            <button onClick="release()" type="button" class="guesserButton">ja</button>
+            <button onclick="cancelRelease()" type="button" class="guesserButton" id="battle-button-stop">nee</button>
+        </div>
+    </div>
+    <div id="capture-msg">
+        <div id="capture-msg-content" style="padding:0rem 1rem">
+            
+            
+            <form id="capture-msg-text" method="post" action="/capture" target="hiddenFrame">
+                    <input type="hidden" name="pokemonNameChange" value="<%= pokemon.id%>">
+                    <input type="hidden" name="pokemonNameChangeStatus" value="false">
+                    <input type="text" placeholder="<%=pokemon.name%>" min="3" max="13" id="nameChange" value="" name="nameChange"> werd gevangen!
+                </form>
+            
+            
+            <form action="/capture" method="post" target="hiddenFrame" id="captureForm">
+                <input type="hidden" name="pokemonIdAdd" value="<%= pokemon.id%>">
+                <input type="hidden" name="pokemonIdAddStatus" id="pokemonIdAddStatus" value="">
+                <input type="hidden" name="pokemonName" id="pokemonName" value="<=% pokemon.name %>">
+            </form>
+            <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
+            <button type="button" class="guesserButton" style="background-color: gray;" onclick="changeName()" id="changeNameButton">verander naam</button>
+            <button  onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
+        </div>
+    </div>
+    <iframe name="hiddenFrame" style="display: none;"></iframe>
+</main>
+<%- include('template/footer') %>
+<script defer>    
+    //moet gelinkt worden aan db, test met bool
+    let gevangen = "<%=hasPokemonStatus%>";
+    let chances = 3;
+    console.log(gevangen)
+    
+    //pokemoninfo
+    let pokemonDefense = Math.floor(parseInt("<%=stats.baseStats[2].base_stat%>"));
+    let buddyAttack = parseInt("<%=buddyStats.baseStats[1].base_stat%>");
+    let captureChance = (buddyAttack/(buddyAttack+pokemonDefense))*0.9;
+    console.log("defense: "+pokemonDefense+"    atk: "+buddyAttack+"    kans: "+captureChance)
+    if(gevangen === "true"){
+            document.getElementById('capture-ball').style.backgroundColor = "#74cb484d";
+            document.getElementById('capture-ball').style.border = "10px solid #74CB48";
+            document.getElementById('capture-ball').style.boxShadow = "0 0 30px green";
+            document.getElementById('capture-action').innerHTML = "<%= pokemon.name %> vrijlaten?";
+            document.getElementById('capture-chances').style.display = "none";
+    }
+    function tryCapture(){
+        if(gevangen === "true"){
+            document.getElementById('release-msg').style.display = "block";
+        }
+        else if(chances>0){
+            let c = Math.random();
+            console.log(c);
+            if(c<captureChance){
+                //ADD TO DB
+                document.getElementById("pokemonIdAddStatus").setAttribute("value", "false");
+                document.getElementById("captureForm").submit();
+                document.getElementById('capture-msg').style.display = "block";
+            }
+            else{
+                chances -= 1;
+                document.getElementById('capture-chances').innerHTML = chances;
+                if(chances<=0){
+                    document.getElementById('changeNameButton').style.display = "none";
+                    document.getElementById('capture-msg-text').innerHTML = '<%= pokemon.name %> werd <span style="color:red;">niet</span> gevangen';
+                    document.getElementById('capture-msg').style.display = "block";
+            }}
+        }
+    }
+    
+    //knoppen op message overlay
+    function release(){
+        document.getElementById('release-msg').style.display = "none";
+        document.getElementById("pokemonIdRemoveStatus").setAttribute("value", "false");
+        document.getElementById("releaseForm").submit();
+        gevangen = false; //db
+        //back to pokemon not caught style
+        document.getElementById('capture-ball').style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+        document.getElementById('capture-ball').style.border = "10px solid red";
+        document.getElementById('capture-ball').style.boxShadow = "0 0 30px red";
+        document.getElementById('capture-action').innerHTML = "overblijvende kansen";
+        document.getElementById('capture-chances').style.display = "block";
+    }
+    function cancelRelease(){
+        document.getElementById('release-msg').style.display = "none";
+    }
+    function changeName(){
+        document.getElementById("capture-msg-text").submit();
+    }
+</script>

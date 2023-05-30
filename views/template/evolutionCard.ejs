@@ -1,0 +1,13 @@
+<section class="card">
+    <section class="card-hero">
+        <p>#<%= pokemon_id %></p>
+        <% if (caught) { %>
+            <a href="/pokepeaker/<%- pokemon_id %>"><img src="<%= pokemon_img %>" alt="<%= pokemon_name %>"></a>
+        <% }else { %>
+            <a href="#"><img class="silhouette" src="<%= pokemon_img %>" alt="<%= pokemon_name %>"></a>
+        <% }%>
+    </section>
+    <section class="card-footer">
+        <p><%= pokemon_name%></p>
+    </section>
+</section>

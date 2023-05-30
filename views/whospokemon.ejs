@@ -1,0 +1,80 @@
+<%- include('template/head', {title: 'Who\'s That Pokemon'}) %>
+<%- include('template/header', {showLogo: true}) %>
+<%- include('template/sidebar') %>
+<section id="top-extra">
+    <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+</section>
+<main id="mystery">
+    <section id="kleurbalk">
+        <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+    </section>
+    <section id="pokeguesser">
+        <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="" id="pokehidden" class="silhouette">
+        <form  id="guesserForm" action="" target="hiddenFrame" onsubmit="submitGuesserForm();">
+        <fieldset class="fieldset_data">
+            <legend class="guesserTitel">Welke pokémon is dit?</legend>
+            <input list="pokemon" name="pokemon" id="pokemon-mc">
+                <datalist id="pokemon">
+                    <% for(let i=0; i<=150; i++){%>
+                         <option  value="<%= pokelist[i].name%>"> 
+                    <%};%>
+                </datalist>
+            <section id="guesser-buttons">
+                <button onClick="window.location.reload();" onClick="window.location.reload();" type="button" class="guesserButton">Overslaan</button>                
+                <button type="button" class="guesserButton" onclick="myFunction()">Hint</button>
+                <button class="guesserButton">Indienen</button>
+            </section>
+        <br>
+        <p id="hint" style="display:none;">Deze pokémon is een <%= stats.types[0].type.name %> type</p>
+        </fieldset>
+    </form>
+    </section>
+    <div id="guesser-submit">
+        <div id="guesser-submit-content">
+            <p id="guesser-result"></p>
+            <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" alt="silhouet van pokemon" srcset="">
+            <p id="guesser-answer">De pokemon was <%= pokemon.name %></p>
+            <form action="/whospokemon" id="attackForm" target="hiddenFrame" method="post">
+                <input type="hidden" name="defenseFormStatus" id="defenseFormStatus" value="true">
+                <input type="hidden" name="attackFormStatus" id="attackFormStatus" value="true">
+            </form>
+            <button onClick="window.location.reload();" type="button" class="guesserButton">Nieuwe pokemon</button>
+            <button onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
+        </div>
+    </div>
+    <iframe name="hiddenFrame" style="display: none;"></iframe>
+</main>
+<%- include('template/footer') %>
+<script defer>
+function submitGuesserForm(){
+    event.preventDefault(); //-> niet refreshen
+    document.getElementById("guesser-submit").style.display = "block";
+    let guesserInput = document.getElementById('pokemon-mc').value;
+    let guesserAnswer = "<%=pokemon.name%>";
+    if(guesserInput.toLowerCase() == guesserAnswer.toLowerCase()){
+        document.getElementById('guesser-result').innerHTML = "Goed!";
+        
+        //stat boost message
+        let defOrAtk = Math.floor(Math.random() * 2);
+        let node = document.createElement("p");
+        let textnode;
+        if(defOrAtk==0){ //defense up
+            textnode = document.createTextNode(`<%=buddy.name%> defense +1!`);
+            document.getElementById("defenseFormStatus").setAttribute("value", "false");
+            document.getElementById("attackForm").submit();
+        }else{//atk up
+            textnode = document.createTextNode(`<%=buddy.name%> attack +1!`);
+            document.getElementById("attackFormStatus").setAttribute("value", "false");
+            document.getElementById("attackForm").submit();
+        }
+        node.appendChild(textnode);
+        document.getElementById("guesser-submit-content").appendChild(node);
+        node.style.fontStyle = "italic";
+        node.style.fontSize = "40px";
+        node.style.marginTop = "25px";
+    }
+    else{
+        document.getElementById('guesser-result').innerHTML = "Jammer!";
+    }
+}
+</script>

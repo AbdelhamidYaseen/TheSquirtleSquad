@@ -1,0 +1,160 @@
+<%- include('template/head', {title: 'Pokemon League'}) %>
+<%- include('template/header', {showLogo: true}) %>
+<%- include('template/sidebar') %>
+<section id="top-extra">
+    <img src="./assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+</section>
+<main id="mystery">
+    <section id="kleurbalk">
+        <img src="/assets/images/pokelogo.png" alt="pokeball logo" id="transparantebal">
+    </section>
+    <section id="pokebattler">
+        <section id="pokemon-battle-info">
+            <section id="poke1">
+                <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
+                <h2 class="name-poke-battle"><%=buddyInfo?.pokemon_name %></h2>
+                <div id="own-health-container">
+                    <div id="own-health"></div>
+                </div>
+            </section>
+            <section id="poke2">
+                <img src="<%= pokemon.sprites.other?.['official-artwork'].front_default %>" class="battle-pokemon">
+                <h2 class="name-poke-battle"><%= pokemon.name  %></h2>
+                <div id="health-container">
+                    <div id="health"></div>
+                </div>
+            </section>
+        </section>
+        <div id="hit">HIT</div>
+    </section>
+    <p id="battle-log-title">GEVECHT-LOG</p>
+    <div id="battle-log">
+        <div id="battle-log-content"></div>
+    </div>
+    <div id="battle-result" >
+        <div id="battle-result-content">
+        <div id="battle-result-text"></div>
+        <p id="battler-caught"></p>
+            <form action="/battler" id="battler-buttons" method="post" target="hiddenFrame">
+                <input type="hidden" name="pokemonId" value="<%= pokemon.id%>">
+                <input type="hidden" name="battleStatus" id="battleStatus" value="">
+            </form>
+            <input type="hidden" name="hasPokemonStatusInput" id="hasPokemonStatusInput" value="<%-kaas%>">
+            <button onClick="window.location.href='/battlerChoice'" class="guesserButton">Nieuwe battle</button>
+            <button onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
+        </div>
+    </div>
+    <iframe name="hiddenFrame" style="display: none;"></iframe>
+</main>
+<%- include('template/footer') %>
+<script defer>
+    
+document.getElementById("hit").onclick = function() {attack()};
+var enemyHasAttacked = true;
+var inBattle = true;
+
+//formule
+//HP – (defence – attack)
+
+//enemy details
+var enemyHealth = document.getElementById("health");
+const enemy ={
+    name: "<%- pokemon.name %>",
+    attackName: "Warp",
+    attackDmg: Math.floor(("<%=stats.baseStats[1].base_stat%>")),
+    defense: Math.floor(parseInt("<%=stats.baseStats[2].base_stat%>")),
+    hp: Math.floor(parseInt("<%=stats.baseStats[0].base_stat%>"))
+};
+enemyHP = enemy.hp;
+//own details
+var ownHealth = document.getElementById("own-health");
+const ownPokemon ={
+    name: "<%- buddyInfo?.pokemon_name %>",
+    attackName: "Tackle",
+    attackDmg: parseInt("<%=buddyInfo?.pokemon_attack%>"),
+    defense: parseInt("<%=buddyInfo?.pokemon_defense%>"),
+    hp: parseInt("<%=buddyInfo?.pokemon_hp%>"),
+};
+ownHP = ownPokemon.hp;
+
+//own pokemon attacks
+function attack() {
+    if(enemyHasAttacked){
+        var damage;
+        damage = ((ownPokemon.attackDmg/((enemy.defense+100)/100))*50)/100;
+        enemyHP -= damage;
+
+        //add to battle log
+        if(inBattle){
+            var node = document.createElement("p");
+            var textnode = document.createTextNode(`${ownPokemon.name} used ${ownPokemon.attackName} for ${Math.floor(damage)} damage`);
+            node.appendChild(textnode);
+            document.getElementById("battle-log-content").appendChild(node);
+            node.style.color = "green"; 
+        }
+        if(enemyHP<=0){
+            enemyHealth.style.width = 0;
+            console.log("you won!");
+            if(inBattle){
+                var node = document.createElement("p");
+                var textnode = document.createTextNode(`${ownPokemon.name} did ${Math.floor((enemy.hp-enemyHP)*100)/100} damage on ${enemy.name} and received ${Math.floor((ownPokemon.hp-ownHP)*100)/100} damage.`);
+                node.appendChild(textnode);
+                document.getElementById("battle-log-content").appendChild(node);
+                node.style.fontStyle = "italic";
+                node.style.fontSize = "13px"
+            }
+            document.getElementById("battle-result-text").innerHTML = "You won!";
+            document.getElementById('battler-caught').innerHTML = "<%= pokemon.name %> werd gevangen";
+            document.getElementById("battleStatus").setAttribute("value", "false");
+            document.getElementById("battler-buttons").submit();
+            battleEnd();
+            inBattle=false;
+        }else{
+            enemyHasAttacked=false;
+            enemyHealth.style.width = (enemyHP/enemy.hp)*100 + '%';
+            document.getElementById("hit").style.cursor = "default";
+            setTimeout(enemyAttack, 500);
+        }
+    }
+}
+
+//enemy attacks
+function enemyAttack() {
+    var damage;
+    damage = ((enemy.attackDmg/((ownPokemon.defense+100)/100))*50)/100;
+    ownHP -= damage;
+
+    //add to battle log
+    var node = document.createElement("p");
+    var textnode = document.createTextNode(`${enemy.name} used ${enemy.attackName} for ${Math.floor(damage)} damage`);
+    node.appendChild(textnode);
+    document.getElementById("battle-log-content").appendChild(node);
+    node.style.color = "red";
+    if(ownHP<=0){
+        ownHealth.style.width = 0;
+        console.log("GAME OVER!");
+
+        var node = document.createElement("p");
+        var textnode = document.createTextNode(`${enemy.name} did ${Math.round((ownPokemon.hp-ownHP)*100)/100} damage on ${ownPokemon.name} and received ${Math.floor((enemy.hp-enemyHP)*100)/100} damage.`);
+        node.appendChild(textnode);
+        document.getElementById("battle-log-content").appendChild(node);
+        node.style.fontStyle = "italic";
+        node.style.fontSize = "13px"
+
+        document.getElementById("battle-result-text").innerHTML = "GAME OVER!";
+        document.getElementById("battleStatus").setAttribute("value", "true");
+        battleEnd();
+    }else{
+        ownHealth.style.width = (ownHP/ownPokemon.hp)*100 + '%';
+        enemyHasAttacked=true;
+        document.getElementById("hit").style.cursor = "pointer";
+    }
+}
+let showEndMsg = true
+function battleEnd() {
+    if(showEndMsg == true){
+    document.getElementById("battle-result").style.display = "block";
+    }
+}
+
+</script>

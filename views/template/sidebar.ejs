@@ -1,0 +1,27 @@
+<aside>
+    <nav>
+        <ul>
+            <li><a href="/home"> home</a></li>
+            <li><a href="/captureChoice"> avontuur</a></li>
+            <li><a href="/pokedex"> pokedex</a></li>
+            <li><a href="/vergelijken"> vergelijker</a></li>
+            <li><a href="/battlerChoice"> pokemon league</a></li>
+            <li><a href="/whospokemon"> mysterie</a></li>
+            <li class="nav-account">  
+              <section>
+                <p class="nav-name"><%- user.username %></p>
+                <% if(buddyStatus === false){%>
+                  <figure id="" class="poke-image">
+                    <p>?</p>
+                  </figure>
+                <%} else { %>
+                  <p class="nav-pokemon"><%- buddyInfo?.pokemon_name %></p>
+                  <figure id="" class="poke-image">
+                    <img src="<%= buddy.sprites.other?.['official-artwork'].front_default %>" alt="" width="30px">
+                  </figure>
+                <%}%>
+              </section>
+            </li>
+        </ul>
+    </nav>
+</aside>

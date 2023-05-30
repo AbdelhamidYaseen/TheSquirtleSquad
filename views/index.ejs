@@ -1,0 +1,104 @@
+<%- include('template/head', {title: 'Landingpage'}) %>
+<script type="text/javascript" src="/js/pop-up-login.js"></script>
+<main id="background-main-landing">
+    <h1 id="h1-landing">Welkom!</h1>
+    <h2 id="h2-landing">Hieronder vindt u alle projecten terug waar u heen kan surfen. U zal er voor moeten zorgen
+        dat u voor het project dat u wilt bezoeken bent aangemeld om toegang te krijgen tot het gekozen project.
+    </h2>
+
+    <div class="landing-flex">
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/Fifa-logo.png" alt="Fifa logo" style="width:100%">
+            <div class="landing-grouptext">
+                <p>Fifa</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/mgt-logo.jpg" alt="Fifa logo" style="width:100%">
+            <div class="landing-grouptext">
+                <p>Magic the gathering</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/squirtle-squad.png" alt="Fifa logo"
+                style="width:100%">
+            <div class="landing-grouptext">
+                <p>The Squirtle Squad</p>
+                <button class="landing-button" onclick="accesOrNot()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/nbb-logo.png" alt="Fifa logo" style="width:100%">
+            <div class="landing-grouptext">
+                <p>Nationale bank België</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/lotr-logo.jpg" alt="Fifa logo" style="width:100%">
+            <div class="landing-grouptext">
+                <p>Lord Of The Rings</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/fortnite-logo.jpg" alt="Fifa logo"
+                style="width:100%">
+            <div class="landing-grouptext">
+                <p>Fortnite</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/lego-masters-logo.jpg" alt="Fifa logo"
+                style="width:100%">
+            <div class="landing-grouptext">
+                <p>Lego masters</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+        <div class="card-landing">
+            <img class="card-landing-image" src="./assets/images/Pokemon-Logo.png" alt="Fifa logo"
+                style="width:100%">
+            <div class="landing-grouptext">
+                <p>Pokémon</p>
+                <button class="landing-button" onclick="noAcces()">Bezoek deze site</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="landing-open-button"  id="landing-page-button"onclick="openForm()">Open Form</button>
+    <div class="landing-form-popup" id="login-Form">
+        <form class="landing-form-container" method="post" action="/">
+            <h3 id="h3-landing">Login</h3>
+
+            <label for="username"><b>Gebruikersnaam</b></label>
+            <input type="text" placeholder="Vul uw gebruikersnaam in" name="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Vul uw wachtwoord in" name="password" required>
+
+            <button type="submit" class="landing-btn">Login</button>
+            <button type="button" class="landing-btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+    
+    <div id="no-acces">
+        <div id="no-acces-text">
+            <p>U hebt geen toegang tot deze pagina.</p>
+        </div>
+    </div>
+    <% if (queryParam) { %>
+    <script>
+        noAcces();
+    </script>
+    <% } %>
+    <% if (loggedIn) { %>
+    <script>
+        isLoggedIn();
+    </script>
+    <% } %>
+    
+</main> 
