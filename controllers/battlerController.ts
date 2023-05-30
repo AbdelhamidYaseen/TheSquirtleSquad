@@ -15,10 +15,15 @@ const controller = {
         try {
             const queryPokemon = req.query.pokemonEnemy;
             // get user id from cookies
-            const cookie = req.headers.cookie;
-            if(typeof(cookie) !== 'undefined'){
-                const cookiesplit = cookie?.split("=");
-                userId = +cookiesplit[1];
+            const cookie  = req.headers.cookie;
+            if (cookie) {
+                const cookies = cookie.split(';').map((cookieString) => cookieString.trim());
+                const userIdCookie = cookies.find((cookieString) => cookieString.startsWith('userid='));
+                
+                if (userIdCookie) {
+                    const userIdCookieValue = userIdCookie.split('=')[1];
+                    userId = parseInt(userIdCookieValue);
+                }
             }
             const user : iUser = await getUserById(userId);
             const getBuddy = await getBuddyFromUser(userId);
