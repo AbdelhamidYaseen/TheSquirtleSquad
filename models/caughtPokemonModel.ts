@@ -1,7 +1,14 @@
+/*
+Bevat alle functions jn verband met de connectie van de databank
+    * Find
+    * Add 
+    * Remove
+    * Change 
+*/ 
 import client, { dbName } from "../db";
 import { iCaughtPokemon } from "../types";
 import {  iUser } from "./usersModel";
-
+//Haal gebruiker op aan de hand van de ingevoerde ID-variabele, als er geen gevonden wordt, retourneert het 'null'.
 const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> => {
     const res = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.isBuddy": true });
 
@@ -11,6 +18,7 @@ const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> 
     }
     return null;
 };
+//Verander de buddy van de gebruiker (ID) naar een nieuwe Pokémon (ID).
 const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userId});
@@ -30,6 +38,7 @@ const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
             );    
 
 };
+//Retourneert een array van alle Pokémon die de gebruiker heeft.
 const getAllCaughtPokemonFromUser = async (userid: number) : Promise<iCaughtPokemon[]> => {
     let res: iUser | null = await client.db(dbName).collection<iUser>("users").findOne<iUser>({id: userid});
     if(!res){
@@ -37,6 +46,7 @@ const getAllCaughtPokemonFromUser = async (userid: number) : Promise<iCaughtPoke
     }
     return res.caughtPokemon;
 };
+//Stelt de array-index van de te verwijderen Pokémon in op NULL --> verwijdert vervolgens alle null-waarden van de gebruiker.
 const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userid});
@@ -51,6 +61,7 @@ const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
     await collection.updateOne(filter, nullUpdate)
     console.log(`Removed nulls`)
 };
+//Voegt pokemon[ID] toe aan gebruiker[ID] met de toegevoegde buddyStatus.
 const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus: boolean) =>{
 
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
@@ -65,69 +76,14 @@ const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus:
         pokemon_speed: apiFetch.stats[5].base_stat,
         isBuddy: buddyStatus
     }
-    /*
-    let pokemonObject : iCaughtPokemon[] = [
-        {
-        pokemon_id: 1,
-        pokemon_hp: 150,
-        pokemon_attack: 150,
-        pokemon_defense: 150,
-        pokemon_special_attack: 150,
-        pokemon_special_defense: 150,
-        pokeomn_speed: 150,
-        isBuddy: false
-        },
-        {
-            pokemon_id: 3,
-            pokemon_hp: 150,
-            pokemon_attack: 150,
-            pokemon_defense: 150,
-            pokemon_special_attack: 150,
-            pokemon_special_defense: 150,
-            pokeomn_speed: 150,
-            isBuddy: false
-            },
-            {
-                pokemon_id: 17,
-                pokemon_hp: 150,
-                pokemon_attack: 150,
-                pokemon_defense: 150,
-                pokemon_special_attack: 150,
-                pokemon_special_defense: 150,
-                pokeomn_speed: 150,
-                isBuddy: true
-                },
-                {
-                    pokemon_id: 20,
-                    pokemon_hp: 150,
-                    pokemon_attack: 150,
-                    pokemon_defense: 150,
-                    pokemon_special_attack: 150,
-                    pokemon_special_defense: 150,
-                    pokeomn_speed: 150,
-                    isBuddy: false
-                    }
-]
-
-    let userObject : iUser = {
-        id: 1,
-        username: "ArtesisPlantijn",
-        password: "test", 
-        caughtPokemon: pokemonObject
-    
-    }
-    */
         const collection = client.db(dbName).collection("users");
-      /*  
-        await collection.deleteMany({});
-        await collection.insertOne(userObject);
-        */
         await collection.updateOne(
             {id: userId},
             {$push: {caughtPokemon: newPokemonObject}}
         )
         console.log("adding pokemon to user")
 };
+//Verhoogt de [DEFENSE] of [ATTACK] statistiek van je buddy.
 const upgradePokemon = async (userId: number, addition: number) =>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userId});
@@ -152,6 +108,7 @@ const upgradePokemon = async (userId: number, addition: number) =>{
 
 
 };
+//Controleert of pokemon[ID] zich in de gebruiker[ID] zijn caughtPokemon-array bevindt.
 const hasPokemonInDatabase = async(userid: number, pokemon: number) => {
     let response = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.pokemon_id": pokemon });
     if(response){
@@ -159,6 +116,7 @@ const hasPokemonInDatabase = async(userid: number, pokemon: number) => {
     }
     return false;
 };
+//Verandert de naam van pokemon[ID] naar de invoerstring[name]. VEREIST DAT DE POKÉMON IN DE DATABASE STAAT!
 const changePokemonName = async(userid: number, pokemonid: number, name: string)=>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userid});
@@ -170,7 +128,7 @@ const changePokemonName = async(userid: number, pokemonid: number, name: string)
         {$set: {[fieldToUpdate]: name}}
         )
 }
-
+//Haal de gevangen Pokémon [ID] op van gebruiker [ID].
 const getCaughtPokemonFromUser = async (userid: number, pokemonId: number): Promise<iCaughtPokemon | null> => {
     const res = await client
         .db(dbName)
@@ -187,5 +145,4 @@ const getCaughtPokemonFromUser = async (userid: number, pokemonId: number): Prom
 
     return null;
 }
-// Exporteer hier al je funcites en interfaces die je hier hebt aangemaakt
 export { getAllCaughtPokemonFromUser, getBuddyFromUser, addPokemonToUser, upgradePokemon , changeBuddyFromUser , hasPokemonInDatabase, removePokemonFromUser, changePokemonName, getCaughtPokemonFromUser};

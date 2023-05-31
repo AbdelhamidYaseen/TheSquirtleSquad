@@ -13,7 +13,7 @@ const controller = {
         
         try {
             let buddyStatus = true;
-            // get user id from cookies
+            //Geeft userId van de cookies
             const cookie  = req.headers.cookie;
             if (cookie) {
                 const cookies = cookie.split(';').map((cookieString) => cookieString.trim());
@@ -24,8 +24,10 @@ const controller = {
                     userId = parseInt(userIdCookieValue);
                 }
             }
+            //user informatie ophalen & aanmaken
             const user : iUser = await getUserById(userId);
             const getBuddy = await getBuddyFromUser(userId);
+            //api fetch voor buddy & pokemon list
             const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             const apiRes: iPokemon[] = await Promise.all(
                 // Fetch 151 pokémon
@@ -41,12 +43,10 @@ const controller = {
             console.error(err.message);
             res.status(500).send('Internal Server Error');
         }
-    },
+    },//post methode voor een redirect naar capture
     post: async(req: express.Request, res: express.Response) => {
         const catchChoice = req.body.pokemon;
         res.redirect(`/capture?pokemonCatch=${catchChoice}`);
     }
 }
-
-// Dit exporteert de controller zodat we deze kunen gebruiken in een route.
 export default controller;
