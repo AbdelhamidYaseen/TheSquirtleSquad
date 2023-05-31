@@ -1,5 +1,5 @@
 /*
-Bevat alle functions jn verband met de connectie van de databank
+Contains all functions in service of the Database
     * Find
     * Add 
     * Remove
@@ -8,7 +8,7 @@ Bevat alle functions jn verband met de connectie van de databank
 import client, { dbName } from "../db";
 import { iCaughtPokemon } from "../types";
 import {  iUser } from "./usersModel";
-//Haal gebruiker op aan de hand van de ingevoerde ID-variabele, als er geen gevonden wordt, retourneert het 'null'.
+//Get user by input ID variable if none found returns null
 const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> => {
     const res = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.isBuddy": true });
 
@@ -18,7 +18,7 @@ const getBuddyFromUser = async (userid: number): Promise<iCaughtPokemon | null> 
     }
     return null;
 };
-//Verander de buddy van de gebruiker (ID) naar een nieuwe Pokémon (ID).
+//Change the buddy from user(ID) by new pokemon(ID)
 const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userId});
@@ -38,7 +38,7 @@ const changeBuddyFromUser = async (userId: number,newPokemonId: number) =>{
             );    
 
 };
-//Retourneert een array van alle Pokémon die de gebruiker heeft.
+//Returns array of all pokemons the user has
 const getAllCaughtPokemonFromUser = async (userid: number) : Promise<iCaughtPokemon[]> => {
     let res: iUser | null = await client.db(dbName).collection<iUser>("users").findOne<iUser>({id: userid});
     if(!res){
@@ -46,7 +46,7 @@ const getAllCaughtPokemonFromUser = async (userid: number) : Promise<iCaughtPoke
     }
     return res.caughtPokemon;
 };
-//Stelt de array-index van de te verwijderen Pokémon in op NULL --> verwijdert vervolgens alle null-waarden van de gebruiker.
+//Sets the ToBe removed pokemon array index to NULL --> then removes all nulls from user
 const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userid});
@@ -61,7 +61,7 @@ const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
     await collection.updateOne(filter, nullUpdate)
     console.log(`Removed nulls`)
 };
-//Voegt pokemon[ID] toe aan gebruiker[ID] met de toegevoegde buddyStatus.
+//Adds pokemon[ID] to user[ID] with the added buddyStatus
 const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus: boolean) =>{
 
     const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then((response)=> response.json());
@@ -83,7 +83,7 @@ const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus:
         )
         console.log("adding pokemon to user")
 };
-//Verhoogt de [DEFENSE] of [ATTACK] statistiek van je buddy.
+//Increments either [DEFENSE] or [ATTACK] stat of your buddy
 const upgradePokemon = async (userId: number, addition: number) =>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userId});
@@ -108,7 +108,7 @@ const upgradePokemon = async (userId: number, addition: number) =>{
 
 
 };
-//Controleert of pokemon[ID] zich in de gebruiker[ID] zijn caughtPokemon-array bevindt.
+//Checks if pokemon[ID] is in the user[ID] caughtPokemon Array
 const hasPokemonInDatabase = async(userid: number, pokemon: number) => {
     let response = await client.db(dbName).collection("users").findOne({ id: userid, "caughtPokemon.pokemon_id": pokemon });
     if(response){
@@ -116,7 +116,7 @@ const hasPokemonInDatabase = async(userid: number, pokemon: number) => {
     }
     return false;
 };
-//Verandert de naam van pokemon[ID] naar de invoerstring[name]. VEREIST DAT DE POKÉMON IN DE DATABASE STAAT!
+//Changes the name of the pokemon[ID] to the input string[name] REQUIRES !POKEMON TO BE IN DATABASE!
 const changePokemonName = async(userid: number, pokemonid: number, name: string)=>{
     const collection = client.db(dbName).collection("users");
     const document = await collection.findOne({id: userid});
@@ -128,7 +128,7 @@ const changePokemonName = async(userid: number, pokemonid: number, name: string)
         {$set: {[fieldToUpdate]: name}}
         )
 }
-//Haal de gevangen Pokémon [ID] op van gebruiker [ID].
+//Get CaughtPokemon[ID] from user[ID]
 const getCaughtPokemonFromUser = async (userid: number, pokemonId: number): Promise<iCaughtPokemon | null> => {
     const res = await client
         .db(dbName)

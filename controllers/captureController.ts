@@ -8,7 +8,7 @@ let userId: number=0;
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
         try {
-            // get user id from cookies
+            //Get Id from Cookies
             const cookie  = req.headers.cookie;
             if (cookie) {
                 const cookies = cookie.split(';').map((cookieString) => cookieString.trim());
@@ -19,15 +19,15 @@ const controller = {
                     userId = parseInt(userIdCookieValue);
                 }
             }
-            //querry overgehaald van captureChoiceController
+            //Querry CaptureChoice
             const queryPokemon = req.query.pokemonCatch;
-            //userdata ophalen & aanmaken
+            //Get userdata
             const user : iUser = await getUserById(userId);
-            //apifetch
+            //Apifetch
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryPokemon}`).then((response)=> response.json());
             const getBuddy = await getBuddyFromUser(userId);
             let buddyStatus = true;
-            //api pokemon oproepen
+            //Api Pokemon call
             const apiFetchBuddy : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
             const pokemonStats : iPokemon = {
                 id: apiFetch.id,
@@ -36,7 +36,7 @@ const controller = {
                 ability: apiFetch.ability,
                 baseStats: apiFetch.stats,
             }
-            //buddy uit api ophalen
+            //Get BuddyInfo from Api
             const buddyStats : iPokemon = {
                 id: apiFetchBuddy.id,
                 name: apiFetchBuddy.name,
@@ -45,7 +45,7 @@ const controller = {
                 baseStats: apiFetchBuddy.stats,
 
             }
-            //dit checked of je de pokemon in je database hebt --> is een await function
+            //This function checks whether you have the Pokémon in your database.
             const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
 
 
@@ -102,7 +102,7 @@ const controller = {
             baseStats: apiFetchBuddy.stats,
 
         }
-        //dit checked of je de pokemon in je database hebt --> is een await function
+        //This checks if you have the Pokémon in your database. It is an await function.
         const hasPokemonStatus = await hasPokemonInDatabase(user.id, pokemonStats.id);
 
 
