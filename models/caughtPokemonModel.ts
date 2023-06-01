@@ -58,8 +58,8 @@ const removePokemonFromUser = async(userid: number, pokemonid: number)=>{
     await collection.updateOne(filter, update);
     console.log(`Removed Pokémon at index ${pokemonIndex} for user ${userid}`);
     const nullUpdate = {$pull: {[`caughtPokemon`]: null}};
-    await collection.updateOne(filter, nullUpdate)
-    console.log(`Removed nulls`)
+    await collection.updateOne(filter, nullUpdate);
+    console.log(`Removed nulls`);
 };
 //Adds pokemon[ID] to user[ID] with the added buddyStatus
 const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus: boolean) =>{
@@ -81,7 +81,7 @@ const addPokemonToUser = async (userId : number, pokemonId: number, buddyStatus:
             {id: userId},
             {$push: {caughtPokemon: newPokemonObject}}
         )
-        console.log("adding pokemon to user")
+        console.log("adding pokemon to user");
 };
 //Increments either [DEFENSE] or [ATTACK] stat of your buddy
 const upgradePokemon = async (userId: number, addition: number) =>{
