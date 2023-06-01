@@ -4,11 +4,7 @@ import { iPokemon } from '../types';
 import { getBuddyFromUser , upgradePokemon} from '../models/caughtPokemonModel';
 
 let userId: number=0;
-// Maakt een object aan, je kan hier alle mogelijke express http methodes mee geven (get, post, ...)
 const controller = {
-    
-    // Dit zorgt voor de logica voor de get http methode. Hier in kan je met je database praten, data manipuleren.
-    // Maak dit ene async functie als je database requests doet
     get: async (req: express.Request, res: express.Response) => {
         try {
             // get user id from cookies
@@ -22,7 +18,9 @@ const controller = {
                     userId = parseInt(userIdCookieValue);
                 }
             }
+            //get user information
             const user : iUser = await getUserById(userId);
+            //random number -> random pokemon
             const pokemonNumber : number = Math.floor(Math.random() * 150)+1;
             let buddyStatus = true;
             const apiFetch : any = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`).then((response)=> response.json());
@@ -55,13 +53,11 @@ const controller = {
     post: async(req: express.Request, res: express.Response) => {
         const statusSituationAttack = req.body.attackFormStatus;
         const statusSituationDefense = req.body.defenseFormStatus;
-  
+        //buddy attack or defense +1
         if(statusSituationAttack == "false"){
-            console.log("ATTACK UPGRADE CONTROLLER")
             upgradePokemon(userId,1);
         }
         if(statusSituationDefense == "false"){
-            console.log("DEFENSE UPGRADE CONTROLLER")
             upgradePokemon(userId,2);
         }
 
@@ -93,6 +89,4 @@ const controller = {
         res.render('whospokemon', {user:user, pokemon:apiFetch,buddy : apiFetchBuddy,stats: pokemonStats, pokelist : apiRes, upgradePokemon, getBuddyFromUser, buddyInfo : getBuddy, buddyStatus});
     }
 }
-
-// Dit exporteert de controller zodat we deze kunen gebruiken in een route.
 export default controller;

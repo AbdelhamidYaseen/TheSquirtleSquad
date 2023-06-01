@@ -47,7 +47,7 @@
 <%- include('template/footer') %>
 <script defer>
 function submitGuesserForm(){
-    event.preventDefault(); //-> niet refreshen
+    event.preventDefault(); //-> no refresh on submit
     document.getElementById("guesser-submit").style.display = "block";
     let guesserInput = document.getElementById('pokemon-mc').value;
     let guesserAnswer = "<%=pokemon.name%>";
