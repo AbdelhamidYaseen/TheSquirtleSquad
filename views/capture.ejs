@@ -48,7 +48,7 @@
                 <input type="hidden" name="pokemonIdAddStatus" id="pokemonIdAddStatus" value="">
                 <input type="hidden" name="pokemonName" id="pokemonName" value="<=% pokemon.name %>">
             </form>
-            <button onClick="window.location.reload();" type="button" class="guesserButton">vang verder</button>
+            <button onClick="window.location.href='/captureChoice'" type="button" class="guesserButton">vang verder</button>
             <button type="button" class="guesserButton" style="background-color: gray;" onclick="changeName()" id="changeNameButton">verander naam</button>
             <button  onclick="window.location.href='/home'" class="guesserButton" id="battle-button-stop">Stop</button>
         </div>
@@ -96,7 +96,7 @@
                     document.getElementById('capture-msg').style.display = "block";
             }}
         }
-    }
+    } 
     
     //knoppen op message overlay
     function release(){

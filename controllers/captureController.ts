@@ -3,7 +3,7 @@ import { getUserById, iUser } from '../models/usersModel';
 import { iPokemon } from '../types';
 import { getBuddyFromUser, hasPokemonInDatabase , addPokemonToUser, removePokemonFromUser} from '../models/caughtPokemonModel';
 import { changePokemonName } from '../models/caughtPokemonModel';
-
+let queryPokemon="";
 let userId: number=0;
 const controller = {
     get: async (req: express.Request, res : express.Response) => {
@@ -20,7 +20,10 @@ const controller = {
                 }
             }
             //Querry CaptureChoice
-            const queryPokemon = req.query.pokemonCatch;
+            if(typeof(req.query.pokemonCatch) !== 'undefined'){
+                queryPokemon = req.query.pokemonCatch.toString();
+            }
+            
             //Get userdata
             const user : iUser = await getUserById(userId);
             //Apifetch
@@ -81,7 +84,6 @@ const controller = {
 
 
         //RELOAD
-        const queryPokemon = req.query.pokemonCatch;
         const user : iUser = await getUserById(userId);
         const getBuddy = await getBuddyFromUser(userId);
         let buddyStatus = true;
@@ -107,7 +109,6 @@ const controller = {
 
 
         res.render('capture', {user:user, pokemon : apiFetch, buddy : apiFetchBuddy,stats:pokemonStats, buddyStats : buddyStats, getBuddyFromUser, hasPokemonStatus, buddyInfo : getBuddy, buddyStatus});
-
     }
 }
 
