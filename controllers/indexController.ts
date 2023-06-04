@@ -23,19 +23,15 @@ const controller = {
         }else{
             loggedIn = false;
         }
-        const getBuddy = await getBuddyFromUser(1);
-        const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
 
         
-        res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser, loggedIn, queryParam}); 
+        res.render('index',{user:user, getBuddyFromUser, loggedIn, queryParam}); 
         /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
     },
     post: async (req: express.Request, res: express.Response) => {
         const username = req.body.username;
         const password = req.body.password;
-
         let inputPasswordHash = crypto.SHA1(password).toString(); /*turns the given password into a hashed SHA1 version of itself.*/
-        
         const allUsers: iUser[] = await getAllUsers();
         /* loop through all users, if username is found in the array, he looks at the password, if this matches, loggedIn is given value true*/
         for (let i = 0; i < allUsers.length; i++) {
@@ -48,8 +44,6 @@ const controller = {
                         path: '/',
                         maxAge: 864000000, /*alive for 10 days.*/
                     })
-                    const getBuddy = await getBuddyFromUser(user.id);
-                    const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
                     res.redirect('/');
                     /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
                 }
