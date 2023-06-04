@@ -11,6 +11,7 @@ const controller = {
         const user : iUser = await getUserById(1);
         const cookie = req.headers.cookie;
         const queryParam = req.query.loggedIn === "false";
+        /* checks if a cookie already exists or not, if so, the user is logged in*/
         if(typeof(cookie) !== 'undefined'){
             const cookies = cookie.split(';').map((cookieString) => cookieString.trim());
             const userIdCookie = cookies.find((cookieString) => cookieString.startsWith('userid='));
@@ -24,8 +25,7 @@ const controller = {
         }
         const getBuddy = await getBuddyFromUser(1);
         const apiFetchBuddy : iPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${getBuddy?.pokemon_id}`).then((response) => response.json());
-        console.log(cookie);
-        console.log(loggedIn);
+
         
         res.render('index',{buddy:apiFetchBuddy,user:user, getBuddyFromUser, loggedIn, queryParam}); 
         /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
@@ -34,12 +34,7 @@ const controller = {
         const username = req.body.username;
         const password = req.body.password;
 
-        console.log(username);
-        console.log(password);
-
         let inputPasswordHash = crypto.SHA1(password).toString(); /*turns the given password into a hashed SHA1 version of itself.*/
-
-        console.log(inputPasswordHash);
         
         const allUsers: iUser[] = await getAllUsers();
         /* loop through all users, if username is found in the array, he looks at the password, if this matches, loggedIn is given value true*/
@@ -49,7 +44,6 @@ const controller = {
             if (username == user.username){
                 if (inputPasswordHash == user.password){
                     loggedIn = true;
-                    console.log("goedzo, da werikt");
                     res.cookie('userid',user.id,{
                         path: '/',
                         maxAge: 864000000, /*alive for 10 days.*/
