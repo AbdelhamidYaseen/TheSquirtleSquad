@@ -26,7 +26,6 @@ const controller = {
 
         
         res.render('index',{user:user, getBuddyFromUser, loggedIn, queryParam}); 
-        /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
     },
     post: async (req: express.Request, res: express.Response) => {
         const username = req.body.username;
@@ -45,7 +44,6 @@ const controller = {
                         maxAge: 864000000, /*alive for 10 days.*/
                     })
                     res.redirect('/');
-                    /*Buddy has to be send to avoid the page from crashing. This is due the template requesting a buddy.*/
                 }
             }
             
