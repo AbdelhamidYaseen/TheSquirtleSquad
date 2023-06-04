@@ -13,7 +13,7 @@
             <section class="card">
                 <section style="display: flex; justify-content: space-between; width: 60%;">
                     <p class="title"><%- pokemon.name %> #<%- pokemon.id %></p>
-                    <% if(buddy.pokemon_id === pokemon.id){%>
+                    <% if(buddy.id === pokemon.id){%>
                         <a href="" ><img src="/assets/images/starFilledIn.png" alt="" style="height: 2rem;"></a>
                     <%}else{%>
                         <a href="/setBuddy/<%-pokemon.id%>" ><img src="/assets/images/star.png" alt="" style="height: 2rem;"></a>
